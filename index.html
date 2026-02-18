@@ -217,6 +217,12 @@
   .wallet-option{display:flex;align-items:center;gap:1rem;padding:0.9rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:12px;margin-bottom:0.5rem;cursor:pointer;transition:all 0.2s;}
   .wallet-option:hover{border-color:var(--accent);transform:translateX(4px);}
   .wallet-option.detected{border-color:var(--green);}
+  .wallet-option.demo-top{background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(6,182,212,0.08));border:2px solid var(--green);padding:1.1rem 1.2rem;margin-bottom:0.8rem;position:relative;overflow:hidden;}
+  .wallet-option.demo-top::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(34,197,94,0.06),transparent 70%);pointer-events:none;}
+  .wallet-option.demo-top:hover{border-color:var(--green);transform:translateX(4px);box-shadow:0 0 25px rgba(34,197,94,0.2);}
+  .wallet-option.demo-top .w-icon{font-size:2rem;}
+  .wallet-option.demo-top .w-name{font-size:1.05rem;}
+  .wallet-option.demo-top .w-chain{color:var(--green);font-weight:500;}
   .wallet-option .w-icon{font-size:1.8rem;width:40px;text-align:center;flex-shrink:0;}
   .wallet-option .w-info{flex:1;}
   .wallet-option .w-name{font-weight:700;font-size:0.95rem;}
@@ -532,7 +538,7 @@
     <button class="nav-btn" id="propose-btn" style="display:none" onclick="openPropose()">+ Create Market</button>
     <button class="nav-btn" id="panel-btn" style="display:none" onclick="toggleUserPanel()">My Bets</button>
     <button class="nav-btn" id="admin-toggle" style="display:none" onclick="toggleAdmin()">Admin</button>
-    <button class="connect-btn" id="connect-btn" onclick="connectWallet()">Connect Wallet</button>
+    <button class="connect-btn" id="connect-btn" onclick="connectWallet()">Play Free</button>
     <a href="#" class="tip-btn" onclick="openTipModal(event)"><span class="tip-icon">🧡</span> Tip</a>
   </div>
 </nav>
@@ -558,8 +564,8 @@
 <div class="promo-banner" id="promo-banner">
   <div class="promo-icon">🎁</div>
   <div class="promo-text">
-    <div class="promo-title">Get 50,000 FREE Credits</div>
-    <div class="promo-sub">Connect wallet. Get credits. Start predicting.</div>
+    <div class="promo-title">Play Free — 100k Demo Credits</div>
+    <div class="promo-sub">Play free with demo credits or connect a real wallet.</div>
   </div>
   <button class="promo-cta" onclick="claimWelcomeBonus()">Claim Now</button>
   <button class="promo-close" onclick="dismissPromo()">&times;</button>
@@ -574,7 +580,7 @@
         <div style="font-size:1.5rem;margin-bottom:0.3rem;">🎁</div>
         <div style="font-size:0.9rem;font-weight:700;margin-bottom:0.2rem;">Welcome Bonus</div>
         <div style="font-size:1.2rem;font-weight:800;color:var(--green);">50,000 Credits</div>
-        <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.5rem;">Connect any wallet — instant free credits</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.5rem;">Demo mode — instant 100k free credits, no wallet needed</div>
         <button onclick="claimWelcomeBonus()" style="background:var(--green);color:#fff;border:none;padding:0.5rem 1rem;border-radius:8px;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Claim Free</button>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;">
@@ -593,7 +599,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:0.75rem;font-size:0.7rem;color:var(--muted);">
-      No purchase needed. No KYC. Just connect and play.
+      No purchase needed. No KYC. Play free instantly or connect a real wallet.
     </div>
   </div>
 </div>
@@ -637,8 +643,8 @@
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
-      <div class="step-title">Connect Wallet</div>
-      <div class="step-desc">Any wallet. One click.</div>
+      <div class="step-title">Play Free</div>
+      <div class="step-desc">Demo mode or real wallet. One click.</div>
     </div>
     <div class="step">
       <div class="step-num">2</div>
@@ -767,7 +773,7 @@
   <table class="lb-table">
     <thead><tr><th>Rank</th><th>Predictor</th><th>Volume</th><th>Bets</th><th>Win Rate</th></tr></thead>
     <tbody id="lb-body">
-      <tr><td colspan="5" class="lb-empty">Connect wallet & place bets to appear on the leaderboard!</td></tr>
+      <tr><td colspan="5" class="lb-empty">Tap Play Free & place bets to appear on the leaderboard!</td></tr>
     </tbody>
   </table>
 </div>
@@ -839,7 +845,7 @@
       <div class="r-icon">🎁</div>
       <div class="r-title">Welcome Bonus</div>
       <div class="r-amount">50,000 Credits</div>
-      <div class="r-desc">Connect wallet → get 50k free.</div>
+      <div class="r-desc">Play free → get 100k demo credits.</div>
       <button class="r-action" onclick="claimWelcomeBonus()">Claim Now</button>
       <span class="r-earned" id="r-welcome-check" style="display:none">Claimed</span>
     </div>
@@ -870,7 +876,7 @@
 
 <!-- Sticky Mobile CTA -->
 <div class="sticky-cta" id="sticky-cta">
-  <button onclick="connectWallet()">Get 50k Free Credits</button>
+  <button onclick="connectWallet()">Play Free — Demo Mode</button>
 </div>
 
 <!-- Share Modal -->
@@ -928,19 +934,23 @@
 <div class="modal-overlay" id="wallet-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeWalletModal()">&times;</button>
-    <h3>🔒 Connect Wallet</h3>
-    <div class="modal-question">One click. No seed phrase needed.</div>
-    <div id="wallet-options"></div>
-    <div style="text-align:center;font-size:0.7rem;color:var(--muted);margin:0.5rem 0;">🔐 Secure · ⚡ Instant</div>
-    <div class="wallet-divider">or try it first</div>
-    <div class="wallet-option" onclick="connectDemo()" style="border-style:dashed;">
+    <h3>🎯 Start Predicting</h3>
+    <div class="modal-question">Pick a mode to get started instantly.</div>
+
+    <!-- DEMO MODE — TOP / RECOMMENDED -->
+    <div class="wallet-option demo-top" onclick="connectDemo()">
       <div class="w-icon">🎮</div>
       <div class="w-info">
-        <div class="w-name">Demo Mode</div>
-        <div class="w-chain">Play with test credits — no wallet needed</div>
+        <div class="w-name">Demo Mode <span style="background:var(--green);color:#000;font-size:0.55rem;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;font-weight:800;letter-spacing:0.5px;">RECOMMENDED</span></div>
+        <div class="w-chain">100k free credits — play instantly, no wallet needed</div>
       </div>
       <div class="w-status ready">Free</div>
     </div>
+
+    <div class="wallet-divider">or connect a real wallet</div>
+
+    <div id="wallet-options"></div>
+    <div style="text-align:center;font-size:0.7rem;color:var(--muted);margin:0.5rem 0;">🔐 Secure · ⚡ Instant · Real crypto</div>
   </div>
 </div>
 
@@ -1716,7 +1726,7 @@ function disconnectWallet() {
   wallet = null; walletChain = null; userId = null; userBalance = 0;
   localStorage.removeItem('wallet_' + SITE_ID);
   const btn = document.getElementById('connect-btn');
-  btn.textContent = 'Connect Wallet';
+  btn.textContent = 'Play Free';
   btn.style.background = 'var(--accent)';
   btn.style.color = '#000';
   btn.style.border = 'none';
@@ -1809,7 +1819,7 @@ function copyAddr() {
 }
 
 async function confirmDeposit() {
-  if (!wallet) { showToast('Connect wallet first'); return; }
+  if (!wallet) { showToast('Tap Play Free to start'); return; }
   const txHash = document.getElementById('deposit-txhash').value.trim();
   if (firebaseReady) {
     await db.ref('deposits/' + userId).push({
@@ -1905,7 +1915,7 @@ function toggleUserPanel() {
 // PROPOSE MARKET (any user)
 // ============================================================
 function openPropose() {
-  if (!wallet) { showToast('Connect wallet first'); return; }
+  if (!wallet) { showToast('Tap Play Free to start'); return; }
   document.getElementById('propose-modal').classList.add('show');
 }
 function closePropose() { document.getElementById('propose-modal').classList.remove('show'); }
@@ -2693,7 +2703,7 @@ function showFirstVisitSplash() {
   // After 3 seconds, show a gentle nudge
   setTimeout(() => {
     if (!wallet) {
-      showToast('Welcome! Connect a wallet for 50,000 FREE credits — or try Demo Mode');
+      showToast('Welcome! Tap Play Free for 100k demo credits — or connect a real wallet');
     }
   }, 3000);
   // After 15 seconds, nudge share
@@ -2885,7 +2895,7 @@ function switchMode(mode) {
   if (mode === 'free') {
     // Free mode — give instant credits, no deposit needed
     if (!wallet) {
-      showToast('Free play! Connect any wallet or use Demo Mode to start');
+      showToast('Free play! Tap Play Free for instant demo credits — or connect a real wallet');
     } else if (userBalance < 10000) {
       // Top up free credits
       if (firebaseReady && userId) {
@@ -2967,7 +2977,7 @@ function getRank(volume, bets) {
 function renderLeaderboard() {
   const tbody = document.getElementById('lb-body');
   if (lbData.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" class="lb-empty">No predictions yet — be the first! Connect wallet & bet to climb the ranks. Free or real — everyone ranks!</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" class="lb-empty">No predictions yet — be the first! Tap Play Free & bet to climb the ranks.</td></tr>';
     return;
   }
 
@@ -3125,7 +3135,7 @@ function updateRewardsUI() {
   const text = document.getElementById('rp-text');
   if (fill) fill.style.width = pct + '%';
   if (text) {
-    if (steps === 0) text.textContent = 'Connect wallet to start earning';
+    if (steps === 0) text.textContent = 'Tap Play Free to start earning';
     else if (steps === 1) text.textContent = 'Claim your welcome bonus — 50k free credits!';
     else if (steps === 2) text.textContent = 'Place your first bet to keep earning!';
     else if (steps === 3) text.textContent = 'Share a market to complete all rewards!';
