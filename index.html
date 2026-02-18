@@ -52,7 +52,8 @@
   .nav-btn:hover{border-color:var(--accent);color:var(--accent);}
   .connect-btn{background:var(--accent);color:#000;border:none;padding:0.5rem 1.2rem;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;}
   .connect-btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(245,158,11,0.4);}
-  .balance-pill{background:var(--card);border:1px solid var(--border);padding:0.35rem 0.8rem;border-radius:20px;font-size:0.8rem;font-weight:700;color:var(--accent);display:none;}
+  .balance-pill{background:var(--card);border:1px solid var(--border);padding:0.35rem 0.8rem;border-radius:20px;font-size:0.8rem;font-weight:700;color:var(--accent);display:inline-block;cursor:pointer;}
+  .balance-pill:hover{border-color:var(--accent);box-shadow:0 0 8px rgba(245,158,11,0.2);}
 
   /* Hero */
   .hero{text-align:center;padding:3rem 1rem 2rem;max-width:700px;margin:0 auto;}
@@ -576,7 +577,7 @@
     <a href="#rewards">Rewards</a>
     <a href="#leaderboard">Ranks</a>
     <a href="#community">Community</a>
-    <span class="balance-pill" id="balance-pill">0 credits</span>
+    <span class="balance-pill" id="balance-pill" onclick="if(!wallet)connectWallet();" title="Your demo credits">🎰 100,000 credits</span>
     <button class="nav-btn" id="propose-btn" style="display:none" onclick="openPropose()">+ Create Market</button>
     <button class="nav-btn" id="panel-btn" style="display:none" onclick="toggleUserPanel()">My Bets</button>
     <button class="nav-btn" id="admin-toggle" style="display:none" onclick="toggleAdmin()">Admin</button>
@@ -1425,11 +1426,13 @@ function loadUserData() {
 
 function updateBalanceUI() {
   const pill = document.getElementById('balance-pill');
-  pill.textContent = userBalance.toLocaleString() + ' credits';
-  pill.style.display = wallet ? 'inline-block' : 'none';
+  pill.textContent = '🎰 ' + userBalance.toLocaleString() + ' credits';
+  pill.style.display = 'inline-block';
   document.getElementById('user-balance').textContent = userBalance.toLocaleString();
   document.getElementById('modal-balance').textContent = userBalance.toLocaleString() + ' credits';
   document.getElementById('withdraw-available').textContent = userBalance.toLocaleString();
+  // Persist demo balance
+  if (walletChain === 'demo') localStorage.setItem('demoBal_' + SITE_ID, String(userBalance));
 }
 
 // ============================================================
@@ -1849,8 +1852,13 @@ function connectDemo() {
 }
 
 function disconnectWallet() {
-  wallet = null; walletChain = null; userId = null; userBalance = 0;
   localStorage.removeItem('wallet_' + SITE_ID);
+  localStorage.removeItem('demoBal_' + SITE_ID);
+  // Re-enter demo mode automatically
+  wallet = 'demo_' + Math.random().toString(36).slice(2, 10);
+  walletChain = 'demo'; userId = wallet; userBalance = 100000;
+  localStorage.setItem('wallet_' + SITE_ID, wallet);
+  localStorage.setItem('demoBal_' + SITE_ID, '100000');
   const btn = document.getElementById('connect-btn');
   btn.textContent = 'Play Free';
   btn.style.background = 'var(--accent)';
@@ -1860,7 +1868,7 @@ function disconnectWallet() {
   document.getElementById('propose-btn').style.display = 'none';
   document.getElementById('panel-btn').style.display = 'none';
   updateBalanceUI();
-  showToast('Wallet disconnected');
+  showToast('Back to demo mode — 100k credits ready!');
 }
 
 function onWalletConnected(addr) {
@@ -3900,10 +3908,26 @@ updateEngageTimers();
 
 // Real Crypto is always the default — toggle already shows it active
 
-// Hide sticky CTA if wallet already connected
+// Auto-connect demo mode so users always see their credits
 if (localStorage.getItem('wallet_' + SITE_ID)) {
+  // Returning user — restore their session
+  const savedWallet = localStorage.getItem('wallet_' + SITE_ID);
+  if (savedWallet.startsWith('demo_')) {
+    wallet = savedWallet; walletChain = 'demo'; userId = wallet;
+    const savedBal = parseInt(localStorage.getItem('demoBal_' + SITE_ID)) || 100000;
+    userBalance = savedBal;
+    onWalletConnected(wallet);
+  }
   const stickyBtn = document.querySelector('.sticky-cta button');
   if (stickyBtn) { stickyBtn.textContent = '🔥 Place a Bet — Markets Are Live!'; stickyBtn.onclick = () => document.getElementById('markets').scrollIntoView({behavior:'smooth'}); }
+} else {
+  // First visit — auto-start demo mode silently
+  wallet = 'demo_' + Math.random().toString(36).slice(2, 10);
+  walletChain = 'demo'; userId = wallet;
+  userBalance = 100000;
+  localStorage.setItem('wallet_' + SITE_ID, wallet);
+  localStorage.setItem('demoBal_' + SITE_ID, '100000');
+  updateBalanceUI();
 }
 
 // Check for admin URL param
