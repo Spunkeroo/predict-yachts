@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://predict-network-ec767-default-rtdb.firebaseio.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://subscribe-forms.beehiiv.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://predict-network-ec767-default-rtdb.firebaseio.com https://www.google-analytics.com; frame-src https://subscribe-forms.beehiiv.com; object-src 'none'; base-uri 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>predict.yachts — Crypto Prediction Markets</title>
 <meta name="description" content="Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.">
@@ -988,6 +988,12 @@
       <div class="share-option" onclick="doShareCopy()"><span class="s-icon">🔗</span> Copy Link</div>
     </div>
   </div>
+</div>
+
+<div style="max-width:600px;margin:2rem auto;padding:2rem 1rem;text-align:center;">
+  <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:0.3rem;">Get Free Predictions & Crypto Alerts</h3>
+  <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Market insights, free credits, and crypto news. Weekly. Free.</p>
+  <iframe src="https://subscribe-forms.beehiiv.com/6831d05b-f121-4e0d-951b-16f88ddd9ec3" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width:100%;max-width:400px;height:375px;margin:0 auto;border-radius:12px;background:transparent;box-shadow:none;display:block;"></iframe>
 </div>
 
 <footer>
@@ -3958,6 +3964,17 @@ loadFirebaseSDK().then(async (ok) => {
     setTimeout(runAudit, 1000);
   }
 });
+</script>
+<script>
+(function(){
+  var p = new URLSearchParams(location.search);
+  var ref = p.get('ref') || p.get('r');
+  if (ref && /^[a-zA-Z0-9]{3,64}$/.test(ref)) {
+    if (!localStorage.getItem('pn_ref')) localStorage.setItem('pn_ref', ref);
+    if (typeof gtag === 'function') gtag('event', 'referral_visit', { referral_code: ref, source: 'yachts' });
+    history.replaceState({}, '', location.pathname);
+  }
+})();
 </script>
 </body>
 </html>
