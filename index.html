@@ -1,0 +1,3434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>predict.yachts — Crypto Prediction Markets</title>
+<meta name="description" content="Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.">
+<meta name="keywords" content="prediction market, crypto betting, Superyacht launches, luxury trends, yacht racing, wild bets., free predictions, win crypto">
+<meta name="author" content="Predict Network">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="canonical" href="https://predict.yachts/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛥️</text></svg>">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="predict.yachts — Crypto Prediction Markets">
+<meta property="og:description" content="Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.">
+<meta property="og:url" content="https://predict.yachts/">
+<meta property="og:site_name" content="Predict Network">
+<meta property="og:image" content="https://predict.yachts/og-image.png">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="predict.yachts — Crypto Prediction Markets">
+<meta name="twitter:description" content="Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.">
+<meta name="twitter:image" content="https://predict.yachts/og-image.png">
+<meta name="twitter:site" content="@SpunkArt13">
+<!-- Preconnect -->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://predict-network-ec767-default-rtdb.firebaseio.com" crossorigin>
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"predict.yachts","url":"https://predict.yachts/","description":"Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.","publisher":{"@type":"Organization","name":"Predict Network"},"potentialAction":{"@type":"SearchAction","target":"https://predict.yachts/?q={search_term}","query-input":"required name=search_term"}}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--bg:#0a0a0f;--card:#111118;--border:#1a1a25;--text:#e5e5e5;--muted:#666;--green:#22c55e;--red:#ef4444;--accent:#f59e0b;--yes:#22c55e;--no:#ef4444;--blue:#3b82f6;--sol:#9945ff;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* Nav */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(10,10,15,0.95);backdrop-filter:blur(10px);z-index:100;}
+  .logo{font-size:1.4rem;font-weight:800;letter-spacing:-0.5px;cursor:pointer;}
+  .logo span{color:var(--accent);}
+  .nav-right{display:flex;gap:0.8rem;align-items:center;font-size:0.9rem;}
+  .nav-right a{color:var(--muted);transition:color 0.2s;}
+  .nav-right a:hover{color:var(--text);text-decoration:none;}
+  .nav-right a.tip-btn{color:#ffffff !important;}
+  .nav-right a.tip-btn:hover{color:#ffffff !important;}
+  .nav-btn{background:var(--card);color:var(--text);border:1px solid var(--border);padding:0.45rem 1rem;border-radius:8px;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all 0.2s;}
+  .nav-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .connect-btn{background:var(--accent);color:#000;border:none;padding:0.5rem 1.2rem;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;}
+  .connect-btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(245,158,11,0.4);}
+  .balance-pill{background:var(--card);border:1px solid var(--border);padding:0.35rem 0.8rem;border-radius:20px;font-size:0.8rem;font-weight:700;color:var(--accent);display:none;}
+
+  /* Hero */
+  .hero{text-align:center;padding:3rem 1rem 2rem;max-width:700px;margin:0 auto;}
+  .hero-emoji{font-size:4rem;margin-bottom:1rem;}
+  .hero h1{font-size:2.4rem;font-weight:900;letter-spacing:-1px;margin-bottom:0.5rem;}
+  .hero h1 span{color:var(--accent);}
+  .hero p{color:var(--muted);font-size:1.1rem;line-height:1.5;}
+  .hero-stats{display:flex;gap:2rem;justify-content:center;margin-top:1.5rem;}
+  .hero-stat{text-align:center;}
+  .hero-stat .val{font-size:1.5rem;font-weight:800;color:var(--accent);}
+  .hero-stat .label{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+  /* Filters */
+  .filters{display:flex;gap:0.5rem;justify-content:center;padding:1rem;flex-wrap:wrap;}
+  .filter-btn{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:0.4rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;transition:all 0.2s;}
+  .filter-btn.active,.filter-btn:hover{color:var(--text);border-color:var(--accent);background:rgba(245,158,11,0.1);}
+  .filter-hot{border-color:rgba(239,68,68,0.3);color:#ef4444;}
+  .filter-hot.active,.filter-hot:hover{border-color:#ef4444;background:rgba(239,68,68,0.1);color:#ef4444;}
+  .filter-new{border-color:rgba(59,130,246,0.3);color:#3b82f6;}
+  .filter-new.active,.filter-new:hover{border-color:#3b82f6;background:rgba(59,130,246,0.1);color:#3b82f6;}
+  .daily-challenge{display:none;background:var(--card);border:1px solid var(--accent);border-radius:12px;padding:1rem 1.2rem;margin:0 auto 1rem;max-width:900px;}
+  .pinned-badge{display:inline-block;background:var(--accent);color:#000;font-size:0.65rem;font-weight:700;padding:0.15rem 0.4rem;border-radius:4px;margin-left:0.4rem;vertical-align:middle;}
+
+  /* Markets Grid */
+  .markets{max-width:900px;margin:0 auto;padding:1rem;}
+  .market-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1rem;transition:all 0.2s;}
+  .market-card:hover{border-color:#333;transform:translateY(-1px);}
+  .market-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
+  .market-category{font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent);font-weight:700;margin-bottom:0.4rem;}
+  .market-question{font-size:1.15rem;font-weight:700;line-height:1.4;}
+  .market-meta{text-align:right;flex-shrink:0;}
+  .market-volume{font-size:0.8rem;color:var(--muted);}
+  .market-ends{font-size:0.7rem;color:var(--muted);margin-top:0.2rem;}
+  .market-live{font-size:0.6rem;color:var(--green);font-weight:700;margin-top:0.2rem;display:flex;align-items:center;gap:0.3rem;justify-content:flex-end;}
+  .market-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 1.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .odds-bar{flex:1;height:8px;border-radius:4px;background:var(--border);overflow:hidden;display:flex;}
+  .odds-yes{background:var(--yes);height:100%;transition:width 0.5s;}
+  .odds-no{background:var(--no);height:100%;transition:width 0.5s;}
+  .odds-labels{display:flex;justify-content:space-between;font-size:0.8rem;font-weight:600;margin-bottom:0.8rem;}
+  .odds-labels .yes{color:var(--yes);}
+  .odds-labels .no{color:var(--no);}
+  .market-actions{display:flex;gap:0.5rem;}
+  .bet-btn{flex:1;padding:0.7rem;border:none;border-radius:10px;font-weight:800;font-size:0.95rem;cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;}
+  .bet-btn.yes{background:rgba(34,197,94,0.15);color:var(--yes);border:1px solid rgba(34,197,94,0.3);}
+  .bet-btn.yes:hover{background:rgba(34,197,94,0.25);transform:scale(1.02);}
+  .bet-btn.no{background:rgba(239,68,68,0.15);color:var(--no);border:1px solid rgba(239,68,68,0.3);}
+  .bet-btn.no:hover{background:rgba(239,68,68,0.25);transform:scale(1.02);}
+
+  /* Modals */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+  .modal-overlay.show{display:flex;}
+  .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;max-width:460px;width:90%;animation:modalIn 0.2s;position:relative;max-height:90vh;overflow-y:auto;}
+  @keyframes modalIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+  .modal h3{font-size:1.2rem;font-weight:800;margin-bottom:0.3rem;}
+  .modal-question{color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.4;}
+  .modal-side{display:flex;gap:0.5rem;margin-bottom:1rem;}
+  .side-btn{flex:1;padding:0.6rem;border-radius:10px;font-weight:700;font-size:0.9rem;cursor:pointer;border:2px solid transparent;transition:all 0.2s;background:var(--bg);}
+  .side-btn.yes{color:var(--yes);}
+  .side-btn.yes.selected{border-color:var(--yes);background:rgba(34,197,94,0.15);}
+  .side-btn.no{color:var(--no);}
+  .side-btn.no.selected{border-color:var(--no);background:rgba(239,68,68,0.15);}
+  .bet-input-group{margin-bottom:1rem;}
+  .bet-input-group label{display:block;font-size:0.8rem;color:var(--muted);margin-bottom:0.3rem;}
+  .bet-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.7rem 1rem;color:var(--text);font-size:1.1rem;font-weight:700;outline:none;}
+  .bet-input:focus{border-color:var(--accent);}
+  .quick-amounts{display:flex;gap:0.3rem;margin-top:0.4rem;}
+  .quick-amt{background:var(--bg);border:1px solid var(--border);color:var(--muted);padding:0.3rem 0.6rem;border-radius:6px;font-size:0.75rem;cursor:pointer;transition:all 0.15s;}
+  .quick-amt:hover{color:var(--text);border-color:var(--accent);}
+  .payout-preview{background:var(--bg);border-radius:10px;padding:0.8rem;margin-bottom:1rem;}
+  .payout-row{display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:0.3rem;}
+  .payout-row:last-child{margin-bottom:0;}
+  .payout-row .label{color:var(--muted);}
+  .payout-row .value{font-weight:700;color:var(--accent);}
+  .payout-row .fee{color:var(--muted);font-size:0.75rem;}
+  .place-bet-btn{width:100%;padding:0.8rem;border:none;border-radius:10px;font-weight:800;font-size:1rem;cursor:pointer;transition:all 0.2s;}
+  .place-bet-btn.yes{background:var(--yes);color:#000;}
+  .place-bet-btn.no{background:var(--no);color:#fff;}
+  .place-bet-btn:hover{transform:scale(1.02);}
+  .place-bet-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+  .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer;line-height:1;}
+
+  /* User Panel */
+  .user-panel{max-width:900px;margin:0 auto;padding:1rem;display:none;}
+  .user-panel.show{display:block;}
+  .panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .panel-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;}
+  .panel-card h4{font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:0.8rem;}
+  .panel-card .big-val{font-size:1.8rem;font-weight:900;color:var(--accent);}
+  .panel-card .sub{font-size:0.75rem;color:var(--muted);margin-top:0.2rem;}
+  .panel-actions{display:flex;gap:0.5rem;margin-top:1rem;}
+  .panel-btn{flex:1;padding:0.6rem;border-radius:10px;font-weight:700;font-size:0.85rem;cursor:pointer;border:none;transition:all 0.2s;}
+  .panel-btn.deposit{background:var(--green);color:#000;}
+  .panel-btn.withdraw{background:var(--card);color:var(--text);border:1px solid var(--border);}
+  .panel-btn:hover{transform:scale(1.02);}
+  .bets-list{max-height:300px;overflow-y:auto;}
+  .bet-item{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid var(--border);}
+  .bet-item:last-child{border-bottom:none;}
+  .bet-item .bet-q{font-size:0.85rem;font-weight:600;flex:1;margin-right:0.5rem;}
+  .bet-item .bet-side{font-size:0.75rem;font-weight:700;padding:0.2rem 0.5rem;border-radius:6px;}
+  .bet-item .bet-side.yes{background:rgba(34,197,94,0.15);color:var(--yes);}
+  .bet-item .bet-side.no{background:rgba(239,68,68,0.15);color:var(--no);}
+  .bet-item .bet-amt{font-size:0.85rem;font-weight:700;color:var(--accent);margin-left:0.5rem;white-space:nowrap;}
+
+  /* Deposit Modal */
+  .chain-tabs{display:flex;gap:0.3rem;margin-bottom:1rem;}
+  .chain-tab{flex:1;padding:0.5rem;border-radius:8px;font-weight:700;font-size:0.8rem;cursor:pointer;border:2px solid transparent;background:var(--bg);color:var(--muted);text-align:center;transition:all 0.2s;}
+  .chain-tab.active{border-color:var(--accent);color:var(--accent);background:rgba(245,158,11,0.1);}
+  .chain-tab.btc.active{border-color:#f7931a;color:#f7931a;}
+  .chain-tab.eth.active{border-color:#627eea;color:#627eea;}
+  .chain-tab.sol.active{border-color:var(--sol);color:var(--sol);}
+  .deposit-addr{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.8rem;font-family:monospace;font-size:0.75rem;word-break:break-all;margin-bottom:0.5rem;position:relative;cursor:pointer;}
+  .deposit-addr:hover{border-color:var(--accent);}
+  .deposit-addr .copy-hint{position:absolute;right:0.5rem;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--muted);font-family:sans-serif;}
+  .deposit-note{font-size:0.75rem;color:var(--muted);margin-bottom:1rem;line-height:1.4;}
+  .deposit-confirm{width:100%;padding:0.7rem;border:none;border-radius:10px;font-weight:700;font-size:0.9rem;cursor:pointer;background:var(--accent);color:#000;transition:all 0.2s;}
+  .deposit-confirm:hover{transform:scale(1.02);}
+  .deposit-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.6rem 1rem;color:var(--text);font-size:0.95rem;font-weight:700;outline:none;margin-bottom:0.8rem;}
+  .deposit-input:focus{border-color:var(--accent);}
+
+  /* Admin Panel */
+  .admin-panel{max-width:900px;margin:0 auto;padding:1rem;display:none;}
+  .admin-panel.show{display:block;}
+  .admin-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;margin-bottom:1rem;}
+  .admin-section h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:1rem;font-weight:800;}
+  .admin-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.8rem;color:var(--text);font-size:0.9rem;outline:none;margin-bottom:0.5rem;}
+  .admin-input:focus{border-color:var(--accent);}
+  .admin-btn{padding:0.5rem 1rem;border:none;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;margin-right:0.3rem;margin-bottom:0.3rem;}
+  .admin-btn.primary{background:var(--accent);color:#000;}
+  .admin-btn.danger{background:var(--red);color:#fff;}
+  .admin-btn.success{background:var(--green);color:#000;}
+  .admin-row{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid var(--border);font-size:0.85rem;}
+  .admin-row:last-child{border-bottom:none;}
+  .admin-stat{text-align:center;padding:0.5rem;}
+  .admin-stat .val{font-size:1.4rem;font-weight:800;color:var(--accent);}
+  .admin-stat .label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;}
+  .admin-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-bottom:1rem;}
+
+  /* Footer */
+  footer{border-top:1px solid var(--border);padding:2rem;text-align:center;margin-top:3rem;}
+  .network-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:0.8rem;}
+  .network-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+  .network-links a{color:var(--accent);font-weight:700;font-size:0.9rem;padding:0.3rem 0.8rem;border:1px solid var(--border);border-radius:8px;transition:all 0.2s;}
+  .network-links a:hover{border-color:var(--accent);background:rgba(245,158,11,0.1);text-decoration:none;}
+  .network-links a.current{border-color:var(--accent);background:rgba(245,158,11,0.15);}
+  .footer-sub{font-size:0.75rem;color:var(--muted);}
+  .fee-badge{display:inline-block;background:rgba(245,158,11,0.15);color:var(--accent);padding:0.2rem 0.6rem;border-radius:6px;font-size:0.7rem;font-weight:700;margin-top:0.5rem;}
+  .chains-badge{display:inline-flex;gap:0.5rem;margin-top:0.5rem;font-size:0.7rem;font-weight:700;}
+  .chains-badge span{padding:0.2rem 0.6rem;border-radius:6px;}
+  .chains-badge .btc{background:rgba(247,147,26,0.15);color:#f7931a;}
+  .chains-badge .eth{background:rgba(98,126,234,0.15);color:#627eea;}
+  .chains-badge .sol{background:rgba(153,69,255,0.15);color:#9945ff;}
+
+  /* Tip Button — Exact Spunk.bet style */
+  .tip-btn{background:linear-gradient(135deg,#a855f7,#7c3aed,#c026d3);color:#ffffff;border:none;padding:0.5rem 1.2rem;border-radius:999px;font-weight:800;font-size:0.85rem;cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;display:inline-flex;align-items:center;gap:0.4rem;text-decoration:none;box-shadow:0 0 16px rgba(168,85,247,0.6),0 0 32px rgba(168,85,247,0.3);animation:tipGlow 2s infinite;}
+  @keyframes tipGlow{0%,100%{box-shadow:0 0 16px rgba(168,85,247,0.6),0 0 32px rgba(168,85,247,0.3)}50%{box-shadow:0 0 20px rgba(192,38,211,0.7),0 0 40px rgba(168,85,247,0.4)}}
+  .tip-btn:hover{transform:scale(1.1);box-shadow:0 0 24px rgba(168,85,247,0.8),0 0 48px rgba(192,38,211,0.5);text-decoration:none;}
+  .tip-btn .tip-icon{animation:tipPulse 1.5s infinite;}
+  @keyframes tipPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+  .tip-footer{margin-top:0.8rem;}
+
+  /* Wallet Modal */
+  .wallet-option{display:flex;align-items:center;gap:1rem;padding:0.9rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:12px;margin-bottom:0.5rem;cursor:pointer;transition:all 0.2s;}
+  .wallet-option:hover{border-color:var(--accent);transform:translateX(4px);}
+  .wallet-option.detected{border-color:var(--green);}
+  .wallet-option .w-icon{font-size:1.8rem;width:40px;text-align:center;flex-shrink:0;}
+  .wallet-option .w-info{flex:1;}
+  .wallet-option .w-name{font-weight:700;font-size:0.95rem;}
+  .wallet-option .w-chain{font-size:0.75rem;color:var(--muted);}
+  .wallet-option .w-status{font-size:0.7rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:6px;flex-shrink:0;}
+  .wallet-option .w-status.ready{background:rgba(34,197,94,0.15);color:var(--green);}
+  .wallet-option .w-status.install{background:rgba(102,102,102,0.15);color:var(--muted);}
+  .wallet-divider{text-align:center;color:var(--muted);font-size:0.75rem;margin:0.8rem 0;position:relative;}
+  .wallet-divider::before,.wallet-divider::after{content:'';position:absolute;top:50%;width:35%;height:1px;background:var(--border);}
+  .wallet-divider::before{left:0;}
+  .wallet-divider::after{right:0;}
+
+  /* Promo Banner */
+  .promo-banner{background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(34,197,94,0.1));border:1px solid rgba(245,158,11,0.3);border-radius:16px;padding:1.2rem 1.5rem;max-width:900px;margin:0 auto 1rem;display:flex;align-items:center;gap:1rem;animation:glow 3s infinite;}
+  @keyframes glow{0%,100%{box-shadow:0 0 5px rgba(245,158,11,0.1)}50%{box-shadow:0 0 20px rgba(245,158,11,0.2)}}
+  .promo-banner .promo-icon{font-size:2rem;flex-shrink:0;}
+  .promo-banner .promo-text{flex:1;}
+  .promo-banner .promo-title{font-weight:800;font-size:1rem;color:var(--accent);}
+  .promo-banner .promo-sub{font-size:0.8rem;color:var(--muted);margin-top:0.1rem;}
+  .promo-banner .promo-cta{background:var(--accent);color:#000;border:none;padding:0.5rem 1.2rem;border-radius:8px;font-weight:800;font-size:0.85rem;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
+  .promo-banner .promo-cta:hover{transform:scale(1.05);}
+  .promo-banner .promo-close{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:0.2rem;flex-shrink:0;}
+
+  /* Share Bar */
+  .share-bar{display:flex;gap:0.3rem;margin-top:0.5rem;}
+  .share-btn{padding:0.3rem 0.6rem;border-radius:6px;font-size:0.7rem;font-weight:700;cursor:pointer;border:none;transition:all 0.15s;display:flex;align-items:center;gap:0.2rem;}
+  .share-btn:hover{transform:scale(1.05);}
+  .share-btn.x{background:rgba(255,255,255,0.1);color:#fff;}
+  .share-btn.tg{background:rgba(0,136,204,0.15);color:#0088cc;}
+  .share-btn.wa{background:rgba(37,211,102,0.15);color:#25d366;}
+  .share-btn.link{background:rgba(245,158,11,0.15);color:var(--accent);}
+
+  /* Referral Banner */
+  .referral-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;max-width:900px;margin:1rem auto;text-align:center;}
+  .referral-box h3{font-size:1rem;font-weight:800;color:var(--accent);margin-bottom:0.3rem;}
+  .referral-box p{font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;}
+  .referral-link{display:flex;gap:0.5rem;max-width:400px;margin:0 auto;}
+  .referral-link input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.8rem;color:var(--accent);font-size:0.8rem;font-weight:700;font-family:monospace;outline:none;}
+  .referral-link button{background:var(--accent);color:#000;border:none;padding:0.4rem 0.8rem;border-radius:8px;font-weight:700;font-size:0.8rem;cursor:pointer;}
+
+  /* Sticky Mobile CTA */
+  .sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,15,0.95);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:0.8rem 1rem;z-index:99;text-align:center;}
+  .sticky-cta button{background:var(--accent);color:#000;border:none;padding:0.7rem 2rem;border-radius:10px;font-weight:800;font-size:1rem;cursor:pointer;width:100%;max-width:400px;}
+  @media(max-width:600px){.sticky-cta{display:block;}body{padding-bottom:70px;}}
+
+  /* Share Modal */
+  .share-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:1rem;}
+  .share-option{display:flex;align-items:center;gap:0.6rem;padding:0.7rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.2s;font-weight:600;font-size:0.9rem;}
+  .share-option:hover{border-color:var(--accent);transform:scale(1.02);}
+  .share-option .s-icon{font-size:1.3rem;}
+  .share-preview{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.8rem;margin-bottom:1rem;font-size:0.8rem;color:var(--muted);line-height:1.5;white-space:pre-wrap;}
+
+  /* Trending tag */
+  .trending-tag{display:inline-block;background:rgba(239,68,68,0.15);color:var(--red);font-size:0.65rem;font-weight:800;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;text-transform:uppercase;letter-spacing:0.5px;}
+  .hot-tag{display:inline-block;background:rgba(245,158,11,0.2);color:var(--accent);font-size:0.65rem;font-weight:800;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;text-transform:uppercase;}
+  .new-tag{display:inline-block;background:rgba(59,130,246,0.15);color:var(--blue);font-size:0.65rem;font-weight:800;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;text-transform:uppercase;}
+
+  /* Trust & Security Section */
+  .trust-section{max-width:900px;margin:2rem auto;padding:0 1rem;}
+  .trust-title{text-align:center;font-size:1.2rem;font-weight:800;margin-bottom:1.5rem;color:var(--text);}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+  .trust-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;transition:all 0.2s;}
+  .trust-card:hover{border-color:var(--green);transform:translateY(-2px);}
+  .trust-icon{font-size:2rem;margin-bottom:0.5rem;}
+  .trust-label{font-weight:700;font-size:0.85rem;margin-bottom:0.2rem;}
+  .trust-desc{font-size:0.72rem;color:var(--muted);line-height:1.4;}
+  .security-banner{background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(59,130,246,0.08));border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:1rem 1.5rem;max-width:900px;margin:1rem auto;display:flex;align-items:center;gap:1rem;font-size:0.85rem;}
+  .security-banner .sec-icon{font-size:1.5rem;flex-shrink:0;}
+  .security-banner .sec-text{flex:1;color:var(--muted);line-height:1.5;}
+  .security-banner .sec-text strong{color:var(--green);}
+  .wallet-chain-label{display:inline-block;font-size:0.6rem;padding:0.1rem 0.3rem;border-radius:3px;font-weight:800;text-transform:uppercase;margin-left:0.2rem;}
+  .wallet-chain-label.sol{background:rgba(153,69,255,0.15);color:#9945ff;}
+  .wallet-chain-label.eth{background:rgba(98,126,234,0.15);color:#627eea;}
+  .wallet-chain-label.btc{background:rgba(247,147,26,0.15);color:#f7931a;}
+  .wallet-chain-label.multi{background:rgba(245,158,11,0.15);color:var(--accent);}
+  @media(max-width:600px){.trust-grid{grid-template-columns:1fr 1fr;}}
+
+  /* Leaderboard */
+  .leaderboard{max-width:900px;margin:2rem auto;padding:0 1rem;}
+  .leaderboard-title{text-align:center;font-size:1.3rem;font-weight:900;margin-bottom:0.3rem;}
+  .leaderboard-sub{text-align:center;font-size:0.8rem;color:var(--muted);margin-bottom:1rem;}
+  .lb-table{width:100%;border-collapse:collapse;}
+  .lb-table th{font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);text-align:left;padding:0.6rem 0.8rem;border-bottom:1px solid var(--border);}
+  .lb-table td{padding:0.7rem 0.8rem;border-bottom:1px solid var(--border);font-size:0.85rem;}
+  .lb-table tr:hover{background:rgba(245,158,11,0.05);}
+  .lb-rank{font-weight:900;font-size:1.1rem;width:40px;}
+  .lb-rank.gold{color:#ffd700;}
+  .lb-rank.silver{color:#c0c0c0;}
+  .lb-rank.bronze{color:#cd7f32;}
+  .lb-user{font-weight:700;}
+  .lb-badge{display:inline-block;font-size:0.6rem;padding:0.1rem 0.4rem;border-radius:4px;font-weight:800;margin-left:0.3rem;}
+  .lb-badge.whale{background:rgba(153,69,255,0.15);color:#9945ff;}
+  .lb-badge.shark{background:rgba(59,130,246,0.15);color:var(--blue);}
+  .lb-badge.bull{background:rgba(34,197,94,0.15);color:var(--green);}
+  .lb-badge.newbie{background:rgba(245,158,11,0.15);color:var(--accent);}
+  .lb-val{font-weight:700;color:var(--accent);}
+  .lb-winrate{font-weight:700;}
+  .lb-winrate.good{color:var(--green);}
+  .lb-winrate.mid{color:var(--accent);}
+  .lb-winrate.low{color:var(--red);}
+  .lb-empty{text-align:center;color:var(--muted);padding:2rem;font-size:0.9rem;}
+  .lb-tabs{display:flex;gap:0.3rem;justify-content:center;margin-bottom:1rem;}
+  .lb-tab{padding:0.4rem 1rem;border-radius:20px;font-size:0.8rem;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--muted);transition:all 0.2s;}
+  .lb-tab.active{border-color:var(--accent);color:var(--accent);background:rgba(245,158,11,0.1);}
+  .lb-you{background:rgba(245,158,11,0.08) !important;}
+
+  /* Mode Toggle (Free/Real) */
+  .mode-toggle{display:flex;align-items:center;gap:0.5rem;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.2rem;margin:0.8rem auto;max-width:280px;}
+  .mode-btn{flex:1;padding:0.4rem 0.8rem;border-radius:18px;font-size:0.8rem;font-weight:700;cursor:pointer;border:none;text-align:center;transition:all 0.2s;background:transparent;color:var(--muted);}
+  .mode-btn.active{color:#000;}
+  .mode-btn.free.active{background:var(--green);color:#000;}
+  .mode-btn.real.active{background:var(--accent);color:#000;}
+  .free-badge{display:inline-block;background:rgba(34,197,94,0.15);color:var(--green);font-size:0.65rem;font-weight:800;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;}
+
+  /* Prize Banner */
+  .prize-banner{background:linear-gradient(135deg,rgba(153,69,255,0.1),rgba(245,158,11,0.1));border:1px solid rgba(153,69,255,0.3);border-radius:14px;padding:1rem 1.5rem;max-width:900px;margin:1rem auto;text-align:center;}
+  .prize-banner h3{font-size:1rem;font-weight:800;color:#9945ff;margin-bottom:0.3rem;}
+  .prize-banner p{font-size:0.8rem;color:var(--muted);line-height:1.5;}
+  .prize-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;margin-top:0.8rem;}
+  .prize-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.8rem;text-align:center;}
+  .prize-card .prize-period{font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:700;}
+  .prize-card .prize-amount{font-size:1.2rem;font-weight:900;color:var(--accent);margin:0.2rem 0;}
+  .prize-card .prize-desc{font-size:0.7rem;color:var(--muted);}
+  @media(max-width:600px){.prize-grid{grid-template-columns:1fr;}}
+
+  /* Rewards Hub */
+  .rewards-hub{max-width:900px;margin:2rem auto;padding:0 1rem;}
+  .rewards-title{text-align:center;font-size:1.3rem;font-weight:900;margin-bottom:0.3rem;}
+  .rewards-sub{text-align:center;font-size:0.85rem;color:var(--muted);margin-bottom:1.2rem;}
+  .rewards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;}
+  .reward-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;transition:all 0.2s;position:relative;overflow:hidden;}
+  .reward-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .reward-card .r-icon{font-size:1.8rem;margin-bottom:0.4rem;}
+  .reward-card .r-title{font-weight:800;font-size:0.95rem;margin-bottom:0.2rem;}
+  .reward-card .r-amount{font-size:1.3rem;font-weight:900;color:var(--accent);margin-bottom:0.2rem;}
+  .reward-card .r-desc{font-size:0.75rem;color:var(--muted);line-height:1.4;}
+  .reward-card .r-action{display:inline-block;background:var(--accent);color:#000;border:none;padding:0.35rem 0.8rem;border-radius:8px;font-weight:700;font-size:0.75rem;cursor:pointer;margin-top:0.5rem;transition:all 0.2s;}
+  .reward-card .r-action:hover{transform:scale(1.05);}
+  .reward-card .r-earned{position:absolute;top:0.6rem;right:0.6rem;background:rgba(34,197,94,0.15);color:var(--green);font-size:0.65rem;font-weight:800;padding:0.15rem 0.5rem;border-radius:4px;}
+  .rewards-progress{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;margin-top:0.8rem;text-align:center;}
+  .rewards-progress .rp-title{font-weight:700;font-size:0.85rem;margin-bottom:0.5rem;}
+  .rewards-progress .rp-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:0.3rem;}
+  .rewards-progress .rp-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:4px;transition:width 0.5s;width:0%;}
+  .rewards-progress .rp-text{font-size:0.75rem;color:var(--muted);}
+  @media(max-width:600px){.rewards-grid{grid-template-columns:1fr;}}
+
+  /* Community Section */
+  .community-section{max-width:900px;margin:2rem auto;padding:0 1rem;}
+  .community-title{text-align:center;font-size:1.3rem;font-weight:900;margin-bottom:0.3rem;}
+  .community-sub{text-align:center;font-size:0.85rem;color:var(--muted);margin-bottom:1.2rem;}
+  .community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+  .community-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;transition:all 0.2s;cursor:pointer;text-decoration:none;display:block;color:var(--text);}
+  .community-card:hover{border-color:var(--accent);transform:translateY(-3px);text-decoration:none;box-shadow:0 8px 25px rgba(245,158,11,0.15);}
+  .community-card .cc-icon{font-size:2.2rem;margin-bottom:0.5rem;}
+  .community-card .cc-name{font-weight:800;font-size:1rem;margin-bottom:0.2rem;}
+  .community-card .cc-desc{font-size:0.75rem;color:var(--muted);line-height:1.4;margin-bottom:0.5rem;}
+  .community-card .cc-btn{display:inline-block;background:var(--accent);color:#000;padding:0.35rem 1rem;border-radius:8px;font-weight:800;font-size:0.8rem;transition:all 0.2s;}
+  .community-card:hover .cc-btn{transform:scale(1.05);}
+  .community-card.telegram .cc-btn{background:#0088cc;color:#fff;}
+  .community-card.x-card .cc-btn{background:#fff;color:#000;}
+  @media(max-width:600px){.community-grid{grid-template-columns:1fr;}}
+
+  /* Engagement Popup */
+  .engage-popup{display:none;position:fixed;bottom:1.5rem;right:1.5rem;background:var(--card);border:1px solid var(--accent);border-radius:16px;padding:1.2rem 1.5rem;z-index:250;max-width:340px;animation:slideUp 0.3s;box-shadow:0 8px 30px rgba(245,158,11,0.25);}
+  .engage-popup.show{display:block;}
+  @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .engage-popup .ep-close{position:absolute;top:0.5rem;right:0.7rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;}
+  .engage-popup .ep-title{font-weight:800;font-size:1rem;margin-bottom:0.3rem;color:var(--accent);}
+  .engage-popup .ep-text{font-size:0.82rem;color:var(--muted);line-height:1.5;margin-bottom:0.8rem;}
+  .engage-popup .ep-actions{display:flex;gap:0.4rem;flex-wrap:wrap;}
+  .engage-popup .ep-btn{padding:0.4rem 0.8rem;border-radius:8px;font-weight:700;font-size:0.8rem;cursor:pointer;border:none;transition:all 0.15s;}
+  .engage-popup .ep-btn:hover{transform:scale(1.05);}
+  .engage-popup .ep-btn.share{background:var(--accent);color:#000;}
+  .engage-popup .ep-btn.refer{background:rgba(34,197,94,0.15);color:var(--green);border:1px solid rgba(34,197,94,0.3);}
+  .engage-popup .ep-btn.tg{background:rgba(0,136,204,0.15);color:#0088cc;border:1px solid rgba(0,136,204,0.3);}
+
+  /* Cross-Promo Banner */
+  .cross-promo{max-width:900px;margin:1.5rem auto;padding:0 1rem;}
+  .cross-promo-inner{background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(153,69,255,0.1));border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;overflow:hidden;position:relative;}
+  .cross-promo .cp-text{flex:1;}
+  .cross-promo .cp-title{font-weight:800;font-size:0.95rem;color:var(--accent);margin-bottom:0.2rem;}
+  .cross-promo .cp-sub{font-size:0.8rem;color:var(--muted);}
+  .cross-promo .cp-links{display:flex;gap:0.4rem;flex-wrap:wrap;}
+  .cross-promo .cp-link{background:var(--card);border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:8px;font-size:0.75rem;font-weight:700;color:var(--accent);text-decoration:none;transition:all 0.15s;white-space:nowrap;}
+  .cross-promo .cp-link:hover{border-color:var(--accent);background:rgba(245,158,11,0.1);text-decoration:none;}
+
+  /* Viral Share Templates */
+  .share-template-bar{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.6rem 0.8rem;margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;}
+  .share-template-bar .st-label{font-size:0.7rem;color:var(--muted);font-weight:700;white-space:nowrap;}
+  .share-template-bar .st-text{font-size:0.75rem;color:var(--text);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .share-template-bar .st-copy{background:var(--accent);color:#000;border:none;padding:0.25rem 0.6rem;border-radius:6px;font-size:0.7rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+
+  /* Audit Status Bar */
+  .audit-bar{background:var(--card);border-top:1px solid var(--border);padding:0.4rem 1rem;display:flex;align-items:center;justify-content:center;gap:1rem;font-size:0.7rem;color:var(--muted);flex-wrap:wrap;}
+  .audit-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite;}
+  .audit-item{display:flex;align-items:center;gap:0.3rem;}
+  .audit-check{color:var(--green);font-weight:700;}
+
+  /* Toast */
+  .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--card);border:1px solid var(--border);padding:0.8rem 1.5rem;border-radius:12px;font-size:0.9rem;z-index:300;transition:transform 0.3s;font-weight:600;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  @media(max-width:600px){.toast{bottom:5rem;}}
+
+  /* How It Works */
+  .how-it-works{max-width:700px;margin:2rem auto;padding:0 1rem;}
+  .how-title{text-align:center;font-size:1.2rem;font-weight:800;margin-bottom:1.5rem;color:var(--muted);}
+  .steps{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;flex:1;min-width:140px;text-align:center;}
+  .step-num{font-size:1.5rem;font-weight:900;color:var(--accent);margin-bottom:0.3rem;}
+  .step-title{font-weight:700;font-size:0.9rem;margin-bottom:0.3rem;}
+  .step-desc{font-size:0.75rem;color:var(--muted);line-height:1.4;}
+
+  /* Responsive */
+  @media(max-width:600px){
+    nav{padding:0.6rem 0.8rem;flex-wrap:wrap;gap:0.4rem;}
+    .logo{font-size:1rem;}
+    .nav-right{gap:0.4rem;font-size:0.75rem;}
+    .nav-btn{padding:0.35rem 0.6rem;font-size:0.72rem;}
+    .connect-btn{padding:0.4rem 0.8rem;font-size:0.78rem;}
+    .hero{padding:1.5rem 1rem 1rem;}
+    .hero-emoji{font-size:2.5rem;margin-bottom:0.5rem;}
+    .hero h1{font-size:1.4rem;letter-spacing:-0.5px;}
+    .hero p{font-size:0.8rem;margin-bottom:0;}
+    .hero-stats{gap:0.8rem;margin-top:0.8rem;}
+    .hero-stat .val{font-size:1.1rem;}
+    .hero-stat .label{font-size:0.6rem;}
+    .mode-toggle{margin:0.5rem auto;}
+    .mode-btn{padding:0.35rem 1rem;font-size:0.78rem;}
+    .filters{padding:0.5rem 0.8rem;gap:0.3rem;}
+    .filter-btn{padding:0.3rem 0.7rem;font-size:0.7rem;}
+    .promo-banner{margin:0.5rem;padding:0.8rem;flex-wrap:wrap;gap:0.4rem;}
+    .promo-icon{font-size:1.5rem;}
+    .promo-title{font-size:0.85rem;}
+    .promo-sub{font-size:0.7rem;}
+    .promo-cta{padding:0.35rem 0.8rem;font-size:0.75rem;}
+    .daily-challenge{padding:0.8rem;margin:0 0.8rem 0.8rem;}
+    .markets{padding:0.5rem 0.8rem;}
+    .market-card{padding:1rem;margin-bottom:0.6rem;border-radius:12px;}
+    .market-header{flex-direction:column;}
+    .market-question{font-size:0.95rem;}
+    .market-category{font-size:0.65rem;}
+    .market-meta{text-align:left;margin-top:0.3rem;display:flex;gap:0.8rem;align-items:center;}
+    .market-volume{font-size:0.72rem;}
+    .market-ends{font-size:0.65rem;}
+    .bet-btn{padding:0.55rem;font-size:0.85rem;}
+    .odds-labels{font-size:0.72rem;}
+    .how-it-works{padding:0 0.8rem;margin:1rem auto;}
+    .how-title{font-size:1rem;}
+    .step{padding:0.8rem;}
+    .step-title{font-size:0.8rem;}
+    .step-desc{font-size:0.7rem;}
+    .steps{flex-direction:column;gap:0.5rem;}
+    .trust-section{padding:1rem 0.8rem;}
+    .trust-title{font-size:1rem;}
+    .trust-grid{grid-template-columns:1fr 1fr;gap:0.5rem;}
+    .trust-card{padding:0.8rem;}
+    .trust-icon{font-size:1.2rem;}
+    .trust-label{font-size:0.72rem;}
+    .trust-desc{font-size:0.65rem;}
+    .leaderboard{padding:0 0.8rem;}
+    .leaderboard-title{font-size:1rem;}
+    .community-section{padding:1rem 0.8rem;}
+    .community-title{font-size:1rem;}
+    .community-sub{font-size:0.75rem;}
+    .community-grid{grid-template-columns:1fr;gap:0.5rem;}
+    .rewards-hub{padding:1rem 0.8rem;}
+    .rewards-title{font-size:1rem;}
+    .rewards-sub{font-size:0.75rem;}
+    .rewards-grid{grid-template-columns:1fr;gap:0.5rem;}
+    .reward-card{padding:0.8rem;}
+    .referral-box{margin:0.5rem 0.8rem;padding:0.8rem;}
+    .referral-box h3{font-size:0.85rem;}
+    .panel-grid{grid-template-columns:1fr;}
+    .panel-card{padding:0.8rem;}
+    .user-panel{padding:0 0.8rem;}
+    .modal{max-width:95vw;padding:1.2rem;margin:0.5rem;}
+    .admin-stats-grid{grid-template-columns:repeat(2,1fr);}
+    .footer{padding:1.5rem 0.8rem 5rem;}
+    .footer-text{font-size:0.85rem;}
+    .how-it-works{display:none;}
+    .trust-section{display:none;}
+    .prize-banner{display:none;}
+    .community-section{padding:0.8rem;margin-top:0.5rem;}
+    .community-grid{gap:0.4rem;}
+    .community-card{padding:0.6rem;}
+    .cc-desc{display:none;}
+    .rewards-hub{display:none;}
+    .referral-box{margin:0.5rem 0.8rem;}
+    .referral-box h3{font-size:0.8rem;}
+    .referral-box p{font-size:0.7rem;margin-bottom:0.5rem;}
+    .cp-banner{display:none;}
+    .audit-bar{display:none;}
+    .engage-popup{bottom:70px;right:0.5rem;left:0.5rem;max-width:none;padding:1rem;}
+    .engage-popup .ep-title{font-size:0.9rem;}
+    .engage-popup .ep-text{font-size:0.75rem;}
+    .balance-pill{font-size:0.7rem;padding:0.25rem 0.6rem;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo" style="text-decoration:none;color:var(--text);">predict<span>.yachts</span> 🛥️</a>
+  <div class="nav-right">
+    <a href="#markets">Markets</a>
+    <a href="#rewards">Rewards</a>
+    <a href="#leaderboard">Ranks</a>
+    <a href="#community">Community</a>
+    <span class="balance-pill" id="balance-pill">0 credits</span>
+    <button class="nav-btn" id="propose-btn" style="display:none" onclick="openPropose()">+ Create Market</button>
+    <button class="nav-btn" id="panel-btn" style="display:none" onclick="toggleUserPanel()">My Bets</button>
+    <button class="nav-btn" id="admin-toggle" style="display:none" onclick="toggleAdmin()">Admin</button>
+    <button class="connect-btn" id="connect-btn" onclick="connectWallet()">Connect Wallet</button>
+    <a href="#" class="tip-btn" onclick="openTipModal(event)"><span class="tip-icon">🧡</span> Tip</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-emoji">🛳️</div>
+  <h1>Predict. Bet. <span>Win.</span></h1>
+  <p>Yacht prediction markets. Superyachts, luxury, racing, and wild bets.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val" id="total-volume">0</div><div class="label">Total Volume</div></div>
+    <div class="hero-stat"><div class="val" id="active-markets">0</div><div class="label">Active Markets</div></div>
+    <div class="hero-stat"><div class="val" id="total-bets">0</div><div class="label">Bets Placed</div></div>
+  </div>
+</div>
+
+<!-- Mode Toggle -->
+<div class="mode-toggle" id="mode-toggle">
+  <button class="mode-btn real active" onclick="switchMode('real')">💰 Real Crypto</button>
+  <button class="mode-btn free" onclick="switchMode('free')">🆓 Free Play</button>
+</div>
+
+<!-- Promo Banner -->
+<div class="promo-banner" id="promo-banner">
+  <div class="promo-icon">🎁</div>
+  <div class="promo-text">
+    <div class="promo-title">Get 50,000 FREE Credits</div>
+    <div class="promo-sub">Connect wallet. Get credits. Start predicting.</div>
+  </div>
+  <button class="promo-cta" onclick="claimWelcomeBonus()">Claim Now</button>
+  <button class="promo-close" onclick="dismissPromo()">&times;</button>
+</div>
+
+<!-- GET CREDITS SECTION -->
+<div id="get-credits-section" style="max-width:900px;margin:0 auto 1rem;padding:0 1.5rem;">
+  <div style="background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(168,85,247,0.1));border:2px solid var(--green);border-radius:16px;padding:1.25rem 1.5rem;">
+    <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:0.5rem;text-align:center;">🪙 Get Free Credits to Bet</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;">
+        <div style="font-size:1.5rem;margin-bottom:0.3rem;">🎁</div>
+        <div style="font-size:0.9rem;font-weight:700;margin-bottom:0.2rem;">Welcome Bonus</div>
+        <div style="font-size:1.2rem;font-weight:800;color:var(--green);">50,000 Credits</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.5rem;">Connect any wallet — instant free credits</div>
+        <button onclick="claimWelcomeBonus()" style="background:var(--green);color:#fff;border:none;padding:0.5rem 1rem;border-radius:8px;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Claim Free</button>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;">
+        <div style="font-size:1.5rem;margin-bottom:0.3rem;">🔄</div>
+        <div style="font-size:0.9rem;font-weight:700;margin-bottom:0.2rem;">Daily Faucet</div>
+        <div style="font-size:1.2rem;font-weight:800;color:var(--accent);">10,000 / Day</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.5rem;">Free credits every 24 hours — just click</div>
+        <button id="main-faucet-btn" onclick="claimDailyFaucet()" style="background:var(--accent);color:#000;border:none;padding:0.5rem 1rem;border-radius:8px;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Claim Daily</button>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;">
+        <div style="font-size:1.5rem;margin-bottom:0.3rem;">🤝</div>
+        <div style="font-size:0.9rem;font-weight:700;margin-bottom:0.2rem;">Refer Friends</div>
+        <div style="font-size:1.2rem;font-weight:800;color:var(--purple);">5,000 Each</div>
+        <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.5rem;">You + friend both get 5k credits</div>
+        <button onclick="copyReferral()" style="background:var(--purple);color:#fff;border:none;padding:0.5rem 1rem;border-radius:8px;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Copy Link</button>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:0.75rem;font-size:0.7rem;color:var(--muted);">
+      No purchase needed. No KYC. Just connect and play.
+    </div>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" onclick="filterMarkets('all')">All</button>
+  <button class="filter-btn filter-hot" onclick="filterMarkets('hot')">Hot</button>
+  <button class="filter-btn filter-new" onclick="filterMarkets('new')">New</button>
+  <button class="filter-btn" onclick="filterMarkets('superyachts')">Superyachts</button>
+  <button class="filter-btn" onclick="filterMarkets('luxury')">Luxury</button>
+  <button class="filter-btn" onclick="filterMarkets('racing')">Racing</button>
+  <button class="filter-btn" onclick="filterMarkets('wild')">Wild</button>
+</div>
+
+<!-- User Panel -->
+<div class="user-panel" id="user-panel">
+  <div class="panel-grid">
+    <div class="panel-card">
+      <h4>Balance</h4>
+      <div class="big-val" id="user-balance">0</div>
+      <div class="sub">credits</div>
+      <div class="panel-actions">
+        <button class="panel-btn deposit" onclick="openDeposit()">Deposit</button>
+        <button class="panel-btn withdraw" onclick="openWithdraw()">Withdraw</button>
+      </div>
+    </div>
+    <div class="panel-card">
+      <h4>My Active Bets</h4>
+      <div class="bets-list" id="my-bets">
+        <div style="color:var(--muted);font-size:0.85rem;padding:1rem 0;text-align:center;">No bets yet — pick a market!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="daily-challenge" class="daily-challenge"></div>
+<div class="markets" id="markets"></div>
+
+<div id="how" class="how-it-works">
+  <div class="how-title">How It Works</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Connect Wallet</div>
+      <div class="step-desc">Any wallet. One click.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Pick a Side</div>
+      <div class="step-desc">YES or NO. Place your bet.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Win</div>
+      <div class="step-desc">Market ends. Winners get paid.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Trust & Security -->
+<div class="trust-section">
+  <div class="trust-title">Why Predict With Us?</div>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-icon">🔒</div>
+      <div class="trust-label">Non-Custodial</div>
+      <div class="trust-desc">Your keys, your wallet. Always.</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">🛡️</div>
+      <div class="trust-label">Secure</div>
+      <div class="trust-desc">HTTPS + encrypted data.</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">⚡</div>
+      <div class="trust-label">Instant</div>
+      <div class="trust-desc">Win → get paid. No waiting.</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">📊</div>
+      <div class="trust-label">Fair</div>
+      <div class="trust-desc">3% fee. No hidden costs.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Security banner removed for cleaner layout -->
+
+<!-- Admin Panel -->
+<div class="admin-panel" id="admin-panel">
+  <div class="admin-section">
+    <h4>Dashboard</h4>
+    <div class="admin-stats-grid">
+      <div class="admin-stat"><div class="val" id="admin-users">0</div><div class="label">Users</div></div>
+      <div class="admin-stat"><div class="val" id="admin-bets">0</div><div class="label">Total Bets</div></div>
+      <div class="admin-stat"><div class="val" id="admin-volume">0</div><div class="label">Volume</div></div>
+      <div class="admin-stat"><div class="val" id="admin-fees">0</div><div class="label">Fees Earned</div></div>
+    </div>
+    <div class="admin-stats-grid" style="margin-top:0.5rem;">
+      <div class="admin-stat"><div class="val" id="admin-views-today">0</div><div class="label">Views Today</div></div>
+      <div class="admin-stat"><div class="val" id="admin-unique-today">0</div><div class="label">Unique Today</div></div>
+      <div class="admin-stat"><div class="val" id="admin-events-hour">0</div><div class="label">Events/hr</div></div>
+      <div class="admin-stat"><div class="val" id="admin-wallets-connected">0</div><div class="label">Wallets</div></div>
+    </div>
+  </div>
+  <div class="admin-section">
+    <h4>Create Market</h4>
+    <input class="admin-input" id="admin-question" placeholder="Market question...">
+    <input class="admin-input" id="admin-category" placeholder="Category (e.g. racing, crypto)">
+    <input class="admin-input" id="admin-emoji" placeholder="Emoji (e.g. 🏎️)">
+    <input class="admin-input" id="admin-ends" type="date" placeholder="End date">
+    <button class="admin-btn primary" onclick="adminCreateMarket()">Create Market</button>
+  </div>
+  <div class="admin-section">
+    <h4>Proposed Markets — Approve or Reject</h4>
+    <div id="admin-proposals-list"><div style="color:var(--muted);font-size:0.85rem;">No pending proposals</div></div>
+  </div>
+  <div class="admin-section">
+    <h4>Active Markets — Resolve</h4>
+    <div id="admin-markets-list"></div>
+  </div>
+  <div class="admin-section">
+    <h4>Pending Deposits</h4>
+    <div id="admin-deposits-list"><div style="color:var(--muted);font-size:0.85rem;">No pending deposits</div></div>
+  </div>
+  <div class="admin-section">
+    <h4>Withdrawal Requests</h4>
+    <div id="admin-withdrawals-list"><div style="color:var(--muted);font-size:0.85rem;">No pending withdrawals</div></div>
+  </div>
+</div>
+
+<!-- Prize Banner -->
+<div class="prize-banner" id="prize-banner">
+  <h3>🏆 Win Prizes</h3>
+  <p>Top predictors earn daily, weekly, and monthly rewards.</p>
+  <div class="prize-grid">
+    <div class="prize-card">
+      <div class="prize-period">Daily</div>
+      <div class="prize-amount">50,000 Credits</div>
+      <div class="prize-desc">Top predictor each day wins bonus credits</div>
+    </div>
+    <div class="prize-card">
+      <div class="prize-period">Weekly</div>
+      <div class="prize-amount">250,000 Credits</div>
+      <div class="prize-desc">Top 3 predictors split the weekly prize pool</div>
+    </div>
+    <div class="prize-card">
+      <div class="prize-period">Monthly</div>
+      <div class="prize-amount">Crypto Prizes</div>
+      <div class="prize-desc">#1 wins BTC/ETH/SOL + exclusive NFT badge</div>
+    </div>
+  </div>
+</div>
+
+<!-- Leaderboard -->
+<div class="leaderboard" id="leaderboard">
+  <div class="leaderboard-title">🏆 Leaderboard</div>
+  <div class="leaderboard-sub">Top predictors on predict.yachts</div>
+  <div class="lb-tabs" id="lb-period-tabs" style="margin-bottom:0.5rem;">
+    <button class="lb-tab active" onclick="switchLbPeriod('all',this)">All Time</button>
+    <button class="lb-tab" onclick="switchLbPeriod('monthly',this)">Monthly</button>
+    <button class="lb-tab" onclick="switchLbPeriod('weekly',this)">Weekly</button>
+    <button class="lb-tab" onclick="switchLbPeriod('daily',this)">Daily</button>
+  </div>
+  <div class="lb-tabs">
+    <button class="lb-tab active" onclick="switchLbTab('volume',this)">Volume</button>
+    <button class="lb-tab" onclick="switchLbTab('wins',this)">Most Wins</button>
+    <button class="lb-tab" onclick="switchLbTab('streak',this)">Win Streak</button>
+    <button class="lb-tab" onclick="switchLbTab('bets',this)">Most Bets</button>
+  </div>
+  <table class="lb-table">
+    <thead><tr><th>Rank</th><th>Predictor</th><th>Volume</th><th>Bets</th><th>Win Rate</th></tr></thead>
+    <tbody id="lb-body">
+      <tr><td colspan="5" class="lb-empty">Connect wallet & place bets to appear on the leaderboard!</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Affiliate Program -->
+<div class="referral-box" id="referral-box">
+  <h3>🤝 Affiliate Program — Earn Forever</h3>
+  <p>Share your link. Earn 5,000 credits per signup + 5% of every bet your referrals place. Forever.</p>
+  <div class="referral-link">
+    <input type="text" id="referral-url" value="" readonly onclick="this.select()">
+    <button onclick="copyReferral()">Copy</button>
+  </div>
+  <div id="affiliate-stats" style="display:none;margin-top:1rem;">
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.6rem 1rem;min-width:80px;">
+        <div style="font-size:1.1rem;font-weight:800;color:var(--accent);" id="aff-referrals">0</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Referrals</div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.6rem 1rem;min-width:80px;">
+        <div style="font-size:1.1rem;font-weight:800;color:var(--green);" id="aff-earned">0</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Credits Earned</div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.6rem 1rem;min-width:80px;">
+        <div style="font-size:1.1rem;font-weight:800;color:var(--purple);" id="aff-tier">Starter</div>
+        <div style="font-size:0.65rem;color:var(--muted);">Tier</div>
+      </div>
+    </div>
+    <div style="margin-top:0.75rem;font-size:0.7rem;color:var(--muted);">
+      <b>Tiers:</b> Starter (5%) → Pro (7% at 10 refs) → Elite (10% at 50 refs)
+    </div>
+  </div>
+  <div style="display:flex;gap:0.5rem;justify-content:center;margin-top:0.75rem;flex-wrap:wrap;">
+    <button onclick="shareAffiliateOnX()" style="background:#000;color:#fff;border:1px solid #333;padding:0.4rem 0.8rem;border-radius:8px;font-size:0.75rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:0.3rem;"><svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:#fff;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Share on X</button>
+  </div>
+</div>
+
+<!-- Community Section -->
+<div class="community-section" id="community">
+  <div class="community-title">Join the Community</div>
+  <div class="community-sub">Alerts, alpha, and bonus credit drops.</div>
+  <div class="community-grid">
+    <a class="community-card x-card" href="https://x.com/SpunkArt13" target="_blank" rel="noopener noreferrer">
+      <div class="cc-icon">𝕏</div>
+      <div class="cc-name">X / Twitter</div>
+      <div class="cc-desc">Predictions + announcements.</div>
+      <div class="cc-btn">Follow @SpunkArt13</div>
+    </a>
+    <a class="community-card" href="https://spunk.bet" target="_blank" rel="noopener noreferrer" style="border-color:rgba(255,95,31,0.3);">
+      <div class="cc-icon">🎰</div>
+      <div class="cc-name">Spunk.Bet</div>
+      <div class="cc-desc">Free crypto casino on Bitcoin.</div>
+      <div class="cc-btn" style="background:#ff5f1f;color:#000;">Play Free</div>
+    </a>
+    <a class="community-card" href="https://spunkart.com" target="_blank" rel="noopener noreferrer" style="border-color:rgba(168,85,247,0.3);">
+      <div class="cc-icon">🎨</div>
+      <div class="cc-name">SpunkArt</div>
+      <div class="cc-desc">Art + ordinals on Bitcoin.</div>
+      <div class="cc-btn" style="background:#a855f7;color:#fff;">Visit</div>
+    </a>
+  </div>
+</div>
+
+<!-- Rewards Hub -->
+<div class="rewards-hub" id="rewards">
+  <div class="rewards-title">Earn Rewards</div>
+  <div class="rewards-sub">Bet, share, invite friends — earn credits for everything.</div>
+  <div class="rewards-grid">
+    <div class="reward-card">
+      <div class="r-icon">🎁</div>
+      <div class="r-title">Welcome Bonus</div>
+      <div class="r-amount">50,000 Credits</div>
+      <div class="r-desc">Connect wallet → get 50k free.</div>
+      <button class="r-action" onclick="claimWelcomeBonus()">Claim Now</button>
+      <span class="r-earned" id="r-welcome-check" style="display:none">Claimed</span>
+    </div>
+    <div class="reward-card">
+      <div class="r-icon">🤝</div>
+      <div class="r-title">Affiliate Program</div>
+      <div class="r-amount">5% of Every Bet</div>
+      <div class="r-desc">Earn 5k + 5% ongoing from referrals.</div>
+      <button class="r-action" onclick="copyReferral()">Copy Link</button>
+      <span class="r-earned" id="r-referral-count">0 referred</span>
+    </div>
+    <div class="reward-card">
+      <div class="r-icon">📢</div>
+      <div class="r-title">Share to Earn</div>
+      <div class="r-amount">1,000 Credits</div>
+      <div class="r-desc">Share a market → earn 1k credits.</div>
+      <button class="r-action" onclick="document.getElementById('markets').scrollIntoView({behavior:'smooth'})">Share a Market</button>
+    </div>
+    <div class="reward-card">
+      <div class="r-icon">🏆</div>
+      <div class="r-title">Leaderboard Prizes</div>
+      <div class="r-amount">Daily + Weekly + Monthly</div>
+      <div class="r-desc">Daily, weekly, monthly prizes.</div>
+      <button class="r-action" onclick="document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'})">View Rankings</button>
+    </div>
+  </div>
+</div>
+
+<!-- Sticky Mobile CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <button onclick="connectWallet()">Get 50k Free Credits</button>
+</div>
+
+<!-- Share Modal -->
+<div class="modal-overlay" id="share-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeShareModal()">&times;</button>
+    <h3>Share Your Prediction</h3>
+    <div class="share-preview" id="share-preview-text"></div>
+    <div class="share-grid">
+      <div class="share-option" onclick="doShareX()"><span class="s-icon">𝕏</span> X / Twitter</div>
+      <div class="share-option" onclick="doShareFacebook()"><span class="s-icon">📘</span> Facebook</div>
+      <div class="share-option" onclick="doShareCopy()"><span class="s-icon">🔗</span> Copy Link</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="network-title">Predict Network</div>
+  <div class="network-links">
+    <a href="https://predict.horse">predict.horse 🐴</a>
+    <a href="https://predict.pics">predict.pics 🖼️</a>
+    <a href="https://predict.mom">predict.mom 👩</a>
+    <a href="https://predict.gay">predict.gay 🏳️‍🌈</a>
+    <a href="https://predict.autos">predict.autos 🏎️</a>
+    <a href="https://predict.beauty">predict.beauty 💄</a>
+    <a href="https://predict.boats">predict.boats 🚤</a>
+    <a href="https://predict.christmas">predict.christmas 🎄</a>
+    <a href="https://predict.codes">predict.codes 💻</a>
+    <a href="https://predict.courses">predict.courses 📚</a>
+    <a href="https://predict.hair">predict.hair 💇</a>
+    <a href="https://predict.garden">predict.garden 🌱</a>
+    <a href="https://predict.makeup">predict.makeup 💋</a>
+    <a href="https://predict.singles">predict.singles 💘</a>
+    <a href="https://predict.tattoo">predict.tattoo 🖋️</a>
+    <a href="https://predict.skin">predict.skin 🧴</a>
+    <a href="https://predict.surf">predict.surf 🏄</a>
+    <a href="https://predict.yachts" class="current">predict.yachts 🛥️</a>
+  </div>
+  <div class="footer-sub">Predict. Bet. Win.</div>
+  <div class="fee-badge">3% Platform Fee</div>
+  <div class="chains-badge">
+    <span class="btc">BTC</span>
+    <span class="eth">ETH</span>
+    <span class="sol">SOL</span>
+  </div>
+  <div class="tip-footer">
+    <a href="#" class="tip-btn" onclick="openTipModal(event)"><span class="tip-icon">🧡</span> Tip the House — Powered by Spunk.bet</a>
+  </div>
+  <div style="margin-top:0.5rem;font-size:0.7rem;color:var(--muted);">
+    Part of the <a href="https://spunk.bet" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700;">Spunk.bet</a> Network · <a href="https://x.com/SpunkArt13" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">@SpunkArt13</a>
+  </div>
+</footer>
+
+<!-- Wallet Connect Modal -->
+<div class="modal-overlay" id="wallet-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeWalletModal()">&times;</button>
+    <h3>🔒 Connect Wallet</h3>
+    <div class="modal-question">One click. No seed phrase needed.</div>
+    <div id="wallet-options"></div>
+    <div style="text-align:center;font-size:0.7rem;color:var(--muted);margin:0.5rem 0;">🔐 Secure · ⚡ Instant</div>
+    <div class="wallet-divider">or try it first</div>
+    <div class="wallet-option" onclick="connectDemo()" style="border-style:dashed;">
+      <div class="w-icon">🎮</div>
+      <div class="w-info">
+        <div class="w-name">Demo Mode</div>
+        <div class="w-chain">Play with test credits — no wallet needed</div>
+      </div>
+      <div class="w-status ready">Free</div>
+    </div>
+  </div>
+</div>
+
+<!-- Bet Modal -->
+<div class="modal-overlay" id="bet-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeBetModal()">&times;</button>
+    <h3 id="modal-title">Place Your Bet</h3>
+    <div class="modal-question" id="modal-question"></div>
+    <div class="modal-side">
+      <button class="side-btn yes" id="side-yes" onclick="selectSide('yes')">YES</button>
+      <button class="side-btn no" id="side-no" onclick="selectSide('no')">NO</button>
+    </div>
+    <div class="bet-input-group">
+      <label>Amount (credits)</label>
+      <input type="number" class="bet-input" id="bet-amount" value="10000" min="1000" oninput="updatePayout()">
+      <div class="quick-amounts">
+        <button class="quick-amt" onclick="setAmount(5000)">5k</button>
+        <button class="quick-amt" onclick="setAmount(10000)">10k</button>
+        <button class="quick-amt" onclick="setAmount(25000)">25k</button>
+        <button class="quick-amt" onclick="setAmount(50000)">50k</button>
+        <button class="quick-amt" onclick="setAmount(100000)">100k</button>
+      </div>
+    </div>
+    <div class="payout-preview">
+      <div class="payout-row"><span class="label">Your balance</span><span class="value" id="modal-balance">0</span></div>
+      <div class="payout-row"><span class="label">Potential payout</span><span class="value" id="payout-value">—</span></div>
+      <div class="payout-row"><span class="label">Platform fee</span><span class="fee" id="fee-value">3% on winnings</span></div>
+    </div>
+    <button class="place-bet-btn yes" id="place-bet-btn" onclick="placeBet()">Place Bet</button>
+  </div>
+</div>
+
+<!-- Deposit Modal -->
+<div class="modal-overlay" id="deposit-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeDeposit()">&times;</button>
+    <h3>Deposit Crypto</h3>
+    <div class="modal-question">Send crypto → get credits instantly.</div>
+    <div class="chain-tabs">
+      <button class="chain-tab btc active" onclick="switchChain('btc')">₿ BTC</button>
+      <button class="chain-tab eth" onclick="switchChain('eth')">Ξ ETH</button>
+      <button class="chain-tab sol" onclick="switchChain('sol')">◎ SOL</button>
+    </div>
+    <div class="deposit-addr" id="deposit-addr" onclick="copyAddr()">
+      <span id="deposit-addr-text">Loading...</span>
+      <span class="copy-hint">Click to copy</span>
+    </div>
+    <div class="deposit-note" id="deposit-note">Send any amount of BTC to this address. Credits will be added after confirmation.</div>
+    <div class="bet-input-group">
+      <label>Transaction hash (optional — speeds up verification)</label>
+      <input class="deposit-input" id="deposit-txhash" placeholder="Paste tx hash...">
+    </div>
+    <button class="deposit-confirm" onclick="confirmDeposit()">I've Sent My Deposit</button>
+  </div>
+</div>
+
+<!-- Withdraw Modal -->
+<div class="modal-overlay" id="withdraw-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeWithdraw()">&times;</button>
+    <h3>Withdraw</h3>
+    <div class="modal-question">Instant withdrawal. Credits → crypto sent to your wallet. Min 10k credits. No approval needed.</div>
+    <div class="chain-tabs">
+      <button class="chain-tab btc active" onclick="switchWithdrawChain('btc')">₿ BTC</button>
+      <button class="chain-tab eth" onclick="switchWithdrawChain('eth')">Ξ ETH</button>
+      <button class="chain-tab sol" onclick="switchWithdrawChain('sol')">◎ SOL</button>
+    </div>
+    <div class="bet-input-group">
+      <label>Amount (credits)</label>
+      <input class="deposit-input" id="withdraw-amount" type="number" placeholder="Amount to withdraw...">
+    </div>
+    <div class="bet-input-group">
+      <label>Destination wallet address</label>
+      <input class="deposit-input" id="withdraw-addr" placeholder="Your wallet address...">
+    </div>
+    <div class="payout-preview">
+      <div class="payout-row"><span class="label">Available</span><span class="value" id="withdraw-available">0</span></div>
+    </div>
+    <button class="deposit-confirm" onclick="submitWithdraw()">Request Withdrawal</button>
+  </div>
+</div>
+
+<!-- Propose Market Modal -->
+<div class="modal-overlay" id="propose-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePropose()">&times;</button>
+    <h3>Create a Market</h3>
+    <div class="modal-question">Goes live instantly. Anyone can bet.</div>
+    <div class="bet-input-group">
+      <label>Your prediction question</label>
+      <input class="deposit-input" id="propose-question" placeholder="Will [something] happen by [date]?">
+    </div>
+    <div class="bet-input-group">
+      <label>Category</label>
+      <input class="deposit-input" id="propose-category" placeholder="e.g. crypto, sports, culture...">
+    </div>
+    <div class="bet-input-group" style="display:flex;gap:0.5rem;">
+      <div style="flex:1">
+        <label>Emoji</label>
+        <input class="deposit-input" id="propose-emoji" placeholder="🔥" style="margin-bottom:0">
+      </div>
+      <div style="flex:2">
+        <label>End date</label>
+        <input class="deposit-input" id="propose-ends" type="date" style="margin-bottom:0">
+      </div>
+    </div>
+    <button class="deposit-confirm" onclick="submitProposal()">Create Market — Go Live Now</button>
+  </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div class="modal-overlay" id="admin-login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAdminLogin()">&times;</button>
+    <h3>Admin Access</h3>
+    <div class="modal-question">Enter admin password to access the control panel.</div>
+    <input class="admin-input" id="admin-pw" type="password" placeholder="Password..." onkeydown="if(event.key==='Enter')adminLogin()">
+    <button class="admin-btn primary" onclick="adminLogin()" style="margin-top:0.5rem">Enter</button>
+  </div>
+</div>
+
+<!-- Audit Status Bar -->
+<div class="audit-bar" id="audit-bar">
+  <div class="audit-item"><span class="audit-dot"></span> Systems Online</div>
+  <div class="audit-item"><span class="audit-check">✓</span> SSL Secured</div>
+  <div class="audit-item"><span class="audit-check">✓</span> Firebase Connected</div>
+  <div class="audit-item"><span class="audit-check">✓</span> Wallets Verified</div>
+  <div class="audit-item"><span class="audit-check">✓</span> Last Audit: <span id="last-audit-time">just now</span></div>
+  <div class="audit-item"><span class="audit-check">✓</span> <span id="audit-count">0</span> checks passed</div>
+</div>
+
+<!-- Tip Modal -->
+<div class="modal-overlay" id="tip-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeTipModal()">&times;</button>
+    <h3 style="text-align:center;">🎰 Tip the House</h3>
+    <div class="modal-question" style="text-align:center;">Love what we're building? Send a tip to support the Predict Network.<br>Powered by <a href="https://spunk.bet" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700;">Spunk.bet</a></div>
+    <div style="margin-bottom:0.8rem;">
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.3rem;font-weight:700;">₿ BTC</div>
+      <div class="deposit-addr" onclick="navigator.clipboard.writeText('bc1qr4zcdh9wz26gtn4pqz9c8wmxwalpjut8fxzsfn').then(()=>showToast('BTC address copied!'))">
+        <span>bc1qr4zcdh9wz26gtn4pqz9c8wmxwalpjut8fxzsfn</span>
+        <span class="copy-hint">Copy</span>
+      </div>
+    </div>
+    <div style="margin-bottom:0.8rem;">
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.3rem;font-weight:700;">Ξ ETH</div>
+      <div class="deposit-addr" onclick="navigator.clipboard.writeText('0xD2aC89253b5F20f5b03b5B591297Fa4FCC37d41c').then(()=>showToast('ETH address copied!'))">
+        <span>0xD2aC89253b5F20f5b03b5B591297Fa4FCC37d41c</span>
+        <span class="copy-hint">Copy</span>
+      </div>
+    </div>
+    <div style="margin-bottom:0.8rem;">
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.3rem;font-weight:700;">◎ SOL</div>
+      <div class="deposit-addr" onclick="navigator.clipboard.writeText('Cds2aUuhyJa4NaZo7JER7LakW4VmmfnqVixHusrKKZsm').then(()=>showToast('SOL address copied!'))">
+        <span>Cds2aUuhyJa4NaZo7JER7LakW4VmmfnqVixHusrKKZsm</span>
+        <span class="copy-hint">Copy</span>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.75rem;color:var(--muted);margin-top:0.5rem;">
+      Every tip supports development, prizes, and keeping everything free. 🙏
+    </div>
+  </div>
+</div>
+
+<!-- Engagement Popup -->
+<div class="engage-popup" id="engage-popup">
+  <button class="ep-close" onclick="dismissEngagePopup()">&times;</button>
+  <div class="ep-title" id="ep-title">You're on fire!</div>
+  <div class="ep-text" id="ep-text">You've placed 3 bets — share your streak and earn 1,000 bonus credits!</div>
+  <div class="ep-actions">
+    <button class="ep-btn share" onclick="engageShare()">Share on 𝕏</button>
+    <button class="ep-btn refer" onclick="engageRefer()">Invite Friend +5k</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const SITE_ID = 'yachts';
+const ADMIN_HASH = '8f5c927b075658bde4c97f5647be3c3f578eb2b955e9c753b116ffb34092dfd2';
+const PLATFORM_FEE = 0.03;
+
+// Security: escape HTML to prevent XSS from user-generated content
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+// Track JS errors for audit
+let jsErrors = [];
+window.onerror = (msg, src, line) => { jsErrors.push({msg, src, line, t: Date.now()}); if (jsErrors.length > 50) jsErrors.shift(); };
+
+// Deposit addresses (BTC, ETH, SOL)
+const DEPOSIT_ADDRS = {
+  btc: 'bc1qr4zcdh9wz26gtn4pqz9c8wmxwalpjut8fxzsfn',
+  eth: '0xD2aC89253b5F20f5b03b5B591297Fa4FCC37d41c',
+  sol: 'Cds2aUuhyJa4NaZo7JER7LakW4VmmfnqVixHusrKKZsm'
+};
+const DEPOSIT_NOTES = {
+  btc: 'Send BTC to this address. 1 confirmation needed. Credits added within minutes.',
+  eth: 'Send ETH to this address. Credits added after network confirmation.',
+  sol: 'Send SOL to this address. Credits added almost instantly.'
+};
+
+// ============================================================
+// FIREBASE CONFIG — Replace with your project config
+// ============================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyBXAqOFYo8_lWPYTzSLqvtPYClDqrlih9Q",
+  authDomain: "predict-network-ec767.firebaseapp.com",
+  databaseURL: "https://predict-network-ec767-default-rtdb.firebaseio.com",
+  projectId: "predict-network-ec767",
+  storageBucket: "predict-network-ec767.firebasestorage.app",
+  messagingSenderId: "487118700387",
+  appId: "1:487118700387:web:2bae41728d3a6e3b515d56"
+};
+
+let db = null;
+let fbUser = null;
+let firebaseReady = false;
+
+// Load Firebase SDK dynamically only when config is real
+function loadFirebaseSDK() {
+  return new Promise((resolve) => {
+    if (firebaseConfig.apiKey === 'YOUR_API_KEY') { resolve(false); return; }
+    function loadScript(src) {
+      return new Promise((res, rej) => {
+        const s = document.createElement('script'); s.src = src;
+        s.onload = res; s.onerror = rej; document.head.appendChild(s);
+      });
+    }
+    // App must load first, then database + auth in parallel
+    loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js')
+      .then(() => Promise.all([
+        loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js'),
+        loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js')
+      ]))
+      .then(() => {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+        firebaseReady = true;
+        resolve(true);
+      })
+      .catch(() => { console.warn('Firebase SDK failed'); resolve(false); });
+  });
+}
+
+// ============================================================
+// SEED MARKETS (used as fallback when Firebase has no data)
+// ============================================================
+const SEED_MARKETS = [
+  {id:1,category:"superyachts",emoji:"🚢",question:"Will the world's largest superyacht record be broken in 2026?",yesPool:0,noPool:0,totalBets:0,ends:"2026-12-31",status:"open"},
+  {id:2,category:"luxury",emoji:"💰",question:"Will a superyacht sell for over $1 billion this year?",yesPool:0,noPool:0,totalBets:0,ends:"2026-12-31",status:"open"},
+  {id:3,category:"racing",emoji:"⛵",question:"Will a hydrogen-powered yacht win a major race in 2026?",yesPool:0,noPool:0,totalBets:0,ends:"2026-12-31",status:"open"},
+  {id:4,category:"wild",emoji:"🤖",question:"Will an AI captain a yacht across the Mediterranean?",yesPool:0,noPool:0,totalBets:0,ends:"2026-12-31",status:"open"},
+  {id:5,category:"superyachts",emoji:"🔋",question:"Will a fully electric superyacht over 200ft launch in 2026?",yesPool:0,noPool:0,totalBets:0,ends:"2026-12-31",status:"open"},
+  {id:6,category:"luxury",emoji:"🏝️",question:"Will yacht charter bookings hit an all-time high this summer?",yesPool:0,noPool:0,totalBets:0,ends:"2026-09-30",status:"open"},
+  {id:7,category:"racing",emoji:"🏆",question:"Will a woman skipper win a major yacht race in 2026?",yesPool:0,noPool:0,totalBets:0,ends:"2026-12-31",status:"open"},
+  {id:8,category:"wild",emoji:"🎰",question:"Will a crypto billionaire build the world's most expensive yacht?",yesPool:0,noPool:0,totalBets:0,ends:"2026-12-31",status:"open"},
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let wallet = null;
+let walletChain = null;
+let userId = null;
+let userBalance = 0;
+let markets = [];
+let userBets = [];
+let selectedMarket = null;
+let selectedSide = 'yes';
+let currentFilter = 'all';
+let isAdmin = false;
+let depositChain = 'btc';
+let withdrawChain = 'btc';
+
+// ============================================================
+// FIREBASE AUTH
+// ============================================================
+async function initAuth() {
+  if (!firebaseReady) return;
+  try {
+    await firebase.auth().signInAnonymously();
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        fbUser = user;
+        if (wallet) loadUserData();
+      }
+    });
+  } catch(e) {
+    console.warn('Auth error:', e);
+  }
+}
+
+// ============================================================
+// DATA LAYER (Firebase with localStorage fallback)
+// ============================================================
+function loadMarkets() {
+  if (!firebaseReady) {
+    markets = JSON.parse(JSON.stringify(SEED_MARKETS));
+    renderMarkets();
+    return;
+  }
+  const ref = db.ref('markets/' + SITE_ID);
+  ref.on('value', snap => {
+    const data = snap.val();
+    if (data) {
+      markets = Object.keys(data).map(k => ({...data[k], fbKey: k}));
+      markets.sort((a,b) => a.id - b.id);
+    } else {
+      // Seed Firebase with initial markets
+      seedMarkets();
+      return;
+    }
+    renderMarkets();
+    if (isAdmin) renderAdminMarkets();
+  });
+}
+
+function seedMarkets() {
+  if (!firebaseReady) return;
+  const ref = db.ref('markets/' + SITE_ID);
+  SEED_MARKETS.forEach(m => {
+    ref.push({...m, createdAt: firebase.database.ServerValue.TIMESTAMP});
+  });
+}
+
+function loadUserData() {
+  if (!firebaseReady || !userId) return;
+  // Balance
+  db.ref('users/' + userId + '/balance').on('value', snap => {
+    userBalance = snap.val() || 0;
+    updateBalanceUI();
+  });
+  // Bets
+  db.ref('bets/' + SITE_ID).orderByChild('userId').equalTo(userId).on('value', snap => {
+    userBets = [];
+    snap.forEach(child => {
+      userBets.push({...child.val(), fbKey: child.key});
+    });
+    renderMyBets();
+  });
+}
+
+function updateBalanceUI() {
+  const pill = document.getElementById('balance-pill');
+  pill.textContent = userBalance.toLocaleString() + ' credits';
+  pill.style.display = wallet ? 'inline-block' : 'none';
+  document.getElementById('user-balance').textContent = userBalance.toLocaleString();
+  document.getElementById('modal-balance').textContent = userBalance.toLocaleString() + ' credits';
+  document.getElementById('withdraw-available').textContent = userBalance.toLocaleString();
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderMarkets(filter) {
+  if (filter) currentFilter = filter;
+  const container = document.getElementById('markets');
+  let filtered;
+  if (currentFilter === 'new') {
+    filtered = markets.filter(m => (m.createdAt && Date.now() - m.createdAt < 86400000) || (m.totalBets || 0) < 20);
+  } else if (currentFilter === 'hot') {
+    filtered = markets.filter(m => (m.totalBets || 0) > 100);
+  } else if (currentFilter && currentFilter !== 'all') {
+    filtered = markets.filter(m => m.category === currentFilter);
+  } else {
+    filtered = markets;
+  }
+
+  // Sort: pinned first, then new markets boosted 24hrs, then by popularity
+  const now = Date.now();
+  const open = filtered.filter(m => m.status === 'open' || !m.status);
+  open.sort((a, b) => {
+    // Pinned markets always on top
+    const aPinned = a.pinned ? 10000000 : 0;
+    const bPinned = b.pinned ? 10000000 : 0;
+    // Boost recently created markets (under 24hrs old)
+    const aNew = (a.createdAt && now - a.createdAt < 86400000) ? 1000000 : 0;
+    const bNew = (b.createdAt && now - b.createdAt < 86400000) ? 1000000 : 0;
+    const aScore = aPinned + aNew + (a.totalBets || 0) * 1000 + ((a.yesPool || 0) + (a.noPool || 0));
+    const bScore = bPinned + bNew + (b.totalBets || 0) * 1000 + ((b.yesPool || 0) + (b.noPool || 0));
+    return bScore - aScore;
+  });
+
+  container.innerHTML = open.map(m => {
+    const total = (m.yesPool || 0) + (m.noPool || 0);
+    const yesPct = total > 0 ? Math.round(((m.yesPool || 0) / total) * 100) : 50;
+    const noPct = 100 - yesPct;
+    const daysLeft = Math.max(0, Math.ceil((new Date(m.ends) - new Date()) / 86400000));
+    const key = m.fbKey || m.id;
+    const pinTag = m.pinned ? '<span class="pinned-badge">PINNED</span>' : '';
+    const tag = pinTag || ((m.totalBets||0) > 300 ? '<span class="trending-tag">🔥 TRENDING</span>' :
+                (m.totalBets||0) > 200 ? '<span class="hot-tag">HOT</span>' :
+                (m.autoGenerated || (m.totalBets||0) < 50) ? '<span class="new-tag">NEW</span>' : '');
+    return `
+      <div class="market-card" data-category="${m.category}">
+        <div class="market-header">
+          <div>
+            <div class="market-category">${esc(m.emoji)} ${esc(m.category)} ${tag}</div>
+            <div class="market-question">${esc(m.question)}</div>
+          </div>
+          <div class="market-meta">
+            <div class="market-volume">${total.toLocaleString()} credits</div>
+            <div class="market-ends">${daysLeft}d left · ${m.totalBets || 0} bets</div>
+            ${firebaseReady ? '<div class="market-live">LIVE</div>' : ''}
+          </div>
+        </div>
+        <div class="odds-labels">
+          <span class="yes">YES ${yesPct}%</span>
+          <span class="no">NO ${noPct}%</span>
+        </div>
+        <div class="odds-bar">
+          <div class="odds-yes" style="width:${yesPct}%"></div>
+          <div class="odds-no" style="width:${noPct}%"></div>
+        </div>
+        <div class="market-actions">
+          <button class="bet-btn yes" onclick="openBetModal('${key}','yes')">YES ${yesPct}¢</button>
+          <button class="bet-btn no" onclick="openBetModal('${key}','no')">NO ${noPct}¢</button>
+        </div>
+        <div class="share-bar">
+          <button class="share-btn x" onclick="shareOnX('${m.question.replace(/'/g,"\\'")}',${yesPct})">𝕏</button>
+          <button class="share-btn link" onclick="copyMarketLink('${key}')">🔗 Share</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Update hero stats
+  const allOpen = markets.filter(m => m.status === 'open' || !m.status);
+  const totalVol = markets.reduce((s, m) => s + (m.yesPool || 0) + (m.noPool || 0), 0);
+  const totalBets = markets.reduce((s, m) => s + (m.totalBets || 0), 0);
+  document.getElementById('active-markets').textContent = allOpen.length;
+  document.getElementById('total-volume').textContent = totalVol.toLocaleString();
+  document.getElementById('total-bets').textContent = totalBets.toLocaleString();
+}
+
+function filterMarkets(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderMarkets(cat);
+}
+
+function renderMyBets() {
+  const container = document.getElementById('my-bets');
+  if (userBets.length === 0) {
+    container.innerHTML = '<div style="color:var(--muted);font-size:0.85rem;padding:1rem 0;text-align:center;">No bets yet — pick a market!</div>';
+    return;
+  }
+  container.innerHTML = userBets.map(b => {
+    const mkt = markets.find(m => (m.fbKey || m.id) == b.marketId) || {};
+    const q = mkt.question || 'Market #' + b.marketId;
+    return `<div class="bet-item">
+      <span class="bet-q">${q.length > 50 ? q.slice(0,50)+'...' : q}</span>
+      <span class="bet-side ${b.side}">${b.side.toUpperCase()}</span>
+      <span class="bet-amt">${(b.amount||0).toLocaleString()}</span>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// BET MODAL
+// ============================================================
+function openBetModal(key, side) {
+  selectedMarket = markets.find(m => (m.fbKey || m.id) == key);
+  if (!selectedMarket) return;
+  selectedSide = side;
+  document.getElementById('modal-question').textContent = selectedMarket.question;
+  document.getElementById('modal-balance').textContent = userBalance.toLocaleString() + ' credits';
+  selectSide(side);
+  updatePayout();
+  document.getElementById('bet-modal').classList.add('show');
+}
+function closeBetModal() { document.getElementById('bet-modal').classList.remove('show'); }
+
+function selectSide(side) {
+  selectedSide = side;
+  document.getElementById('side-yes').classList.toggle('selected', side === 'yes');
+  document.getElementById('side-no').classList.toggle('selected', side === 'no');
+  document.getElementById('place-bet-btn').className = 'place-bet-btn ' + side;
+  document.getElementById('place-bet-btn').textContent = 'Bet ' + side.toUpperCase();
+  updatePayout();
+}
+
+function setAmount(v) {
+  document.getElementById('bet-amount').value = v;
+  updatePayout();
+}
+
+function updatePayout() {
+  if (!selectedMarket) return;
+  const amount = parseInt(document.getElementById('bet-amount').value) || 0;
+  const total = (selectedMarket.yesPool || 0) + (selectedMarket.noPool || 0) + amount;
+  const myPool = selectedSide === 'yes'
+    ? (selectedMarket.yesPool || 0) + amount
+    : (selectedMarket.noPool || 0) + amount;
+  const share = myPool > 0 ? amount / myPool : 0;
+  const gross = share * total;
+  const fee = Math.floor(gross * PLATFORM_FEE);
+  const payout = Math.floor(gross - fee);
+  document.getElementById('payout-value').textContent = payout.toLocaleString() + ' credits';
+  document.getElementById('fee-value').textContent = fee.toLocaleString() + ' (' + (PLATFORM_FEE*100) + '%)';
+}
+
+async function placeBet() {
+  if (!wallet) { showToast('Connect your wallet first'); return; }
+  const amount = parseInt(document.getElementById('bet-amount').value) || 0;
+  if (amount < 1000) { showToast('Minimum bet: 1,000 credits'); return; }
+
+  if (firebaseReady) {
+    if (amount > userBalance) { showToast('Not enough credits — tap Deposit or switch to Free Play'); return; }
+    const key = selectedMarket.fbKey;
+    if (!key) { showToast('Error: market key missing'); return; }
+
+    const updates = {};
+    const poolField = selectedSide === 'yes' ? 'yesPool' : 'noPool';
+    const newPool = (selectedMarket[poolField] || 0) + amount;
+    const newBets = (selectedMarket.totalBets || 0) + 1;
+
+    updates['markets/' + SITE_ID + '/' + key + '/' + poolField] = newPool;
+    updates['markets/' + SITE_ID + '/' + key + '/totalBets'] = newBets;
+    updates['users/' + userId + '/balance'] = userBalance - amount;
+
+    const betRef = db.ref('bets/' + SITE_ID).push();
+    updates['bets/' + SITE_ID + '/' + betRef.key] = {
+      userId: userId,
+      marketId: key,
+      side: selectedSide,
+      amount: amount,
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    };
+
+    try {
+      await db.ref().update(updates);
+      closeBetModal();
+      showToast('Bet placed! ' + amount.toLocaleString() + ' on ' + selectedSide.toUpperCase());
+      analytics.trackBet(key, selectedSide, amount);
+      updateLeaderboardOnBet(amount);
+      trackBetEngagement();
+      updateRewardsUI();
+      showSharePrompt(selectedMarket.question, selectedSide, amount);
+      processReferralReward();
+      payAffiliateCommission(amount);
+    } catch(e) {
+      showToast('Error placing bet: ' + e.message);
+    }
+  } else {
+    // Local demo mode
+    if (selectedSide === 'yes') selectedMarket.yesPool = (selectedMarket.yesPool||0) + amount;
+    else selectedMarket.noPool = (selectedMarket.noPool||0) + amount;
+    selectedMarket.totalBets = (selectedMarket.totalBets||0) + 1;
+    closeBetModal();
+    renderMarkets();
+    showToast('Bet placed! (Demo mode — configure Firebase for real markets)');
+  }
+}
+
+// ============================================================
+// WALLET CONNECT (BTC + ETH + SOL) — Modal with all options
+// ============================================================
+const WALLETS = [
+  // SOL wallets
+  {id:'phantom',   name:'Phantom',        chain:'SOL',  icon:'👻', detect:()=>window.solana?.isPhantom, url:'https://phantom.app/'},
+  {id:'solflare',  name:'Solflare',       chain:'SOL',  icon:'🔥', detect:()=>window.solflare?.isSolflare, url:'https://solflare.com/'},
+  {id:'backpack',  name:'Backpack',       chain:'SOL',  icon:'🎒', detect:()=>!!window.backpack, url:'https://backpack.app/'},
+  // ETH wallets
+  {id:'metamask',  name:'MetaMask',       chain:'ETH',  icon:'🦊', detect:()=>window.ethereum?.isMetaMask, url:'https://metamask.io/'},
+  {id:'coinbase',  name:'Coinbase Wallet',chain:'ETH',  icon:'🔵', detect:()=>window.ethereum?.isCoinbaseWallet, url:'https://www.coinbase.com/wallet'},
+  {id:'rainbow',   name:'Rainbow',        chain:'ETH',  icon:'🌈', detect:()=>window.ethereum?.isRainbow, url:'https://rainbow.me/'},
+  {id:'rabby',     name:'Rabby',          chain:'ETH',  icon:'🐰', detect:()=>window.ethereum?.isRabby, url:'https://rabby.io/'},
+  // BTC wallets
+  {id:'xverse',    name:'Xverse',         chain:'BTC',  icon:'✖️', detect:()=>!!window.XverseProviders?.BitcoinProvider, url:'https://www.xverse.app/'},
+  {id:'unisat',    name:'Unisat',         chain:'BTC',  icon:'🟡', detect:()=>!!window.unisat, url:'https://unisat.io/'},
+  {id:'leather',   name:'Leather',        chain:'BTC',  icon:'🟤', detect:()=>!!window.LeatherProvider, url:'https://leather.io/'},
+  {id:'magiceden', name:'Magic Eden',     chain:'BTC',  icon:'🪄', detect:()=>!!window.magicEden?.bitcoin, url:'https://wallet.magiceden.io/'},
+  // Multi-chain
+  {id:'okx',       name:'OKX Wallet',     chain:'MULTI',icon:'⭕', detect:()=>!!window.okxwallet, url:'https://www.okx.com/web3'},
+  {id:'trust',     name:'Trust Wallet',   chain:'MULTI',icon:'🛡️', detect:()=>window.ethereum?.isTrust||!!window.trustwallet, url:'https://trustwallet.com/'},
+  {id:'bitget',    name:'Bitget Wallet',  chain:'MULTI',icon:'🔷', detect:()=>!!window.bitkeep, url:'https://web3.bitget.com/'},
+];
+
+function connectWallet() {
+  renderWalletOptions();
+  document.getElementById('wallet-modal').classList.add('show');
+}
+function closeWalletModal() { document.getElementById('wallet-modal').classList.remove('show'); }
+
+function renderWalletOptions() {
+  const container = document.getElementById('wallet-options');
+  // Sort: detected first, then by chain grouping
+  const chainOrder = {SOL:0, ETH:1, BTC:2, MULTI:3};
+  const sorted = [...WALLETS].sort((a,b) => {
+    const aD = a.detect() ? -10 : 0;
+    const bD = b.detect() ? -10 : 0;
+    return (aD + chainOrder[a.chain]) - (bD + chainOrder[b.chain]);
+  });
+  let lastChain = '';
+  let html = '';
+  sorted.forEach(w => {
+    const detected = w.detect();
+    const chainCls = w.chain.toLowerCase();
+    const chainLabel = w.chain === 'MULTI' ? 'BTC · ETH · SOL' : w.chain;
+    const clickAction = detected ? "doConnect('" + w.id + "')" : "window.open('" + w.url + "','_blank')";
+    html += '<div class="wallet-option ' + (detected ? 'detected' : '') + '" onclick="' + clickAction + '">' +
+      '<div class="w-icon">' + w.icon + '</div>' +
+      '<div class="w-info">' +
+        '<div class="w-name">' + w.name + ' <span class="wallet-chain-label ' + chainCls + '">' + chainLabel + '</span></div>' +
+        '<div class="w-chain">' + (detected ? '🟢 Ready to connect' : 'Click to install') + '</div>' +
+      '</div>' +
+      '<div class="w-status ' + (detected ? 'ready' : 'install') + '">' + (detected ? 'Connect' : 'Install') + '</div>' +
+    '</div>';
+  });
+  container.innerHTML = html;
+}
+
+async function doConnect(id) {
+  closeWalletModal();
+  try {
+    switch(id) {
+      case 'phantom': {
+        const resp = await window.solana.connect();
+        wallet = resp.publicKey.toString();
+        walletChain = 'sol'; userId = 'sol_' + wallet;
+        onWalletConnected(wallet);
+        showToast('Phantom connected (SOL)');
+        break;
+      }
+      case 'solflare': {
+        await window.solflare.connect();
+        wallet = window.solflare.publicKey.toString();
+        walletChain = 'sol'; userId = 'sol_' + wallet;
+        onWalletConnected(wallet);
+        showToast('Solflare connected (SOL)');
+        break;
+      }
+      case 'metamask':
+      case 'coinbase': {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length > 0) {
+          wallet = accounts[0];
+          walletChain = 'eth'; userId = 'eth_' + wallet.toLowerCase();
+          onWalletConnected(wallet);
+          showToast((id === 'metamask' ? 'MetaMask' : 'Coinbase') + ' connected (ETH)');
+        }
+        break;
+      }
+      case 'xverse': {
+        const provider = window.XverseProviders?.BitcoinProvider || window.BitcoinProvider;
+        const resp = await provider.request('getAccounts', { purposes: ['payment'] });
+        if (resp.result?.length > 0) {
+          wallet = resp.result[0].address;
+          walletChain = 'btc'; userId = 'btc_' + wallet;
+          onWalletConnected(wallet);
+          showToast('Xverse connected (BTC)');
+        }
+        break;
+      }
+      case 'unisat': {
+        const accounts = await window.unisat.requestAccounts();
+        if (accounts.length > 0) {
+          wallet = accounts[0];
+          walletChain = 'btc'; userId = 'btc_' + wallet;
+          onWalletConnected(wallet);
+          showToast('Unisat connected (BTC)');
+        }
+        break;
+      }
+      case 'leather': {
+        const resp = await window.LeatherProvider.request('getAddresses');
+        const addr = resp.result?.addresses?.find(a => a.type === 'p2wpkh')?.address;
+        if (addr) {
+          wallet = addr;
+          walletChain = 'btc'; userId = 'btc_' + wallet;
+          onWalletConnected(wallet);
+          showToast('Leather connected (BTC)');
+        }
+        break;
+      }
+      case 'backpack': {
+        const resp = await window.backpack.connect();
+        wallet = resp.publicKey.toString();
+        walletChain = 'sol'; userId = 'sol_' + wallet;
+        onWalletConnected(wallet);
+        showToast('Backpack connected (SOL)');
+        break;
+      }
+      case 'rainbow':
+      case 'rabby': {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length > 0) {
+          wallet = accounts[0];
+          walletChain = 'eth'; userId = 'eth_' + wallet.toLowerCase();
+          onWalletConnected(wallet);
+          showToast(id.charAt(0).toUpperCase() + id.slice(1) + ' connected (ETH)');
+        }
+        break;
+      }
+      case 'magiceden': {
+        const meAccounts = await window.magicEden.bitcoin.requestAccounts();
+        if (meAccounts.length > 0) {
+          wallet = meAccounts[0];
+          walletChain = 'btc'; userId = 'btc_' + wallet;
+          onWalletConnected(wallet);
+          showToast('Magic Eden connected (BTC)');
+        }
+        break;
+      }
+      case 'okx': {
+        // OKX supports multiple chains — try ETH first
+        if (window.okxwallet?.ethereum) {
+          const accounts = await window.okxwallet.ethereum.request({ method: 'eth_requestAccounts' });
+          if (accounts.length > 0) {
+            wallet = accounts[0];
+            walletChain = 'eth'; userId = 'eth_' + wallet.toLowerCase();
+            onWalletConnected(wallet);
+            showToast('OKX Wallet connected (ETH)');
+          }
+        } else if (window.okxwallet?.solana) {
+          const resp = await window.okxwallet.solana.connect();
+          wallet = resp.publicKey.toString();
+          walletChain = 'sol'; userId = 'sol_' + wallet;
+          onWalletConnected(wallet);
+          showToast('OKX Wallet connected (SOL)');
+        } else if (window.okxwallet?.bitcoin) {
+          const accounts = await window.okxwallet.bitcoin.requestAccounts();
+          wallet = accounts[0];
+          walletChain = 'btc'; userId = 'btc_' + wallet;
+          onWalletConnected(wallet);
+          showToast('OKX Wallet connected (BTC)');
+        }
+        break;
+      }
+      case 'trust': {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length > 0) {
+          wallet = accounts[0];
+          walletChain = 'eth'; userId = 'eth_' + wallet.toLowerCase();
+          onWalletConnected(wallet);
+          showToast('Trust Wallet connected (ETH)');
+        }
+        break;
+      }
+      case 'bitget': {
+        if (window.bitkeep?.ethereum) {
+          const accounts = await window.bitkeep.ethereum.request({ method: 'eth_requestAccounts' });
+          if (accounts.length > 0) {
+            wallet = accounts[0];
+            walletChain = 'eth'; userId = 'eth_' + wallet.toLowerCase();
+            onWalletConnected(wallet);
+            showToast('Bitget Wallet connected (ETH)');
+          }
+        }
+        break;
+      }
+    }
+  } catch(e) {
+    showToast('Connection failed — try again');
+  }
+}
+
+function connectDemo() {
+  closeWalletModal();
+  wallet = 'demo_' + Math.random().toString(36).slice(2, 10);
+  walletChain = 'demo'; userId = wallet;
+  onWalletConnected(wallet);
+  // Auto-give demo credits
+  if (!firebaseReady) { userBalance = 100000; updateBalanceUI(); }
+  showToast('Demo mode — 100k test credits added!');
+}
+
+function disconnectWallet() {
+  wallet = null; walletChain = null; userId = null; userBalance = 0;
+  localStorage.removeItem('wallet_' + SITE_ID);
+  const btn = document.getElementById('connect-btn');
+  btn.textContent = 'Connect Wallet';
+  btn.style.background = 'var(--accent)';
+  btn.style.color = '#000';
+  btn.style.border = 'none';
+  btn.onclick = connectWallet;
+  document.getElementById('propose-btn').style.display = 'none';
+  document.getElementById('panel-btn').style.display = 'none';
+  updateBalanceUI();
+  showToast('Wallet disconnected');
+}
+
+function onWalletConnected(addr) {
+  const short = addr.length > 12 ? addr.slice(0,6) + '...' + addr.slice(-4) : addr;
+  const btn = document.getElementById('connect-btn');
+  btn.innerHTML = '🟢 ' + short + ' <span style="font-size:0.65rem;opacity:0.6;margin-left:0.3rem;">(disconnect)</span>';
+  btn.style.background = '#1a1a25';
+  btn.style.color = 'var(--accent)';
+  btn.style.border = '1px solid var(--accent)';
+  btn.onclick = function() {
+    if (confirm('Disconnect wallet?')) disconnectWallet();
+  };
+
+  document.getElementById('propose-btn').style.display = 'inline-block';
+  document.getElementById('panel-btn').style.display = 'inline-block';
+  document.getElementById('balance-pill').style.display = 'inline-block';
+
+  // Update sticky CTA
+  const stickyBtn = document.querySelector('.sticky-cta button');
+  if (stickyBtn) { stickyBtn.textContent = '🔥 Place a Bet — Markets Are Live!'; stickyBtn.onclick = () => document.getElementById('markets').scrollIntoView({behavior:'smooth'}); }
+
+  // Track wallet connect
+  analytics.trackWalletConnect(walletChain, walletChain);
+
+  // Save wallet state
+  localStorage.setItem('wallet_' + SITE_ID, addr);
+
+  // Update referral link
+  generateReferralLink();
+
+  // Auto-claim welcome bonus if first time
+  if (!localStorage.getItem('welcomeBonus_' + SITE_ID)) {
+    claimWelcomeBonus();
+  }
+
+  if (firebaseReady) {
+    // Register user if new — start with 50k welcome bonus
+    db.ref('users/' + userId).once('value').then(snap => {
+      if (!snap.exists()) {
+        const startBalance = localStorage.getItem('welcomeBonus_' + SITE_ID) ? 0 : 50000;
+        db.ref('users/' + userId).set({
+          wallet: wallet,
+          chain: walletChain,
+          balance: startBalance,
+          joined: firebase.database.ServerValue.TIMESTAMP
+        });
+        if (startBalance > 0) {
+          localStorage.setItem('welcomeBonus_' + SITE_ID, '1');
+          showToast('+50,000 free credits! Start betting now!');
+        }
+      }
+      loadUserData();
+    });
+  }
+  updateBalanceUI();
+}
+
+// ============================================================
+// DEPOSIT
+// ============================================================
+function openDeposit() {
+  depositChain = 'btc';
+  updateDepositUI();
+  document.getElementById('deposit-modal').classList.add('show');
+}
+function closeDeposit() { document.getElementById('deposit-modal').classList.remove('show'); }
+
+function switchChain(chain) {
+  depositChain = chain;
+  document.querySelectorAll('#deposit-modal .chain-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('#deposit-modal .chain-tab.' + chain).classList.add('active');
+  updateDepositUI();
+}
+
+function updateDepositUI() {
+  document.getElementById('deposit-addr-text').textContent = DEPOSIT_ADDRS[depositChain];
+  document.getElementById('deposit-note').textContent = DEPOSIT_NOTES[depositChain];
+}
+
+function copyAddr() {
+  navigator.clipboard.writeText(DEPOSIT_ADDRS[depositChain]).then(() => showToast('Address copied!'));
+}
+
+async function confirmDeposit() {
+  if (!wallet) { showToast('Connect wallet first'); return; }
+  const txHash = document.getElementById('deposit-txhash').value.trim();
+  if (firebaseReady) {
+    await db.ref('deposits/' + userId).push({
+      chain: depositChain,
+      txHash: txHash || null,
+      status: 'pending',
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    });
+    closeDeposit();
+    analytics.trackDeposit(depositChain);
+    showToast('Deposit recorded — admin will credit your balance shortly');
+  } else {
+    // Demo mode: auto-credit
+    userBalance += 100000;
+    updateBalanceUI();
+    closeDeposit();
+    showToast('Demo: 100,000 credits added');
+  }
+}
+
+// ============================================================
+// WITHDRAW
+// ============================================================
+function openWithdraw() {
+  withdrawChain = 'btc';
+  document.getElementById('withdraw-available').textContent = userBalance.toLocaleString();
+  document.getElementById('withdraw-addr').value = wallet || '';
+  document.getElementById('withdraw-modal').classList.add('show');
+}
+function closeWithdraw() { document.getElementById('withdraw-modal').classList.remove('show'); }
+
+function switchWithdrawChain(chain) {
+  withdrawChain = chain;
+  document.querySelectorAll('#withdraw-modal .chain-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('#withdraw-modal .chain-tab.' + chain).classList.add('active');
+}
+
+async function submitWithdraw() {
+  const amount = parseInt(document.getElementById('withdraw-amount').value) || 0;
+  const addr = document.getElementById('withdraw-addr').value.trim();
+  if (amount <= 0) { showToast('Enter an amount'); return; }
+  if (amount > userBalance) { showToast('Insufficient balance'); return; }
+  if (!addr) { showToast('Enter a wallet address'); return; }
+
+  // Validate address format based on chain
+  if (withdrawChain === 'btc' && !addr.match(/^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,62}$/)) {
+    showToast('Invalid BTC address'); return;
+  }
+  if (withdrawChain === 'eth' && !addr.match(/^0x[a-fA-F0-9]{40}$/)) {
+    showToast('Invalid ETH address'); return;
+  }
+  if (withdrawChain === 'sol' && (addr.length < 32 || addr.length > 44)) {
+    showToast('Invalid SOL address'); return;
+  }
+
+  // Minimum withdrawal
+  if (amount < 10000) { showToast('Minimum withdrawal: 10,000 credits'); return; }
+
+  if (firebaseReady) {
+    const updates = {};
+    updates['users/' + userId + '/balance'] = userBalance - amount;
+    const wRef = db.ref('withdrawals/' + userId).push();
+    updates['withdrawals/' + userId + '/' + wRef.key] = {
+      amount: amount,
+      chain: withdrawChain,
+      wallet: addr,
+      status: 'approved',
+      approvedAt: firebase.database.ServerValue.TIMESTAMP,
+      timestamp: firebase.database.ServerValue.TIMESTAMP,
+      auto: true
+    };
+    await db.ref().update(updates);
+    closeWithdraw();
+    analytics.trackWithdraw(withdrawChain, amount);
+    showToast('Withdrawal approved! ' + amount.toLocaleString() + ' credits will be sent to your ' + withdrawChain.toUpperCase() + ' wallet.');
+  } else {
+    userBalance -= amount;
+    updateBalanceUI();
+    closeWithdraw();
+    showToast('Demo: ' + amount.toLocaleString() + ' credits withdrawn');
+  }
+}
+
+// ============================================================
+// USER PANEL
+// ============================================================
+function toggleUserPanel() {
+  const panel = document.getElementById('user-panel');
+  panel.classList.toggle('show');
+}
+
+// ============================================================
+// PROPOSE MARKET (any user)
+// ============================================================
+function openPropose() {
+  if (!wallet) { showToast('Connect wallet first'); return; }
+  document.getElementById('propose-modal').classList.add('show');
+}
+function closePropose() { document.getElementById('propose-modal').classList.remove('show'); }
+
+async function submitProposal() {
+  const question = document.getElementById('propose-question').value.trim();
+  const category = document.getElementById('propose-category').value.trim();
+  const emoji = document.getElementById('propose-emoji').value.trim() || '📊';
+  const ends = document.getElementById('propose-ends').value;
+  if (!question) { showToast('Enter a prediction question'); return; }
+  if (!ends) { showToast('Pick an end date'); return; }
+
+  // Content filter — block hate speech, slurs, and harmful content
+  const blocked = [
+    'kill','murder','rape','assault','bomb','terror','shoot','stab','suicide',
+    'n[i1]gg','f[a4]gg','r[e3]t[a4]rd','ch[i1]nk','sp[i1]c','k[i1]ke','tr[a4]nny',
+    'wh[o0]re','sl[u0]t','c[u0]nt',
+    'nazi','white.?power','white.?suprem','ethnic.?cleans','genocide','holocaust.?deny',
+    'child.?abuse','pedo','molest','traffick',
+    'mass.?shoot','school.?shoot','swat'
+  ];
+  const lower = question.toLowerCase();
+  const hasBlocked = blocked.some(term => new RegExp(term, 'i').test(lower));
+  if (hasBlocked) {
+    showToast('This content violates our community guidelines. Please rephrase.');
+    analytics.track('content_blocked', { question });
+    return;
+  }
+
+  if (firebaseReady) {
+    // Auto-approve — create market directly
+    await db.ref('markets/' + SITE_ID).push({
+      id: Date.now(),
+      category: category || 'wild',
+      emoji: emoji,
+      question: question,
+      yesPool: 0,
+      noPool: 0,
+      totalBets: 0,
+      ends: ends,
+      status: 'open',
+      proposedBy: userId,
+      wallet: wallet,
+      createdAt: firebase.database.ServerValue.TIMESTAMP
+    });
+    closePropose();
+    document.getElementById('propose-question').value = '';
+    document.getElementById('propose-category').value = '';
+    document.getElementById('propose-emoji').value = '';
+    showToast('Market is LIVE! Your prediction is now open for betting.');
+    analytics.track('market_created', { question, category });
+  } else {
+    closePropose();
+    showToast('Proposal submitted (demo mode)');
+  }
+}
+
+// ============================================================
+// ADMIN
+// ============================================================
+function toggleAdmin() {
+  if (!isAdmin) {
+    document.getElementById('admin-login-modal').classList.add('show');
+    return;
+  }
+  document.getElementById('admin-panel').classList.toggle('show');
+}
+
+function closeAdminLogin() { document.getElementById('admin-login-modal').classList.remove('show'); }
+
+async function adminLogin() {
+  const pw = document.getElementById('admin-pw').value;
+  const hash = await sha256(pw);
+  if (hash === ADMIN_HASH) {
+    isAdmin = true;
+    document.getElementById('admin-toggle').style.display = 'inline-block';
+    closeAdminLogin();
+    const ap = document.getElementById('admin-panel');
+    ap.classList.add('show');
+    ap.scrollIntoView({behavior:'smooth', block:'start'});
+    loadAdminData();
+    showToast('Admin access granted — scroll down to see panel');
+  } else {
+    showToast('Wrong password');
+  }
+}
+
+async function sha256(msg) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function loadAdminData() {
+  if (!firebaseReady) return;
+  // Users count
+  db.ref('users').on('value', snap => {
+    const count = snap.numChildren();
+    document.getElementById('admin-users').textContent = count;
+  });
+  // Pending deposits
+  db.ref('deposits').on('value', snap => {
+    const container = document.getElementById('admin-deposits-list');
+    let html = '';
+    snap.forEach(userDeposits => {
+      userDeposits.forEach(dep => {
+        const d = dep.val();
+        if (d.status === 'pending') {
+          html += `<div class="admin-row">
+            <span>${userDeposits.key.slice(0,12)}... · ${d.chain.toUpperCase()} · ${d.txHash ? d.txHash.slice(0,16)+'...' : 'no tx'}</span>
+            <span>
+              <input class="admin-input" style="width:100px;display:inline;margin:0" placeholder="Amount" id="dep-amt-${dep.key}">
+              <button class="admin-btn success" onclick="approveDeposit('${userDeposits.key}','${dep.key}')">Approve</button>
+            </span>
+          </div>`;
+        }
+      });
+    });
+    container.innerHTML = html || '<div style="color:var(--muted);font-size:0.85rem;">No pending deposits</div>';
+  });
+  // Pending withdrawals
+  db.ref('withdrawals').on('value', snap => {
+    const container = document.getElementById('admin-withdrawals-list');
+    let html = '';
+    snap.forEach(userWithdrawals => {
+      userWithdrawals.forEach(wd => {
+        const w = wd.val();
+        if (w.status === 'pending') {
+          html += `<div class="admin-row">
+            <span>${w.wallet ? w.wallet.slice(0,10)+'...' : '?'} · ${w.chain.toUpperCase()} · ${(w.amount||0).toLocaleString()} credits</span>
+            <button class="admin-btn success" onclick="approveWithdrawal('${userWithdrawals.key}','${wd.key}')">Mark Sent</button>
+          </div>`;
+        }
+      });
+    });
+    container.innerHTML = html || '<div style="color:var(--muted);font-size:0.85rem;">No pending withdrawals</div>';
+  });
+  // Pending proposals
+  db.ref('proposals/' + SITE_ID).on('value', snap => {
+    const container = document.getElementById('admin-proposals-list');
+    let html = '';
+    snap.forEach(prop => {
+      const p = prop.val();
+      if (p.status === 'pending') {
+        const w = p.wallet ? p.wallet.slice(0,8)+'...' : '?';
+        html += `<div class="admin-row" style="flex-wrap:wrap;gap:0.5rem;">
+          <span style="flex:1">${p.emoji || '📊'} <strong>${p.question}</strong><br>
+          <small style="color:var(--muted)">${p.category} · ends ${p.ends} · by ${w}</small></span>
+          <span>
+            <button class="admin-btn success" onclick="approveProposal('${prop.key}')">Approve</button>
+            <button class="admin-btn danger" onclick="rejectProposal('${prop.key}')">Reject</button>
+          </span>
+        </div>`;
+      }
+    });
+    container.innerHTML = html || '<div style="color:var(--muted);font-size:0.85rem;">No pending proposals</div>';
+  });
+  renderAdminMarkets();
+  loadAdminAnalytics();
+  // Fee stats
+  db.ref('fees/' + SITE_ID).on('value', snap => {
+    document.getElementById('admin-fees').textContent = (snap.val() || 0).toLocaleString();
+  });
+}
+
+function renderAdminMarkets() {
+  const container = document.getElementById('admin-markets-list');
+  const open = markets.filter(m => m.status === 'open' || !m.status);
+  container.innerHTML = open.map(m => {
+    const key = m.fbKey || m.id;
+    return `<div class="admin-row">
+      <span style="flex:1">${esc(m.emoji)} ${esc(m.question.slice(0,60))}${m.question.length>60?'...':''} ${m.pinned?'📌':''}</span>
+      <span>
+        <button class="admin-btn" onclick="togglePin('${key}')" style="background:var(--accent);color:#000;">${m.pinned?'Unpin':'Pin'}</button>
+        <button class="admin-btn success" onclick="resolveMarket('${key}','yes')">YES Wins</button>
+        <button class="admin-btn danger" onclick="resolveMarket('${key}','no')">NO Wins</button>
+      </span>
+    </div>`;
+  }).join('') || '<div style="color:var(--muted);font-size:0.85rem;">No open markets</div>';
+}
+
+async function togglePin(marketKey) {
+  const market = markets.find(m => (m.fbKey || m.id) === marketKey);
+  const newVal = !(market && market.pinned);
+  await db.ref('markets/' + SITE_ID + '/' + marketKey + '/pinned').set(newVal);
+  showToast(newVal ? 'Market pinned to top' : 'Market unpinned');
+}
+
+async function adminCreateMarket() {
+  const question = document.getElementById('admin-question').value.trim();
+  const category = document.getElementById('admin-category').value.trim();
+  const emoji = document.getElementById('admin-emoji').value.trim() || '📊';
+  const ends = document.getElementById('admin-ends').value;
+  if (!question || !ends) { showToast('Fill in question and end date'); return; }
+
+  const newId = markets.length + 1;
+  const market = {
+    id: newId, category: category || 'wild', emoji,
+    question, yesPool: 0, noPool: 0, totalBets: 0,
+    ends, status: 'open', pinned: true,
+    createdAt: firebase.database.ServerValue.TIMESTAMP
+  };
+
+  if (firebaseReady) {
+    await db.ref('markets/' + SITE_ID).push(market);
+    showToast('Market created!');
+    document.getElementById('admin-question').value = '';
+    document.getElementById('admin-category').value = '';
+    document.getElementById('admin-emoji').value = '';
+  } else {
+    markets.push(market);
+    renderMarkets();
+    showToast('Market created (demo mode)');
+  }
+}
+
+async function resolveMarket(key, winningSide) {
+  if (!confirm('Resolve this market? ' + winningSide.toUpperCase() + ' wins. This cannot be undone.')) return;
+  if (!firebaseReady) { showToast('Firebase required for resolution'); return; }
+
+  // Get all bets for this market
+  const betsSnap = await db.ref('bets/' + SITE_ID).orderByChild('marketId').equalTo(key).once('value');
+  const mktSnap = await db.ref('markets/' + SITE_ID + '/' + key).once('value');
+  const mkt = mktSnap.val();
+  if (!mkt) { showToast('Market not found'); return; }
+
+  const totalPool = (mkt.yesPool || 0) + (mkt.noPool || 0);
+  const winningPool = winningSide === 'yes' ? (mkt.yesPool || 0) : (mkt.noPool || 0);
+  const updates = {};
+  let totalFees = 0;
+
+  betsSnap.forEach(betSnap => {
+    const bet = betSnap.val();
+    if (bet.side === winningSide) {
+      const share = winningPool > 0 ? bet.amount / winningPool : 0;
+      const gross = share * totalPool;
+      const fee = Math.floor(gross * PLATFORM_FEE);
+      const payout = Math.floor(gross - fee);
+      totalFees += fee;
+      updates['users/' + bet.userId + '/balance'] = firebase.database.ServerValue.increment(payout);
+      updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/wins'] = firebase.database.ServerValue.increment(1);
+      updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/totalWon'] = firebase.database.ServerValue.increment(payout);
+    } else {
+      updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/losses'] = firebase.database.ServerValue.increment(1);
+    }
+    updates['bets/' + SITE_ID + '/' + betSnap.key + '/resolved'] = true;
+    updates['bets/' + SITE_ID + '/' + betSnap.key + '/won'] = bet.side === winningSide;
+    updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/totalBets'] = firebase.database.ServerValue.increment(1);
+    updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/totalVolume'] = firebase.database.ServerValue.increment(bet.amount);
+  });
+
+  updates['markets/' + SITE_ID + '/' + key + '/status'] = 'resolved';
+  updates['markets/' + SITE_ID + '/' + key + '/winner'] = winningSide;
+  updates['fees/' + SITE_ID] = firebase.database.ServerValue.increment(totalFees);
+
+  try {
+    await db.ref().update(updates);
+    showToast('Market resolved! ' + winningSide.toUpperCase() + ' wins. Fees: ' + totalFees.toLocaleString());
+  } catch(e) {
+    showToast('Error resolving: ' + e.message);
+  }
+}
+
+async function approveProposal(propKey) {
+  if (!firebaseReady) return;
+  const snap = await db.ref('proposals/' + SITE_ID + '/' + propKey).once('value');
+  const p = snap.val();
+  if (!p) { showToast('Proposal not found'); return; }
+
+  const newId = markets.length + 1;
+  const market = {
+    id: newId, category: p.category || 'wild', emoji: p.emoji || '📊',
+    question: p.question, yesPool: 0, noPool: 0, totalBets: 0,
+    ends: p.ends, status: 'open', proposedBy: p.proposedBy || null
+  };
+
+  const updates = {};
+  const mRef = db.ref('markets/' + SITE_ID).push();
+  updates['markets/' + SITE_ID + '/' + mRef.key] = market;
+  updates['proposals/' + SITE_ID + '/' + propKey + '/status'] = 'approved';
+  await db.ref().update(updates);
+  showToast('Market approved and live!');
+}
+
+async function rejectProposal(propKey) {
+  if (!firebaseReady) return;
+  await db.ref('proposals/' + SITE_ID + '/' + propKey + '/status').set('rejected');
+  showToast('Proposal rejected');
+}
+
+async function approveDeposit(userId, depKey) {
+  const amtInput = document.getElementById('dep-amt-' + depKey);
+  const amount = parseInt(amtInput?.value) || 0;
+  if (amount <= 0) { showToast('Enter credit amount'); return; }
+
+  const updates = {};
+  updates['deposits/' + userId + '/' + depKey + '/status'] = 'approved';
+  updates['deposits/' + userId + '/' + depKey + '/credited'] = amount;
+  updates['users/' + userId + '/balance'] = firebase.database.ServerValue.increment(amount);
+
+  await db.ref().update(updates);
+  showToast('Deposit approved: ' + amount.toLocaleString() + ' credits');
+}
+
+async function approveWithdrawal(userId, wdKey) {
+  const updates = {};
+  updates['withdrawals/' + userId + '/' + wdKey + '/status'] = 'completed';
+  await db.ref().update(updates);
+  showToast('Withdrawal marked as sent');
+}
+
+// ============================================================
+// SHARING
+// ============================================================
+let shareText = '';
+let shareUrl = '';
+
+function getSiteUrl() { return window.location.origin; }
+
+function shareOnX(question, yesPct) {
+  const url = getSiteUrl();
+  const templates = [
+    `${question}\n\n${yesPct}% say YES. You in? 👇`,
+    `${yesPct}% YES on "${question}"\n\nProve them wrong 👇`,
+    `Hot take: "${question}"\n\nBet free. Win crypto.`,
+    `"${question}" — ${yesPct}% YES\n\nWhat's your call?`,
+  ];
+  const text = templates[Math.floor(Math.random() * templates.length)];
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  awardShareBonus();
+}
+
+function shareOnTelegram(question, yesPct) {
+  const url = getSiteUrl();
+  const text = `🔮 ${question}\n📊 ${yesPct}% YES — What do you think?\n\nFree prediction market — bet and win!\nJoin: @predictnetwork`;
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+  awardShareBonus();
+}
+
+function shareOnWhatsApp(question, yesPct) {
+  const url = getSiteUrl();
+  const text = `🔮 ${question}\n📊 ${yesPct}% say YES\n\nFree prediction market — place your bet and win credits or crypto!\n\n${url}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  awardShareBonus();
+}
+
+function copyMarketLink(key) {
+  navigator.clipboard.writeText(getSiteUrl()).then(() => showToast('Link copied!'));
+}
+
+function openShareModal(question, yesPct) {
+  shareText = `🔮 ${question}\n📊 ${yesPct}% YES`;
+  shareUrl = getSiteUrl();
+  document.getElementById('share-preview-text').textContent = shareText + '\n\n' + shareUrl;
+  document.getElementById('share-modal').classList.add('show');
+}
+function closeShareModal() { document.getElementById('share-modal').classList.remove('show'); }
+
+function doShareX() { analytics.trackShare('x'); window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank'); closeShareModal(); awardShareBonus(); }
+function doShareFacebook() { analytics.trackShare('facebook'); window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank'); closeShareModal(); awardShareBonus(); }
+function doShareCopy() { analytics.trackShare('copy_link'); navigator.clipboard.writeText(shareText + '\n' + shareUrl).then(() => { showToast('Copied!'); closeShareModal(); }); }
+
+function awardShareBonus() {
+  if (!wallet) return;
+  const lastShare = localStorage.getItem('lastShareBonus_' + SITE_ID);
+  const now = Date.now();
+  if (lastShare && now - parseInt(lastShare) < 3600000) return; // 1 share bonus per hour
+  localStorage.setItem('lastShareBonus_' + SITE_ID, now.toString());
+  if (firebaseReady && userId) {
+    db.ref('users/' + userId + '/balance').set(firebase.database.ServerValue.increment(1000));
+    showToast('🎉 +1,000 credits for sharing!');
+    trackRewardEvent('share', 1000);
+    updateRewardsUI();
+  }
+}
+
+// ============================================================
+// AFFILIATE / REFERRAL SYSTEM
+// ============================================================
+function generateReferralLink() {
+  let code = localStorage.getItem('myRefCode_' + SITE_ID);
+  if (!code) {
+    code = (wallet || Math.random().toString(36)).replace(/[^a-z0-9]/gi,'').slice(-5);
+    localStorage.setItem('myRefCode_' + SITE_ID, code);
+    if (firebaseReady && userId) {
+      db.ref('refCodes/' + SITE_ID + '/' + code).set(userId);
+    }
+  }
+  document.getElementById('referral-url').value = getSiteUrl() + '?r=' + code;
+  loadAffiliateStats();
+}
+
+function copyReferral() {
+  const input = document.getElementById('referral-url');
+  navigator.clipboard.writeText(input.value).then(() => showToast('Affiliate link copied!'));
+}
+
+function checkReferral() {
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('r');
+  if (code && !localStorage.getItem('referred_' + SITE_ID)) {
+    localStorage.setItem('referred_' + SITE_ID, code);
+    localStorage.setItem('referrer_code_' + SITE_ID, code);
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+}
+
+function processReferralReward() {
+  const code = localStorage.getItem('referrer_code_' + SITE_ID);
+  if (!code || !firebaseReady || localStorage.getItem('ref_rewarded_' + SITE_ID)) return;
+  localStorage.setItem('ref_rewarded_' + SITE_ID, '1');
+  db.ref('refCodes/' + SITE_ID + '/' + code).once('value', snap => {
+    const referrerId = snap.val();
+    if (referrerId) {
+      db.ref('users/' + referrerId + '/balance').set(firebase.database.ServerValue.increment(5000));
+      db.ref('rewards/' + SITE_ID + '/' + referrerId + '/referrals').set(firebase.database.ServerValue.increment(1));
+      // Store affiliate link: who referred this user
+      if (userId) {
+        db.ref('affiliates/' + SITE_ID + '/' + userId).set(referrerId);
+      }
+    }
+  });
+  if (userId) {
+    db.ref('users/' + userId + '/balance').set(firebase.database.ServerValue.increment(5000));
+    showToast('+5,000 credits for joining via referral!');
+    trackRewardEvent('referral_joined', 5000);
+  }
+}
+
+// Affiliate commission: called after every bet
+function payAffiliateCommission(betAmount) {
+  if (!firebaseReady || !userId) return;
+  db.ref('affiliates/' + SITE_ID + '/' + userId).once('value', snap => {
+    const affiliateId = snap.val();
+    if (!affiliateId) return;
+    // Get affiliate tier
+    db.ref('rewards/' + SITE_ID + '/' + affiliateId + '/referrals').once('value', refSnap => {
+      const refs = refSnap.val() || 0;
+      let rate = 0.05; // 5% default
+      if (refs >= 50) rate = 0.10; // Elite
+      else if (refs >= 10) rate = 0.07; // Pro
+      const commission = Math.floor(betAmount * rate);
+      if (commission > 0) {
+        db.ref('users/' + affiliateId + '/balance').set(firebase.database.ServerValue.increment(commission));
+        db.ref('rewards/' + SITE_ID + '/' + affiliateId + '/affEarnings').set(firebase.database.ServerValue.increment(commission));
+      }
+    });
+  });
+}
+
+function getAffiliateTier(refs) {
+  if (refs >= 50) return 'Elite (10%)';
+  if (refs >= 10) return 'Pro (7%)';
+  return 'Starter (5%)';
+}
+
+function loadAffiliateStats() {
+  if (!firebaseReady || !userId) return;
+  const statsEl = document.getElementById('affiliate-stats');
+  if (!statsEl) return;
+  db.ref('rewards/' + SITE_ID + '/' + userId).once('value', snap => {
+    const d = snap.val() || {};
+    const refs = d.referrals || 0;
+    const earned = (d.affEarnings || 0) + (refs * 5000);
+    document.getElementById('aff-referrals').textContent = refs;
+    document.getElementById('aff-earned').textContent = earned.toLocaleString();
+    document.getElementById('aff-tier').textContent = getAffiliateTier(refs);
+    statsEl.style.display = 'block';
+    const refEl = document.getElementById('r-referral-count');
+    if (refEl) refEl.textContent = refs + ' referred';
+  });
+}
+
+function shareAffiliateOnX() {
+  const url = document.getElementById('referral-url').value || getSiteUrl();
+  const text = "I'm earning credits on every bet my friends make on " + document.title.split(' ')[0] + "\n\nFree to play. Real crypto prizes.\n\nJoin through my link 👇";
+  window.open('https://x.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank');
+  trackRewardEvent('affiliate_share', 1000);
+}
+
+// ============================================================
+// WELCOME BONUS
+// ============================================================
+function claimWelcomeBonus() {
+  if (!wallet) { connectWallet(); return; }
+  if (localStorage.getItem('welcomeBonus_' + SITE_ID)) {
+    showToast('Welcome bonus already claimed!');
+    return;
+  }
+  localStorage.setItem('welcomeBonus_' + SITE_ID, '1');
+  if (firebaseReady && userId) {
+    db.ref('users/' + userId + '/balance').set(firebase.database.ServerValue.increment(50000));
+    showToast('🎉 50,000 credits added! Start betting now!');
+    trackRewardEvent('welcome_bonus', 50000);
+  } else {
+    userBalance += 50000;
+    updateBalanceUI();
+    showToast('🎉 50,000 credits added! Start betting now!');
+  }
+  updateRewardsUI();
+  dismissPromo();
+}
+
+function dismissPromo() {
+  document.getElementById('promo-banner').style.display = 'none';
+  localStorage.setItem('promoDismissed_' + SITE_ID, '1');
+}
+
+function claimDailyFaucet() {
+  if (!wallet) { connectWallet(); return; }
+  const lastClaim = localStorage.getItem('faucet_' + SITE_ID);
+  if (lastClaim && Date.now() - parseInt(lastClaim) < 86400000) {
+    const remaining = 86400000 - (Date.now() - parseInt(lastClaim));
+    const hrs = Math.floor(remaining / 3600000);
+    const mins = Math.floor((remaining % 3600000) / 60000);
+    showToast('Daily faucet resets in ' + hrs + 'h ' + mins + 'm');
+    return;
+  }
+  localStorage.setItem('faucet_' + SITE_ID, Date.now().toString());
+  const amount = 10000;
+  if (firebaseReady && userId) {
+    db.ref('users/' + userId + '/balance').set(firebase.database.ServerValue.increment(amount));
+    showToast('+10,000 free credits! Come back tomorrow for more.');
+    trackRewardEvent('daily_faucet', amount);
+  } else {
+    userBalance += amount;
+    updateBalanceUI();
+    showToast('+10,000 free credits! Come back tomorrow for more.');
+  }
+  const btn = document.getElementById('main-faucet-btn');
+  if (btn) { btn.textContent = 'Claimed!'; btn.disabled = true; }
+}
+
+function updateFaucetBtn() {
+  const btn = document.getElementById('main-faucet-btn');
+  if (!btn) return;
+  const lastClaim = localStorage.getItem('faucet_' + SITE_ID);
+  if (lastClaim && Date.now() - parseInt(lastClaim) < 86400000) {
+    const remaining = 86400000 - (Date.now() - parseInt(lastClaim));
+    const hrs = Math.floor(remaining / 3600000);
+    const mins = Math.floor((remaining % 3600000) / 60000);
+    btn.textContent = 'Claim in ' + hrs + 'h ' + mins + 'm';
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+  }
+}
+
+// ============================================================
+// AUTO-GENERATE MARKETS — Crypto, News, Short-term + Long-term
+// ============================================================
+
+// Short-term crypto markets (1hr, 4hr, 24hr)
+const CRYPTO_QUICK_MARKETS = [
+  {emoji:'₿',q:'Will BTC be above $PRICE in 24 hours?',cat:'crypto',hours:24},
+  {emoji:'₿',q:'Will BTC pump 3%+ in the next 4 hours?',cat:'crypto',hours:4},
+  {emoji:'Ξ',q:'Will ETH break $ETHPRICE in the next 24 hours?',cat:'crypto',hours:24},
+  {emoji:'Ξ',q:'Will ETH outperform BTC in the next 12 hours?',cat:'crypto',hours:12},
+  {emoji:'◎',q:'Will SOL pump 5%+ in the next 24 hours?',cat:'crypto',hours:24},
+  {emoji:'◎',q:'Will SOL stay above $SOLPRICE for the next 4 hours?',cat:'crypto',hours:4},
+  {emoji:'📉',q:'Will any top-10 crypto drop 10%+ in the next 24 hours?',cat:'crypto',hours:24},
+  {emoji:'🚀',q:'Will total crypto market cap hit a new ATH this week?',cat:'crypto',hours:168},
+  {emoji:'💎',q:'Will a new memecoin 100x in the next 48 hours?',cat:'crypto',hours:48},
+  {emoji:'🐋',q:'Will a whale move $100M+ in BTC in the next 12 hours?',cat:'crypto',hours:12},
+];
+
+// Breaking news rapid markets (1hr-24hr)
+const NEWS_QUICK_MARKETS = [
+  {emoji:'🏛️',q:'Will a world leader make a major policy announcement today?',cat:'news',hours:24},
+  {emoji:'📰',q:'Will the #1 trending topic on X change in the next 4 hours?',cat:'news',hours:4},
+  {emoji:'🌍',q:'Will a natural disaster make global headlines today?',cat:'news',hours:24},
+  {emoji:'💼',q:'Will a Fortune 500 company announce layoffs this week?',cat:'news',hours:168},
+  {emoji:'🤖',q:'Will a major AI announcement happen today?',cat:'news',hours:24},
+  {emoji:'🏈',q:'Will the biggest sports upset of the week happen today?',cat:'news',hours:24},
+  {emoji:'📱',q:'Will a social media platform go down for 1hr+ today?',cat:'news',hours:24},
+  {emoji:'🎬',q:'Will a celebrity scandal trend #1 on X today?',cat:'news',hours:24},
+  {emoji:'⚖️',q:'Will a major court ruling make headlines this week?',cat:'news',hours:168},
+  {emoji:'🚨',q:'Will breaking news interrupt live TV today?',cat:'news',hours:24},
+];
+
+// Long-term meta markets
+const META_MARKET_TEMPLATES = [
+  {emoji:'📈',q:'Will predict.yachts see 1,000+ total bets this month?',cat:'meta',hours:720},
+  {emoji:'🔥',q:'Will the most popular market on predict.yachts hit 1M in volume?',cat:'meta',hours:720},
+  {emoji:'🌐',q:'Will predict.yachts get featured on a major news outlet?',cat:'viral',hours:720},
+  {emoji:'📱',q:'Will predict.yachts reach 10,000 unique visitors this month?',cat:'growth',hours:720},
+  {emoji:'🏆',q:'Will a single user win 500k+ credits on predict.yachts?',cat:'wild',hours:720},
+  {emoji:'🎯',q:'Will YES side win more markets than NO this month?',cat:'meta',hours:720},
+];
+
+function autoGenerateMarkets() {
+  if (!firebaseReady) return;
+
+  const now = Date.now();
+  const siteTitle = document.title.split(' —')[0];
+
+  // Only add crypto/news quick markets to relevant sites
+  const cryptoSites = ['pics','codes','autos','horse','mom'];
+  const skipQuickMarkets = !cryptoSites.includes(SITE_ID);
+
+  // Generate SHORT-TERM markets every 4 hours
+  const lastQuick = localStorage.getItem('quickGen_' + SITE_ID);
+  if (!skipQuickMarkets && (!lastQuick || now - parseInt(lastQuick) > 14400000)) {
+    localStorage.setItem('quickGen_' + SITE_ID, now.toString());
+
+    // Pick 2 crypto + 1 news quick market
+    const cryptoPicks = CRYPTO_QUICK_MARKETS.sort(() => Math.random() - 0.5).slice(0, 2);
+    const newsPick = NEWS_QUICK_MARKETS[Math.floor(Math.random() * NEWS_QUICK_MARKETS.length)];
+
+    [cryptoPicks[0], cryptoPicks[1], newsPick].forEach(template => {
+      if (!template) return;
+      let question = template.q
+        .replace('$PRICE', (50000 + Math.floor(Math.random() * 60000)).toLocaleString())
+        .replace('$ETHPRICE', (2000 + Math.floor(Math.random() * 2000)).toLocaleString())
+        .replace('$SOLPRICE', (50 + Math.floor(Math.random() * 150)).toLocaleString());
+
+      // Check if similar exists
+      if (markets.some(m => m.question === question)) return;
+
+      const endDate = new Date(now + template.hours * 3600000);
+      db.ref('markets/' + SITE_ID).push({
+        id: Date.now(),
+        category: template.cat,
+        emoji: template.emoji,
+        question: question,
+        yesPool: 0,
+        noPool: 0,
+        totalBets: 0,
+        ends: endDate.toISOString().split('T')[0] + 'T' + endDate.toISOString().split('T')[1].slice(0,5),
+        status: 'open',
+        autoGenerated: true,
+        quickMarket: true,
+        expiresAt: endDate.getTime(),
+        createdAt: firebase.database.ServerValue.TIMESTAMP
+      });
+    });
+  }
+
+  // Generate LONG-TERM meta markets once per day
+  const lastMeta = localStorage.getItem('metaGen_' + SITE_ID);
+  if (!lastMeta || now - parseInt(lastMeta) > 86400000) {
+    localStorage.setItem('metaGen_' + SITE_ID, now.toString());
+    const template = META_MARKET_TEMPLATES[Math.floor(Math.random() * META_MARKET_TEMPLATES.length)];
+    const question = template.q.replace('predict.yachts', siteTitle);
+    if (!markets.some(m => m.question === question)) {
+      const endDate = new Date(now + template.hours * 3600000);
+      db.ref('markets/' + SITE_ID).push({
+        id: Date.now(),
+        category: template.cat,
+        emoji: template.emoji,
+        question: question,
+        yesPool: 0,
+        noPool: 0,
+        totalBets: 0,
+        ends: endDate.toISOString().split('T')[0],
+        status: 'open',
+        autoGenerated: true,
+        createdAt: firebase.database.ServerValue.TIMESTAMP
+      });
+    }
+  }
+}
+
+// ============================================================
+// AFTER-BET SHARE PROMPT
+// ============================================================
+function showSharePrompt(question, side, amount) {
+  const templates = [
+    `I'm betting ${side.toUpperCase()} on "${question}"\n\nProve me wrong 👇`,
+    `${side.toUpperCase()} on "${question}" — ${amount.toLocaleString()} credits\n\nYour move 👇`,
+    `"${question}" — I said ${side.toUpperCase()}.\n\nBet free. Win crypto.`,
+    `Just went ${side.toUpperCase()} on this.\n\n"${question}"\n\nWhat's your call?`,
+  ];
+  shareText = templates[Math.floor(Math.random() * templates.length)];
+  shareUrl = getSiteUrl();
+  document.getElementById('share-preview-text').textContent = shareText + '\n\n' + shareUrl;
+  setTimeout(() => document.getElementById('share-modal').classList.add('show'), 500);
+}
+
+// ============================================================
+// ENGAGEMENT SYSTEM — Popups, viral templates, cross-promo
+// ============================================================
+let betCount = parseInt(localStorage.getItem('betCount_' + SITE_ID) || '0');
+
+function trackBetEngagement() {
+  betCount++;
+  localStorage.setItem('betCount_' + SITE_ID, betCount.toString());
+  // Show engagement popup every 3 bets
+  if (betCount % 3 === 0) {
+    showEngagePopup();
+  }
+  // Milestone toasts
+  if (betCount === 1) setTimeout(() => showToast('First bet placed! Share it to earn 1,000 bonus credits'), 2000);
+  if (betCount === 5) setTimeout(() => showToast('5 bets! You\'re a rising predictor — invite friends for 5k each'), 3000);
+  if (betCount === 10) setTimeout(() => showToast('10 bets! You\'re climbing the leaderboard — keep going!'), 3000);
+  if (betCount === 25) setTimeout(() => showToast('25 bets! You\'re a prediction shark now!'), 3000);
+}
+
+const ENGAGE_MESSAGES = [
+  {title:'You\'re on fire!', text:'You\'ve placed {n} bets — share your streak and earn 1,000 bonus credits!'},
+  {title:'Streak alert!', text:'{n} predictions and counting! Share on X and earn credits.'},
+  {title:'Invite & earn!', text:'Share your link — you BOTH get 5,000 credits when they bet.'},
+  {title:'Climbing the ranks!', text:'You\'re making moves on the leaderboard. Share to flex your rank!'},
+  {title:'Hot streak!', text:'{n} bets placed! Copy your post template and share for bonus credits.'},
+  {title:'Double rewards!', text:'Share any market on X right now and get 2x bonus credits!'},
+];
+
+function showEngagePopup() {
+  const msg = ENGAGE_MESSAGES[Math.floor(Math.random() * ENGAGE_MESSAGES.length)];
+  document.getElementById('ep-title').textContent = msg.title;
+  document.getElementById('ep-text').textContent = msg.text.replace('{n}', betCount);
+  document.getElementById('engage-popup').classList.add('show');
+  analytics.track('engage_popup_shown', { betCount });
+  // Auto dismiss after 10 seconds
+  setTimeout(dismissEngagePopup, 10000);
+}
+
+function dismissEngagePopup() {
+  document.getElementById('engage-popup').classList.remove('show');
+}
+
+function engageShare() {
+  const siteTitle = document.title.split(' —')[0];
+  const url = getSiteUrl();
+  const text = `${betCount} predictions deep on ${siteTitle}\n\nBet free. Win crypto.`;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  dismissEngagePopup();
+  awardShareBonus();
+}
+
+function engageRefer() {
+  copyReferral();
+  dismissEngagePopup();
+}
+
+function engageCommunity() {
+  window.open('https://x.com/SpunkArt13', '_blank');
+  dismissEngagePopup();
+  analytics.track('community_join_click');
+}
+
+// ============================================================
+// VIRAL SHARE TEMPLATES — Pre-written posts for max engagement
+// ============================================================
+const VIRAL_TEMPLATES = [
+  '"{q}"\n\n{pct}% say YES. You in?\n\n{url}',
+  '{q}\n\n{pct}% YES | {noPct}% NO\n\nProve them wrong 👇\n\n{url}',
+  'Hot take: {q}\n\nBet free. Win crypto.\n\n{url}',
+  '{pct}% YES on "{q}"\n\nWhat\'s your call?\n\n{url}',
+];
+
+function copyViralTemplate(question, yesPct) {
+  const template = VIRAL_TEMPLATES[Math.floor(Math.random() * VIRAL_TEMPLATES.length)];
+  const side = yesPct > 50 ? 'YES' : 'NO';
+  const text = template
+    .replace(/{q}/g, question)
+    .replace(/{pct}/g, yesPct)
+    .replace(/{noPct}/g, 100 - yesPct)
+    .replace(/{side}/g, side)
+    .replace(/{url}/g, getSiteUrl());
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Copied! Paste on X for +1,000 credits');
+  });
+  analytics.track('viral_template_copied');
+}
+
+// Auto-populate cross-promo links (exclude current site)
+function buildCrossPromo() {
+  const sites = [
+    {s:'autos',e:'🏎️'},{s:'beauty',e:'💄'},{s:'christmas',e:'🎄'},{s:'codes',e:'💻'},
+    {s:'courses',e:'📚'},{s:'garden',e:'🌱'},{s:'gay',e:'🏳️‍🌈'},{s:'hair',e:'💇'},
+    {s:'horse',e:'🐴'},{s:'makeup',e:'💅'},{s:'mom',e:'👩'},{s:'pics',e:'📸'},
+    {s:'singles',e:'💘'},{s:'skin',e:'🧴'},{s:'surf',e:'🏄'},{s:'tattoo',e:'🎨'}
+  ];
+  const container = document.getElementById('cp-links');
+  if (!container) return;
+  const others = sites.filter(s => s.s !== SITE_ID).sort(() => Math.random() - 0.5).slice(0, 5);
+  container.innerHTML = others.map(s =>
+    `<a class="cp-link" href="https://predict.${s.s}" target="_blank" rel="noopener noreferrer">${s.e} predict.${s.s}</a>`
+  ).join('');
+}
+
+// Show first-visit splash for new visitors
+function showFirstVisitSplash() {
+  if (localStorage.getItem('visited_' + SITE_ID)) return;
+  localStorage.setItem('visited_' + SITE_ID, '1');
+  // After 3 seconds, show a gentle nudge
+  setTimeout(() => {
+    if (!wallet) {
+      showToast('Welcome! Connect a wallet for 50,000 FREE credits — or try Demo Mode');
+    }
+  }, 3000);
+  // After 15 seconds, nudge share
+  setTimeout(() => {
+    if (!localStorage.getItem('share_nudged_' + SITE_ID)) {
+      localStorage.setItem('share_nudged_' + SITE_ID, '1');
+      const popup = document.getElementById('engage-popup');
+      document.getElementById('ep-title').textContent = 'Share & earn';
+      document.getElementById('ep-text').textContent = 'Share any prediction on X and earn 1,000 bonus credits. Invite friends for 5,000 each!';
+      popup.classList.add('show');
+      setTimeout(() => popup.classList.remove('show'), 12000);
+    }
+  }, 15000);
+}
+
+// Inactivity re-engagement — if user idles for 60s, suggest an action
+let inactivityTimer = null;
+function resetInactivity() {
+  if (inactivityTimer) clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(() => {
+    if (document.hidden) return;
+    const suggestions = [
+      'Scroll down to see trending markets',
+      'Share a prediction and earn 1,000 credits',
+      'Check the leaderboard — are you ranked?',
+      'Invite a friend and you both earn 5,000 credits',
+    ];
+    showToast(suggestions[Math.floor(Math.random() * suggestions.length)]);
+  }, 60000);
+}
+document.addEventListener('click', resetInactivity);
+document.addEventListener('scroll', resetInactivity);
+
+// ============================================================
+// DAILY CHALLENGE — Featured market with bonus credits for betting + sharing
+// ============================================================
+function getDailyChallenge() {
+  const openMarkets = markets.filter(m => m.status === 'open' || !m.status);
+  if (openMarkets.length === 0) return null;
+  const dayHash = Math.floor(Date.now() / 86400000);
+  return openMarkets[dayHash % openMarkets.length];
+}
+
+function renderDailyChallenge() {
+  const dc = document.getElementById('daily-challenge');
+  if (!dc) return;
+  const market = getDailyChallenge();
+  if (!market) { dc.style.display = 'none'; return; }
+  const total = (market.yesPool || 0) + (market.noPool || 0);
+  const yesPct = total > 0 ? Math.round(((market.yesPool || 0) / total) * 100) : 50;
+  const claimed = localStorage.getItem('dc_' + SITE_ID + '_' + Math.floor(Date.now() / 86400000));
+  dc.innerHTML = `
+    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+      <span style="font-size:1.2rem;">&#x1F3AF;</span>
+      <span style="font-weight:600;color:var(--accent);">Daily Challenge</span>
+      <span style="font-size:0.75rem;color:var(--muted);margin-left:auto;">2x credits</span>
+    </div>
+    <div style="font-size:0.95rem;margin-bottom:0.75rem;">${market.question}</div>
+    <div style="display:flex;gap:0.5rem;">
+      <button onclick="placeBetFromChallenge('${market.fbKey || market.id}','yes')" style="flex:1;padding:0.5rem;border-radius:8px;background:rgba(16,185,129,0.15);color:var(--green);border:1px solid rgba(16,185,129,0.3);cursor:pointer;font-weight:600;">YES ${yesPct}%</button>
+      <button onclick="placeBetFromChallenge('${market.fbKey || market.id}','no')" style="flex:1;padding:0.5rem;border-radius:8px;background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3);cursor:pointer;font-weight:600;">NO ${100-yesPct}%</button>
+    </div>
+    ${claimed ? '<div style="text-align:center;margin-top:0.5rem;font-size:0.75rem;color:var(--green);">Completed today!</div>' : '<div style="text-align:center;margin-top:0.5rem;font-size:0.75rem;color:var(--muted);">Bet + share = 2,000 bonus credits</div>'}
+  `;
+  dc.style.display = 'block';
+}
+
+function placeBetFromChallenge(marketId, side) {
+  const dayKey = 'dc_' + SITE_ID + '_' + Math.floor(Date.now() / 86400000);
+  if (!localStorage.getItem(dayKey)) {
+    localStorage.setItem(dayKey, '1');
+    if (firebaseReady && userId) {
+      db.ref('users/' + userId + '/balance').set(firebase.database.ServerValue.increment(2000));
+      showToast('+2,000 bonus credits for daily challenge!');
+    }
+  }
+  openBetModal(marketId, side);
+}
+
+// ============================================================
+// WIN STREAK — Track consecutive correct predictions
+// ============================================================
+let winStreak = parseInt(localStorage.getItem('winStreak_' + SITE_ID) || '0');
+
+function updateWinStreak(won) {
+  if (won) {
+    winStreak++;
+    localStorage.setItem('winStreak_' + SITE_ID, winStreak.toString());
+    if (winStreak >= 3) {
+      showToast(winStreak + '-win streak! Share your streak on X for bonus credits!');
+    }
+  } else {
+    winStreak = 0;
+    localStorage.setItem('winStreak_' + SITE_ID, '0');
+  }
+}
+
+function shareWinStreak() {
+  const url = getSiteUrl();
+  const text = winStreak + '-win streak. Come beat me.';
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank');
+  awardShareBonus();
+}
+
+// ============================================================
+// AUTO-RESOLUTION — Markets resolve automatically when they end
+// ============================================================
+async function autoResolveMarkets() {
+  if (!firebaseReady) return;
+  const now = new Date();
+  for (const m of markets) {
+    if (m.status !== 'open' && m.status) continue;
+    const endDate = new Date(m.ends);
+    if (now <= endDate) continue;
+    // Market has ended — resolve by majority pool
+    const key = m.fbKey;
+    if (!key) continue;
+    // Check if already being resolved
+    const snap = await db.ref('markets/' + SITE_ID + '/' + key + '/status').once('value');
+    if (snap.val() === 'resolved') continue;
+
+    const yesPool = m.yesPool || 0;
+    const noPool = m.noPool || 0;
+    if (yesPool === 0 && noPool === 0) {
+      // No bets — just close it
+      await db.ref('markets/' + SITE_ID + '/' + key + '/status').set('resolved');
+      continue;
+    }
+
+    const winningSide = yesPool >= noPool ? 'yes' : 'no';
+    const totalPool = yesPool + noPool;
+    const winningPool = winningSide === 'yes' ? yesPool : noPool;
+
+    // Get all bets for this market
+    const betsSnap = await db.ref('bets/' + SITE_ID).orderByChild('marketId').equalTo(key).once('value');
+    const updates = {};
+    let totalFees = 0;
+
+    betsSnap.forEach(betSnap => {
+      const bet = betSnap.val();
+      if (bet.resolved) return; // Skip already resolved
+      if (bet.side === winningSide) {
+        const share = winningPool > 0 ? bet.amount / winningPool : 0;
+        const gross = share * totalPool;
+        const fee = Math.floor(gross * PLATFORM_FEE);
+        const payout = Math.floor(gross - fee);
+        totalFees += fee;
+        updates['users/' + bet.userId + '/balance'] = firebase.database.ServerValue.increment(payout);
+        // Update leaderboard stats
+        updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/wins'] = firebase.database.ServerValue.increment(1);
+        updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/totalWon'] = firebase.database.ServerValue.increment(payout);
+      } else {
+        updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/losses'] = firebase.database.ServerValue.increment(1);
+      }
+      updates['bets/' + SITE_ID + '/' + betSnap.key + '/resolved'] = true;
+      updates['bets/' + SITE_ID + '/' + betSnap.key + '/won'] = bet.side === winningSide;
+      updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/totalBets'] = firebase.database.ServerValue.increment(1);
+      updates['leaderboard/' + SITE_ID + '/' + bet.userId + '/totalVolume'] = firebase.database.ServerValue.increment(bet.amount);
+    });
+
+    updates['markets/' + SITE_ID + '/' + key + '/status'] = 'resolved';
+    updates['markets/' + SITE_ID + '/' + key + '/winner'] = winningSide;
+    updates['markets/' + SITE_ID + '/' + key + '/resolvedAt'] = firebase.database.ServerValue.TIMESTAMP;
+    updates['markets/' + SITE_ID + '/' + key + '/autoResolved'] = true;
+    if (totalFees > 0) updates['fees/' + SITE_ID] = firebase.database.ServerValue.increment(totalFees);
+
+    if (Object.keys(updates).length > 0) {
+      await db.ref().update(updates);
+      console.log('Auto-resolved:', m.question, '→', winningSide.toUpperCase());
+    }
+  }
+}
+
+// Run auto-resolution every 5 minutes (only when tab visible)
+setInterval(() => { if (firebaseReady && !document.hidden) autoResolveMarkets(); }, 300000);
+
+// ============================================================
+// FREE / REAL MODE
+// ============================================================
+// Real Crypto is ALWAYS the default — free is opt-in only
+let playMode = 'real';
+
+function switchMode(mode) {
+  playMode = mode;
+  localStorage.setItem('playMode_' + SITE_ID, mode);
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.mode-btn.' + mode).classList.add('active');
+
+  if (mode === 'free') {
+    // Free mode — give instant credits, no deposit needed
+    if (!wallet) {
+      showToast('Free play! Connect any wallet or use Demo Mode to start');
+    } else if (userBalance < 10000) {
+      // Top up free credits
+      if (firebaseReady && userId) {
+        db.ref('users/' + userId + '/balance').set(firebase.database.ServerValue.increment(50000));
+      } else {
+        userBalance += 50000;
+        updateBalanceUI();
+      }
+      showToast('🆓 Free mode active! 50k credits added — play for fun & climb the leaderboard!');
+    }
+  } else {
+    showToast('💰 Real crypto mode — deposit BTC, ETH, or SOL to bet with real money!');
+  }
+  analytics.track('mode_switch', { mode });
+}
+
+// ============================================================
+// LEADERBOARD — Per-site, Daily/Weekly/Monthly/All Time
+// ============================================================
+let lbData = [];
+let lbSort = 'volume';
+let lbPeriod = 'all';
+
+function loadLeaderboard() {
+  if (!firebaseReady) return;
+  // Load all-time leaderboard
+  db.ref('leaderboard/' + SITE_ID).on('value', snap => {
+    lbData = [];
+    snap.forEach(child => {
+      const d = child.val();
+      lbData.push({
+        id: child.key,
+        wallet: d.wallet || child.key,
+        totalVolume: d.totalVolume || 0,
+        totalBets: d.totalBets || 0,
+        wins: d.wins || 0,
+        losses: d.losses || 0,
+        totalWon: d.totalWon || 0,
+        streak: d.streak || 0,
+        lastBet: d.lastBet || 0,
+        dailyVolume: d.dailyVolume || 0,
+        weeklyVolume: d.weeklyVolume || 0,
+        monthlyVolume: d.monthlyVolume || 0,
+        dailyBets: d.dailyBets || 0,
+        weeklyBets: d.weeklyBets || 0,
+        monthlyBets: d.monthlyBets || 0,
+        dailyWins: d.dailyWins || 0,
+        weeklyWins: d.weeklyWins || 0,
+        monthlyWins: d.monthlyWins || 0
+      });
+    });
+    renderLeaderboard();
+  });
+}
+
+function switchLbPeriod(period, el) {
+  lbPeriod = period;
+  document.querySelectorAll('#lb-period-tabs .lb-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderLeaderboard();
+}
+
+function switchLbTab(sort, el) {
+  lbSort = sort;
+  // Only deactivate sort tabs (not period tabs)
+  el.parentNode.querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderLeaderboard();
+}
+
+function getRank(volume, bets) {
+  if (volume >= 1000000) return {name:'Whale', cls:'whale', emoji:'🐋'};
+  if (volume >= 500000) return {name:'Shark', cls:'shark', emoji:'🦈'};
+  if (volume >= 100000) return {name:'Bull', cls:'bull', emoji:'🐂'};
+  if (bets >= 10) return {name:'Player', cls:'newbie', emoji:'🎯'};
+  return {name:'Newbie', cls:'newbie', emoji:'🌱'};
+}
+
+function renderLeaderboard() {
+  const tbody = document.getElementById('lb-body');
+  if (lbData.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" class="lb-empty">No predictions yet — be the first! Connect wallet & bet to climb the ranks. Free or real — everyone ranks!</td></tr>';
+    return;
+  }
+
+  // Pick volume/bets/wins based on period
+  let sorted = lbData.map(u => {
+    let vol, bets, wins;
+    switch(lbPeriod) {
+      case 'daily': vol = u.dailyVolume; bets = u.dailyBets; wins = u.dailyWins; break;
+      case 'weekly': vol = u.weeklyVolume; bets = u.weeklyBets; wins = u.weeklyWins; break;
+      case 'monthly': vol = u.monthlyVolume; bets = u.monthlyBets; wins = u.monthlyWins; break;
+      default: vol = u.totalVolume; bets = u.totalBets; wins = u.wins;
+    }
+    return {...u, pVol: vol, pBets: bets, pWins: wins};
+  }).filter(u => u.pVol > 0 || u.pBets > 0);
+
+  switch(lbSort) {
+    case 'volume': sorted.sort((a,b) => b.pVol - a.pVol); break;
+    case 'wins': sorted.sort((a,b) => b.pWins - a.pWins); break;
+    case 'streak': sorted.sort((a,b) => b.streak - a.streak); break;
+    case 'bets': sorted.sort((a,b) => b.pBets - a.pBets); break;
+  }
+
+  if (sorted.length === 0) {
+    const periodLabel = lbPeriod === 'all' ? '' : lbPeriod;
+    tbody.innerHTML = `<tr><td colspan="5" class="lb-empty">No ${periodLabel} activity yet — place a bet to start climbing!</td></tr>`;
+    return;
+  }
+
+  const top = sorted.slice(0, 25);
+  const prizeEmoji = lbPeriod === 'daily' ? '🎁' : lbPeriod === 'weekly' ? '💎' : lbPeriod === 'monthly' ? '🏆' : '';
+  tbody.innerHTML = top.map((u, i) => {
+    const rank = getRank(u.totalVolume, u.totalBets);
+    const winRate = u.pBets > 0 ? Math.round((u.pWins / u.pBets) * 100) : 0;
+    const wrClass = winRate >= 60 ? 'good' : winRate >= 40 ? 'mid' : 'low';
+    const rankCls = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+    const medal = i === 0 ? '👑' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1);
+    const short = u.wallet.length > 12 ? u.wallet.slice(0,6) + '...' + u.wallet.slice(-4) : u.wallet;
+    const isYou = userId && u.id === userId ? ' lb-you' : '';
+    const youTag = userId && u.id === userId ? ' (YOU)' : '';
+    const prizeTag = (i < 3 && lbPeriod !== 'all') ? ` ${prizeEmoji}` : '';
+    return `<tr class="${isYou}">
+      <td class="lb-rank ${rankCls}">${medal}</td>
+      <td class="lb-user">${rank.emoji} ${short}${youTag}${prizeTag} <span class="lb-badge ${rank.cls}">${rank.name}</span></td>
+      <td class="lb-val">${u.pVol.toLocaleString()}</td>
+      <td>${u.pBets}</td>
+      <td class="lb-winrate ${wrClass}">${winRate}%</td>
+    </tr>`;
+  }).join('');
+}
+
+// Update leaderboard on bet placement (all time + period)
+function updateLeaderboardOnBet(amount) {
+  if (!firebaseReady || !userId) return;
+  const today = new Date().toISOString().split('T')[0];
+  const weekNum = getWeekNumber();
+  const monthKey = today.slice(0, 7);
+  const updates = {};
+  // All time
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/totalVolume'] = firebase.database.ServerValue.increment(amount);
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/totalBets'] = firebase.database.ServerValue.increment(1);
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/wallet'] = wallet;
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/lastBet'] = firebase.database.ServerValue.TIMESTAMP;
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/mode'] = playMode;
+  // Daily
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/dailyVolume'] = firebase.database.ServerValue.increment(amount);
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/dailyBets'] = firebase.database.ServerValue.increment(1);
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/dailyKey'] = today;
+  // Weekly
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/weeklyVolume'] = firebase.database.ServerValue.increment(amount);
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/weeklyBets'] = firebase.database.ServerValue.increment(1);
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/weeklyKey'] = weekNum;
+  // Monthly
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/monthlyVolume'] = firebase.database.ServerValue.increment(amount);
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/monthlyBets'] = firebase.database.ServerValue.increment(1);
+  updates['leaderboard/' + SITE_ID + '/' + userId + '/monthlyKey'] = monthKey;
+  db.ref().update(updates);
+}
+
+function getWeekNumber() {
+  const d = new Date();
+  const start = new Date(d.getFullYear(), 0, 1);
+  const diff = d - start;
+  const week = Math.ceil(diff / 604800000);
+  return d.getFullYear() + '-W' + String(week).padStart(2, '0');
+}
+
+// Reset daily/weekly/monthly counters when period changes
+function checkLeaderboardResets() {
+  if (!firebaseReady || !userId) return;
+  const today = new Date().toISOString().split('T')[0];
+  const weekNum = getWeekNumber();
+  const monthKey = today.slice(0, 7);
+
+  db.ref('leaderboard/' + SITE_ID + '/' + userId).once('value', snap => {
+    const d = snap.val();
+    if (!d) return;
+    const updates = {};
+    if (d.dailyKey && d.dailyKey !== today) {
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/dailyVolume'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/dailyBets'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/dailyWins'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/dailyKey'] = today;
+    }
+    if (d.weeklyKey && d.weeklyKey !== weekNum) {
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/weeklyVolume'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/weeklyBets'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/weeklyWins'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/weeklyKey'] = weekNum;
+    }
+    if (d.monthlyKey && d.monthlyKey !== monthKey) {
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/monthlyVolume'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/monthlyBets'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/monthlyWins'] = 0;
+      updates['leaderboard/' + SITE_ID + '/' + userId + '/monthlyKey'] = monthKey;
+    }
+    if (Object.keys(updates).length > 0) db.ref().update(updates);
+  });
+}
+
+// Award daily prizes automatically (runs on page load)
+async function awardDailyPrizes() {
+  if (!firebaseReady) return;
+  const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+  const awarded = localStorage.getItem('dailyPrize_' + SITE_ID);
+  if (awarded === yesterday) return;
+
+  // Check if this user was #1 yesterday
+  const snap = await db.ref('leaderboard/' + SITE_ID).orderByChild('dailyVolume').limitToLast(1).once('value');
+  snap.forEach(child => {
+    if (child.key === userId && child.val().dailyVolume > 0) {
+      db.ref('users/' + userId + '/balance').set(firebase.database.ServerValue.increment(50000));
+      showToast('🏆 You were #1 yesterday! 50,000 bonus credits awarded!');
+    }
+  });
+  localStorage.setItem('dailyPrize_' + SITE_ID, yesterday);
+}
+
+// ============================================================
+// REWARDS TRACKER — Update progress + data collection
+// ============================================================
+function updateRewardsUI() {
+  // Welcome bonus check
+  const welcomeCheck = document.getElementById('r-welcome-check');
+  if (welcomeCheck && localStorage.getItem('welcomeBonus_' + SITE_ID)) {
+    welcomeCheck.style.display = 'inline-block';
+  }
+  // Progress bar
+  let steps = 0, total = 4;
+  if (wallet) steps++;
+  if (localStorage.getItem('welcomeBonus_' + SITE_ID)) steps++;
+  if (userBets.length > 0) steps++;
+  if (localStorage.getItem('lastShareBonus_' + SITE_ID)) steps++;
+  const pct = Math.round((steps / total) * 100);
+  const fill = document.getElementById('rp-fill');
+  const text = document.getElementById('rp-text');
+  if (fill) fill.style.width = pct + '%';
+  if (text) {
+    if (steps === 0) text.textContent = 'Connect wallet to start earning';
+    else if (steps === 1) text.textContent = 'Claim your welcome bonus — 50k free credits!';
+    else if (steps === 2) text.textContent = 'Place your first bet to keep earning!';
+    else if (steps === 3) text.textContent = 'Share a market to complete all rewards!';
+    else text.textContent = 'All rewards unlocked! Keep betting & sharing to earn more.';
+  }
+  // Track referral count
+  if (firebaseReady && userId) {
+    db.ref('rewards/' + SITE_ID + '/' + userId).once('value', snap => {
+      const d = snap.val() || {};
+      const refEl = document.getElementById('r-referral-count');
+      if (refEl) refEl.textContent = (d.referrals || 0) + ' referred';
+    });
+  }
+}
+
+// Track reward events for data collection
+function trackRewardEvent(type, amount) {
+  if (!firebaseReady) return;
+  db.ref('rewards/' + SITE_ID + '/' + (userId || 'anon')).update({
+    lastAction: type,
+    lastAmount: amount,
+    lastTime: firebase.database.ServerValue.TIMESTAMP
+  });
+  analytics.track('reward_earned', { type, amount });
+}
+
+// ============================================================
+// BACKGROUND AUDIT SYSTEM — Runs every 30 min
+// ============================================================
+let auditChecks = 0;
+let lastAuditTime = Date.now();
+
+function runAudit() {
+  const checks = [];
+
+  // 1. SSL check (we're on HTTPS)
+  checks.push({name: 'SSL', pass: location.protocol === 'https:'});
+
+  // 2. Firebase connection
+  checks.push({name: 'Firebase', pass: firebaseReady});
+
+  // 3. Markets loaded
+  checks.push({name: 'Markets', pass: markets.length > 0});
+
+  // 4. DOM integrity
+  checks.push({name: 'DOM', pass: !!document.getElementById('markets')});
+
+  // 5. Wallet system
+  checks.push({name: 'Wallets', pass: typeof WALLETS !== 'undefined' && WALLETS.length >= 14});
+
+  // 6. Deposit addresses
+  checks.push({name: 'BTC Addr', pass: DEPOSIT_ADDRS.btc && DEPOSIT_ADDRS.btc.startsWith('bc1')});
+  checks.push({name: 'ETH Addr', pass: DEPOSIT_ADDRS.eth && DEPOSIT_ADDRS.eth.startsWith('0x')});
+  checks.push({name: 'SOL Addr', pass: DEPOSIT_ADDRS.sol && DEPOSIT_ADDRS.sol.length > 30});
+
+  // 7. No console errors (basic check)
+  checks.push({name: 'No Errors', pass: jsErrors.length === 0});
+
+  // 8. Analytics running
+  checks.push({name: 'Analytics', pass: typeof analytics !== 'undefined'});
+
+  // 9. Leaderboard available
+  checks.push({name: 'Leaderboard', pass: !!document.getElementById('lb-body')});
+
+  // 10. Auto-resolution active
+  checks.push({name: 'Auto-Resolve', pass: typeof autoResolveMarkets === 'function'});
+
+  const passed = checks.filter(c => c.pass).length;
+  auditChecks = passed;
+  lastAuditTime = Date.now();
+
+  // Update audit bar
+  const countEl = document.getElementById('audit-count');
+  const timeEl = document.getElementById('last-audit-time');
+  if (countEl) countEl.textContent = passed + '/' + checks.length;
+  if (timeEl) timeEl.textContent = 'just now';
+
+  // Log to Firebase
+  if (firebaseReady) {
+    db.ref('audits/' + SITE_ID + '/latest').set({
+      timestamp: firebase.database.ServerValue.TIMESTAMP,
+      checks: passed,
+      total: checks.length,
+      details: checks.map(c => c.name + ':' + (c.pass ? 'OK' : 'FAIL')).join(', '),
+      errors: jsErrors.length > 0 ? jsErrors.slice(-5).map(e => e.msg).join(' | ') : null
+    });
+  }
+
+  // Auto-resolve expired markets during audit
+  if (firebaseReady) autoResolveMarkets();
+
+  return { passed, total: checks.length, checks };
+}
+
+// Update "last audit" time display (only when tab visible)
+setInterval(() => {
+  if (document.hidden) return;
+  const timeEl = document.getElementById('last-audit-time');
+  if (!timeEl) return;
+  const mins = Math.floor((Date.now() - lastAuditTime) / 60000);
+  timeEl.textContent = mins < 1 ? 'just now' : mins + 'm ago';
+}, 60000);
+
+// Run audit every 30 minutes (only when tab visible)
+setInterval(() => { if (!document.hidden) runAudit(); }, 1800000);
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// TIP MODAL
+// ============================================================
+function openTipModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('tip-modal').classList.add('show');
+  analytics.track('tip_modal_opened');
+}
+function closeTipModal() { document.getElementById('tip-modal').classList.remove('show'); }
+
+// ============================================================
+// ANALYTICS — Track everything for scaling
+// ============================================================
+const analytics = {
+  sessionId: 'sess_' + Math.random().toString(36).slice(2,10),
+  startTime: Date.now(),
+
+  track(event, data = {}) {
+    const payload = {
+      event,
+      site: SITE_ID,
+      session: this.sessionId,
+      timestamp: Date.now(),
+      timeOnSite: Math.round((Date.now() - this.startTime) / 1000),
+      referrer: document.referrer || 'direct',
+      screen: window.innerWidth + 'x' + window.innerHeight,
+      mobile: window.innerWidth < 768,
+      ...data
+    };
+    // Write to Firebase analytics node
+    if (firebaseReady && db) {
+      db.ref('analytics/' + SITE_ID + '/events').push(payload);
+    }
+    // Also store pageview/session data
+    if (event === 'pageview') {
+      const today = new Date().toISOString().split('T')[0];
+      if (firebaseReady && db) {
+        db.ref('analytics/' + SITE_ID + '/daily/' + today + '/views').set(firebase.database.ServerValue.increment(1));
+        db.ref('analytics/' + SITE_ID + '/daily/' + today + '/unique').transaction(val => {
+          const arr = val ? (typeof val === 'object' ? val : []) : [];
+          const fp = this.getFingerprint();
+          if (!arr.includes(fp)) arr.push(fp);
+          return arr;
+        });
+      }
+    }
+  },
+
+  getFingerprint() {
+    const data = navigator.userAgent + screen.width + screen.height + navigator.language;
+    let hash = 0;
+    for (let i = 0; i < data.length; i++) {
+      hash = ((hash << 5) - hash) + data.charCodeAt(i);
+      hash |= 0;
+    }
+    return 'fp_' + Math.abs(hash).toString(36);
+  },
+
+  trackPageview() {
+    this.track('pageview', {
+      url: location.href,
+      path: location.pathname,
+      ua: navigator.userAgent,
+      lang: navigator.language,
+      utmSource: new URLSearchParams(location.search).get('utm_source') || null,
+      utmMedium: new URLSearchParams(location.search).get('utm_medium') || null,
+      utmCampaign: new URLSearchParams(location.search).get('utm_campaign') || null,
+      ref: new URLSearchParams(location.search).get('ref') || null
+    });
+  },
+
+  trackWalletConnect(walletId, chain) {
+    this.track('wallet_connect', { walletId, chain });
+  },
+
+  trackBet(marketId, side, amount) {
+    this.track('bet_placed', { marketId, side, amount });
+  },
+
+  trackShare(platform) {
+    this.track('share', { platform });
+  },
+
+  trackDeposit(chain) {
+    this.track('deposit_initiated', { chain });
+  },
+
+  trackWithdraw(chain, amount) {
+    this.track('withdraw_requested', { chain, amount });
+  },
+
+  // Track time on site when user leaves
+  trackExit() {
+    this.track('session_end', {
+      duration: Math.round((Date.now() - this.startTime) / 1000),
+      betsPlaced: userBets.length,
+      walletConnected: !!wallet
+    });
+  }
+};
+
+// Track exit
+window.addEventListener('beforeunload', () => analytics.trackExit());
+// Track visibility changes (tab switches)
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) analytics.track('tab_hidden');
+  else analytics.track('tab_visible');
+});
+
+// ============================================================
+// ADMIN ANALYTICS DASHBOARD
+// ============================================================
+function loadAdminAnalytics() {
+  if (!firebaseReady) return;
+  const today = new Date().toISOString().split('T')[0];
+  // Listen to today's stats
+  db.ref('analytics/' + SITE_ID + '/daily/' + today).on('value', snap => {
+    const data = snap.val() || {};
+    const viewsEl = document.getElementById('admin-views-today');
+    const uniqueEl = document.getElementById('admin-unique-today');
+    if (viewsEl) viewsEl.textContent = (data.views || 0).toLocaleString();
+    if (uniqueEl) uniqueEl.textContent = Array.isArray(data.unique) ? data.unique.length : 0;
+  });
+  // Recent events count
+  db.ref('analytics/' + SITE_ID + '/events').orderByChild('timestamp').startAt(Date.now() - 3600000).on('value', snap => {
+    const eventsEl = document.getElementById('admin-events-hour');
+    if (eventsEl) eventsEl.textContent = snap.numChildren();
+  });
+}
+
+// ============================================================
+// INIT — render immediately, then try Firebase in background
+// ============================================================
+// Show markets right away from seed data (no waiting)
+markets = JSON.parse(JSON.stringify(SEED_MARKETS));
+renderMarkets();
+
+// Check referral param
+checkReferral();
+
+// Generate referral link
+generateReferralLink();
+
+// Hide promo if already dismissed
+if (localStorage.getItem('promoDismissed_' + SITE_ID)) {
+  document.getElementById('promo-banner').style.display = 'none';
+}
+
+// Build cross-promo links + first visit splash
+buildCrossPromo();
+showFirstVisitSplash();
+resetInactivity();
+renderDailyChallenge();
+updateFaucetBtn();
+
+// Real Crypto is always the default — toggle already shows it active
+
+// Hide sticky CTA if wallet already connected
+if (localStorage.getItem('wallet_' + SITE_ID)) {
+  const stickyBtn = document.querySelector('.sticky-cta button');
+  if (stickyBtn) { stickyBtn.textContent = '🔥 Place a Bet — Markets Are Live!'; stickyBtn.onclick = () => document.getElementById('markets').scrollIntoView({behavior:'smooth'}); }
+}
+
+// Check for admin URL param
+if (location.hash === '#admin' || location.search.includes('admin')) {
+  document.getElementById('admin-toggle').style.display = 'inline-block';
+}
+
+// Try to upgrade to Firebase in background (non-blocking)
+loadFirebaseSDK().then(async (ok) => {
+  if (ok) {
+    await initAuth();
+    loadMarkets(); // This will replace seed data with live Firebase data
+    loadLeaderboard(); // Load per-site leaderboard
+    updateRewardsUI(); // Update rewards progress
+    autoGenerateMarkets(); // Auto-create fresh markets daily
+    autoResolveMarkets(); // Auto-resolve expired markets
+    analytics.trackPageview(); // Track visit
+    // Leaderboard period resets + daily prizes
+    if (userId) { checkLeaderboardResets(); awardDailyPrizes(); }
+    // Run first audit after Firebase is ready
+    setTimeout(runAudit, 2000);
+  } else {
+    // Run audit even without Firebase
+    setTimeout(runAudit, 1000);
+  }
+});
+</script>
+</body>
+</html>
