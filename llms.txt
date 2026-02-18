@@ -1,0 +1,27 @@
+# predict.yachts — Yachts & Luxury Marine Prediction Markets
+
+> Real-time prediction markets for yachts & luxury marine. Bet on outcomes, see live odds, and win. Free to play with shared pools powered by Firebase.
+
+
+predict.yachts is a prediction market platform focused on yachts & luxury marine. Users can bet YES or NO on curated markets with real-time shared pools. Features live odds, countdown timers, trending markets, and social sharing. Part of the Predict Network — 18 niche prediction market sites.
+
+
+## Pages
+
+- [Homepage — Yachts & Luxury Marine prediction markets with live odds](https://predict.yachts)
+- [Markets — Active yachts & luxury marine prediction markets](https://predict.yachts#markets)
+
+
+## Keywords
+
+prediction market, yachts & luxury marine, betting, odds, forecast, predict.yachts
+
+
+## Related Sites
+
+- [Spunk.Bet — Free Crypto Casino](https://spunk.bet)
+- [Stimulant Wiki — Nootropic Encyclopedia](https://stimulant.wiki)
+- [Stimulant Doctor — ADHD & Focus Guide](https://stimulant.doctor)
+- [Stimulant Shop — Buy Nootropics](https://stimulant.shop)
+- [@SpunkArt13 on X](https://x.com/SpunkArt13)
+- [SpunkArt.com](https://spunkart.com)
