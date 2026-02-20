@@ -2845,7 +2845,7 @@ function doSpin() {
 }
 
 function shareSpinOnX() {
-  const text = 'Just spun ' + spinPrize.toLocaleString() + ' free credits on the daily wheel! 🎰\\n\\nFree prediction markets — bet on anything.\\n\\n@SpunkArt13';
+  const text = 'Just spun ' + spinPrize.toLocaleString() + ' free credits on the daily wheel! 🎰\\n\\nFree prediction markets — bet on anything.\\n\\n' + SITE_ID;
   const url = 'https://' + SITE_ID;
   window.open('https://x.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank');
   // Bonus for sharing
@@ -3192,7 +3192,7 @@ function engageRefer() {
 }
 
 function engageCommunity() {
-  window.open('https://x.com/SpunkArt13', '_blank');
+  window.open('https://predict.pics', '_blank');
   dismissEngagePopup();
   analytics.track('community_join_click');
 }
