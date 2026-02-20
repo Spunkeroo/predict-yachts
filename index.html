@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://subscribe-forms.beehiiv.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://predict-network-ec767-default-rtdb.firebaseio.com https://www.google-analytics.com; frame-src https://subscribe-forms.beehiiv.com; object-src 'none'; base-uri 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://subscribe-forms.beehiiv.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://predict-network-ec767-default-rtdb.firebaseio.com https://www.google-analytics.com https://api.coingecko.com; frame-src https://subscribe-forms.beehiiv.com; object-src 'none'; base-uri 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>predict.yachts — Crypto Prediction Markets</title>
 <meta name="description" content="Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.">
@@ -320,6 +320,32 @@
   .trending-tag{display:inline-block;background:rgba(239,68,68,0.15);color:var(--red);font-size:0.65rem;font-weight:800;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;text-transform:uppercase;letter-spacing:0.5px;}
   .hot-tag{display:inline-block;background:rgba(245,158,11,0.2);color:var(--accent);font-size:0.65rem;font-weight:800;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;text-transform:uppercase;}
   .new-tag{display:inline-block;background:rgba(59,130,246,0.15);color:var(--blue);font-size:0.65rem;font-weight:800;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;text-transform:uppercase;}
+  .auto-tag{display:inline-block;background:rgba(168,85,247,0.15);color:#a855f7;font-size:0.65rem;font-weight:800;padding:0.1rem 0.4rem;border-radius:4px;margin-left:0.3rem;text-transform:uppercase;letter-spacing:0.5px;}
+  .live-price-tag{display:inline-block;background:rgba(34,197,94,0.12);color:var(--green);font-size:0.6rem;font-weight:700;padding:0.1rem 0.35rem;border-radius:4px;margin-left:0.3rem;}
+
+  /* Trending Markets Section */
+  .trending-section{max-width:900px;margin:1.5rem auto;padding:0 1rem;}
+  .trending-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+  .trending-title{font-size:1.1rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:0.5rem;}
+  .trending-title .pulse{width:8px;height:8px;background:var(--red);border-radius:50%;animation:pulse 1.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.3);}}
+  .trending-subtitle{font-size:0.75rem;color:var(--muted);}
+  .trending-scroll{display:flex;gap:0.8rem;overflow-x:auto;padding-bottom:0.5rem;scrollbar-width:thin;}
+  .trending-scroll::-webkit-scrollbar{height:4px;}
+  .trending-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+  .trending-card{min-width:280px;max-width:320px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;flex-shrink:0;transition:all 0.2s;cursor:pointer;position:relative;overflow:hidden;}
+  .trending-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .trending-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--green));}
+  .trending-card .tc-emoji{font-size:1.5rem;margin-bottom:0.4rem;}
+  .trending-card .tc-q{font-size:0.85rem;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:0.6rem;}
+  .trending-card .tc-stats{display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;color:var(--muted);}
+  .trending-card .tc-votes{display:flex;gap:0.6rem;}
+  .trending-card .tc-yes{color:var(--green);font-weight:700;}
+  .trending-card .tc-no{color:var(--red);font-weight:700;}
+  .trending-card .tc-bets{font-weight:600;color:var(--accent);}
+  .trending-card .tc-bar{height:4px;background:var(--bg);border-radius:2px;margin-top:0.5rem;overflow:hidden;}
+  .trending-card .tc-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--accent));border-radius:2px;transition:width 0.5s;}
+  @media(max-width:600px){.trending-card{min-width:250px;}}
 
   /* Trust & Security Section */
   .trust-section{max-width:900px;margin:2rem auto;padding:0 1rem;}
@@ -692,6 +718,7 @@
   <button class="filter-btn active" onclick="filterMarkets('all')">All</button>
   <button class="filter-btn filter-hot" onclick="filterMarkets('hot')">Hot</button>
   <button class="filter-btn filter-new" onclick="filterMarkets('new')">New</button>
+  <button class="filter-btn" onclick="filterMarkets('trending')" style="border-color:rgba(168,85,247,0.3);color:#a855f7;">Trending</button>
   <button class="filter-btn" onclick="filterMarkets('superyachts')">Superyachts</button>
   <button class="filter-btn" onclick="filterMarkets('luxury')">Luxury</button>
   <button class="filter-btn" onclick="filterMarkets('racing')">Racing</button>
@@ -720,6 +747,19 @@
 </div>
 
 <div id="daily-challenge" class="daily-challenge"></div>
+
+<!-- Trending Markets Section -->
+<div class="trending-section" id="trending-section" style="display:none;">
+  <div class="trending-header">
+    <div>
+      <div class="trending-title"><span class="pulse"></span> Trending Markets</div>
+      <div class="trending-subtitle">Most active markets right now — updated live</div>
+    </div>
+    <div style="font-size:0.7rem;color:var(--muted);">Auto-refreshes every 5 min</div>
+  </div>
+  <div class="trending-scroll" id="trending-scroll"></div>
+</div>
+
 <div class="markets" id="markets"></div>
 
 <div id="how" class="how-it-works">
@@ -1493,6 +1533,8 @@ function renderMarkets(filter) {
     filtered = markets.filter(m => (m.createdAt && Date.now() - m.createdAt < 86400000) || (m.totalBets || 0) < 20);
   } else if (currentFilter === 'hot') {
     filtered = markets.filter(m => (m.totalBets || 0) > 100);
+  } else if (currentFilter === 'trending') {
+    filtered = markets.filter(m => m.liveCrypto || ((m.totalBets || 0) > 50 && m.autoGenerated));
   } else if (currentFilter && currentFilter !== 'all') {
     filtered = markets.filter(m => m.category === currentFilter);
   } else {
@@ -1521,7 +1563,8 @@ function renderMarkets(filter) {
     const daysLeft = Math.max(0, Math.ceil((new Date(m.ends) - new Date()) / 86400000));
     const key = m.fbKey || m.id;
     const pinTag = m.pinned ? '<span class="pinned-badge">PINNED</span>' : '';
-    const tag = pinTag || ((m.totalBets||0) > 300 ? '<span class="trending-tag">🔥 TRENDING</span>' :
+    const liveTag = m.liveCrypto ? '<span class="auto-tag">LIVE</span>' + (m.priceChange24h ? '<span class="live-price-tag">' + (m.priceChange24h > 0 ? '+' : '') + m.priceChange24h.toFixed(1) + '%</span>' : '') : '';
+    const tag = pinTag || liveTag || ((m.totalBets||0) > 300 ? '<span class="trending-tag">🔥 TRENDING</span>' :
                 (m.totalBets||0) > 200 ? '<span class="hot-tag">HOT</span>' :
                 (m.autoGenerated || (m.totalBets||0) < 50) ? '<span class="new-tag">NEW</span>' : '');
     return `
@@ -1563,6 +1606,9 @@ function renderMarkets(filter) {
   document.getElementById('active-markets').textContent = allOpen.length;
   document.getElementById('total-volume').textContent = totalVol.toLocaleString();
   document.getElementById('total-bets').textContent = totalBets.toLocaleString();
+
+  // Update trending section
+  renderTrendingMarkets();
 }
 
 function filterMarkets(cat) {
@@ -3008,6 +3054,222 @@ function updateEngageTimers() {
 setInterval(updateEngageTimers, 30000);
 
 // ============================================================
+// LIVE CRYPTO PRICE AUTO-MARKET GENERATOR (CoinGecko API)
+// ============================================================
+let liveCryptoCache = null;
+let liveCryptoLastFetch = 0;
+
+async function fetchLiveCryptoPrices() {
+  const now = Date.now();
+  // Cache for 5 minutes
+  if (liveCryptoCache && now - liveCryptoLastFetch < 300000) return liveCryptoCache;
+  try {
+    const resp = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h');
+    if (!resp.ok) throw new Error('CoinGecko API error');
+    const data = await resp.json();
+    liveCryptoCache = data;
+    liveCryptoLastFetch = now;
+    return data;
+  } catch (e) {
+    console.warn('CoinGecko fetch failed:', e);
+    return liveCryptoCache || [];
+  }
+}
+
+function getTopMovers(coins) {
+  if (!coins || !coins.length) return { gainers: [], losers: [] };
+  const sorted = [...coins].filter(c => c.price_change_percentage_24h != null);
+  sorted.sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h);
+  return {
+    gainers: sorted.slice(0, 5),
+    losers: sorted.slice(-5).reverse()
+  };
+}
+
+function generateCryptoMarketQuestion(coin, isGainer) {
+  const price = coin.current_price;
+  const change = Math.abs(coin.price_change_percentage_24h).toFixed(1);
+  const sym = coin.symbol.toUpperCase();
+  const name = coin.name;
+
+  // Round target price to sensible levels
+  let targetPrice;
+  if (price > 10000) targetPrice = Math.round(price / 1000) * 1000;
+  else if (price > 100) targetPrice = Math.round(price / 10) * 10;
+  else if (price > 1) targetPrice = Math.round(price * 10) / 10;
+  else targetPrice = Math.round(price * 1000) / 1000;
+
+  const templates = isGainer ? [
+    {q: `Will ${sym} stay above $${targetPrice.toLocaleString()} for the next 24 hours?`, hours: 24},
+    {q: `Will ${name} (${sym}) keep pumping past $${(targetPrice * 1.1).toLocaleString()}?`, hours: 24},
+    {q: `${sym} is up ${change}% — will it hit $${(targetPrice * 1.15).toLocaleString()} by end of week?`, hours: 168},
+    {q: `Will ${sym} sustain its ${change}% rally through tomorrow?`, hours: 24},
+    {q: `Is ${sym} at $${price.toLocaleString()} the top? Will it drop 5%+ in 24h?`, hours: 24},
+  ] : [
+    {q: `Will ${sym} recover from its ${change}% drop within 24 hours?`, hours: 24},
+    {q: `${sym} down ${change}% — will it bounce back above $${targetPrice.toLocaleString()}?`, hours: 24},
+    {q: `Is ${name} (${sym}) at $${price.toLocaleString()} a buy-the-dip opportunity?`, hours: 48},
+    {q: `Will ${sym} drop another 5%+ in the next 24 hours?`, hours: 24},
+    {q: `Will ${sym} be higher than $${price.toLocaleString()} by end of week?`, hours: 168},
+  ];
+
+  return templates[Math.floor(Math.random() * templates.length)];
+}
+
+async function autoCreateLiveCryptoMarkets() {
+  if (!firebaseReady) return;
+
+  const now = Date.now();
+  const lastLive = localStorage.getItem('liveGen_' + SITE_ID);
+  // Run every 5 minutes
+  if (lastLive && now - parseInt(lastLive) < 300000) return;
+
+  const coins = await fetchLiveCryptoPrices();
+  if (!coins || !coins.length) return;
+
+  localStorage.setItem('liveGen_' + SITE_ID, now.toString());
+
+  const movers = getTopMovers(coins);
+
+  // Only create markets for significant movers (>3% change)
+  const significantGainers = movers.gainers.filter(c => c.price_change_percentage_24h > 3);
+  const significantLosers = movers.losers.filter(c => c.price_change_percentage_24h < -3);
+
+  // Pick top 2 gainers and top 1 loser
+  const picks = [
+    ...significantGainers.slice(0, 2).map(c => ({coin: c, isGainer: true})),
+    ...significantLosers.slice(0, 1).map(c => ({coin: c, isGainer: false}))
+  ];
+
+  for (const pick of picks) {
+    const template = generateCryptoMarketQuestion(pick.coin, pick.isGainer);
+
+    // Check for duplicate (similar symbol + similar question)
+    const sym = pick.coin.symbol.toUpperCase();
+    const isDup = markets.some(m => {
+      if (!m.autoGenerated || !m.liveCrypto) return false;
+      if (!m.question.includes(sym)) return false;
+      // Same coin, created in last 4 hours = skip
+      if (m.createdAt && now - m.createdAt < 14400000) return true;
+      return false;
+    });
+    if (isDup) continue;
+
+    const endDate = new Date(now + template.hours * 3600000);
+    const changeEmoji = pick.isGainer ? '📈' : '📉';
+
+    db.ref('markets/' + SITE_ID).push({
+      id: Date.now() + Math.floor(Math.random() * 1000),
+      category: 'crypto',
+      emoji: changeEmoji,
+      question: template.q,
+      yesPool: 0,
+      noPool: 0,
+      totalBets: 0,
+      ends: endDate.toISOString().split('T')[0] + 'T' + endDate.toISOString().split('T')[1].slice(0,5),
+      status: 'open',
+      autoGenerated: true,
+      liveCrypto: true,
+      coinId: pick.coin.id,
+      coinSymbol: sym,
+      coinPrice: pick.coin.current_price,
+      priceChange24h: pick.coin.price_change_percentage_24h,
+      expiresAt: endDate.getTime(),
+      createdAt: firebase.database.ServerValue.TIMESTAMP
+    });
+  }
+
+  // Also save the live price data to Firebase for display
+  const priceSnapshot = coins.slice(0, 20).map(c => ({
+    id: c.id,
+    symbol: c.symbol,
+    name: c.name,
+    price: c.current_price,
+    change24h: c.price_change_percentage_24h,
+    image: c.image,
+    marketCap: c.market_cap
+  }));
+  db.ref('livePrices/' + SITE_ID).set({
+    prices: priceSnapshot,
+    updatedAt: firebase.database.ServerValue.TIMESTAMP
+  });
+}
+
+// Run live crypto market creation every 5 minutes
+setInterval(() => {
+  if (firebaseReady && !document.hidden) autoCreateLiveCryptoMarkets();
+}, 300000);
+
+// ============================================================
+// TRENDING MARKETS — Shows most active/voted markets
+// ============================================================
+function renderTrendingMarkets() {
+  const section = document.getElementById('trending-section');
+  const scroll = document.getElementById('trending-scroll');
+  if (!section || !scroll) return;
+
+  // Get markets sorted by activity (total bets + recent votes)
+  const activeMarkets = markets
+    .filter(m => m.status === 'open' || !m.status)
+    .filter(m => (m.totalBets || 0) > 0 || m.liveCrypto)
+    .sort((a, b) => {
+      // Score: bets * 1000 + volume + recency boost
+      const now = Date.now();
+      const aRecent = (a.createdAt && now - a.createdAt < 3600000) ? 50000 : 0;
+      const bRecent = (b.createdAt && now - b.createdAt < 3600000) ? 50000 : 0;
+      const aLive = a.liveCrypto ? 20000 : 0;
+      const bLive = b.liveCrypto ? 20000 : 0;
+      const aScore = (a.totalBets || 0) * 1000 + ((a.yesPool || 0) + (a.noPool || 0)) + aRecent + aLive;
+      const bScore = (b.totalBets || 0) * 1000 + ((b.yesPool || 0) + (b.noPool || 0)) + bRecent + bLive;
+      return bScore - aScore;
+    })
+    .slice(0, 8);
+
+  if (activeMarkets.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+
+  scroll.innerHTML = activeMarkets.map(m => {
+    const total = (m.yesPool || 0) + (m.noPool || 0);
+    const yesPct = total > 0 ? Math.round(((m.yesPool || 0) / total) * 100) : 50;
+    const key = m.fbKey || m.id;
+    const liveTag = m.liveCrypto ? '<span class="auto-tag">LIVE PRICE</span>' : '';
+    const changeTag = m.priceChange24h ? '<span class="live-price-tag">' + (m.priceChange24h > 0 ? '+' : '') + m.priceChange24h.toFixed(1) + '%</span>' : '';
+    return `<div class="trending-card" onclick="openBetModal('${key}','yes')">
+      <div class="tc-emoji">${esc(m.emoji)} ${liveTag}${changeTag}</div>
+      <div class="tc-q">${esc(m.question)}</div>
+      <div class="tc-stats">
+        <div class="tc-votes">
+          <span class="tc-yes">YES ${yesPct}%</span>
+          <span class="tc-no">NO ${100 - yesPct}%</span>
+        </div>
+        <span class="tc-bets">${(m.totalBets || 0)} bets</span>
+      </div>
+      <div class="tc-bar"><div class="tc-bar-fill" style="width:${yesPct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+// Listen for real-time vote count updates on markets
+function setupMarketVoteListeners() {
+  if (!firebaseReady) return;
+  const ref = db.ref('markets/' + SITE_ID);
+  ref.on('child_changed', snap => {
+    const data = snap.val();
+    const key = snap.key;
+    const idx = markets.findIndex(m => m.fbKey === key);
+    if (idx >= 0) {
+      markets[idx] = {...data, fbKey: key};
+      // Re-render trending to reflect live vote counts
+      renderTrendingMarkets();
+    }
+  });
+}
+
+// ============================================================
 // AUTO-GENERATE MARKETS — Crypto, News, Short-term + Long-term
 // ============================================================
 
@@ -3990,6 +4252,8 @@ loadFirebaseSDK().then(async (ok) => {
     loadLeaderboard(); // Load per-site leaderboard
     updateRewardsUI(); // Update rewards progress
     autoGenerateMarkets(); // Auto-create fresh markets daily
+    autoCreateLiveCryptoMarkets(); // Auto-create markets from live crypto prices
+    setupMarketVoteListeners(); // Real-time vote count updates
     autoResolveMarkets(); // Auto-resolve expired markets
     analytics.trackPageview(); // Track visit
     // Leaderboard period resets + daily prizes
