@@ -926,8 +926,8 @@
       <div class="big-val" id="user-balance">0</div>
       <div class="sub">credits</div>
       <div class="panel-actions">
-        <button class="panel-btn deposit" onclick="openDeposit()">Deposit</button>
-        <button class="panel-btn withdraw" onclick="openWithdraw()">Withdraw</button>
+        <button class="panel-btn deposit" onclick="showToast('Demo mode only — free credits!')" style="opacity:0.5">Deposit (Soon)</button>
+        <button class="panel-btn withdraw" onclick="showToast('Demo mode only — free credits!')" style="opacity:0.5">Withdraw (Soon)</button>
       </div>
     </div>
     <div class="panel-card">
@@ -1364,10 +1364,7 @@
       <div class="w-status ready">Free</div>
     </div>
 
-    <div class="wallet-divider">or connect a real wallet</div>
-
-    <div id="wallet-options"></div>
-    <div style="text-align:center;font-size:0.7rem;color:var(--muted);margin:0.5rem 0;">🔐 Secure · ⚡ Instant · Real crypto</div>
+    <div style="text-align:center;font-size:0.75rem;color:var(--muted);margin:0.8rem 0;padding:0.6rem;background:var(--card);border-radius:8px;border:1px solid var(--border);">🎮 Demo mode only — free credits, no real money.<br>Real wallet coming soon!</div>
   </div>
 </div>
 
@@ -4427,27 +4424,45 @@ updateEngageTimers();
 
 // Real Crypto is always the default — toggle already shows it active
 
-// Auto-connect demo mode so users always see their credits
+// Session timeout: 30 minutes max, then auto-disconnect
+const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
+const sessionStart = parseInt(localStorage.getItem('session_start_' + SITE_ID) || '0');
+const sessionExpired = sessionStart > 0 && (Date.now() - sessionStart > SESSION_TIMEOUT);
+
+if (sessionExpired) {
+  // Session expired — clear wallet and reset to fresh demo
+  localStorage.removeItem('wallet_' + SITE_ID);
+  localStorage.removeItem('demoBal_' + SITE_ID);
+  localStorage.removeItem('session_start_' + SITE_ID);
+}
+
+// Demo-only mode: always start fresh demo session
 if (localStorage.getItem('wallet_' + SITE_ID)) {
-  // Returning user — restore their session
   const savedWallet = localStorage.getItem('wallet_' + SITE_ID);
   if (savedWallet.startsWith('demo_')) {
     wallet = savedWallet; walletChain = 'demo'; userId = wallet;
     const savedBal = parseInt(localStorage.getItem('demoBal_' + SITE_ID)) || 100000;
     userBalance = savedBal;
     onWalletConnected(wallet);
+  } else {
+    // Force back to demo mode — real wallets disabled for now
+    disconnectWallet();
   }
-  const stickyBtn = document.querySelector('.sticky-cta button');
-  if (stickyBtn) { stickyBtn.textContent = '🔥 Place a Bet — Markets Are Live!'; stickyBtn.onclick = () => document.getElementById('markets').scrollIntoView({behavior:'smooth'}); }
 } else {
-  // First visit — auto-start demo mode silently
+  // First visit or expired session — auto-start demo mode
   wallet = 'demo_' + Math.random().toString(36).slice(2, 10);
   walletChain = 'demo'; userId = wallet;
   userBalance = 100000;
   localStorage.setItem('wallet_' + SITE_ID, wallet);
   localStorage.setItem('demoBal_' + SITE_ID, '100000');
+  localStorage.setItem('session_start_' + SITE_ID, String(Date.now()));
   updateBalanceUI();
 }
+
+// Reset session timer on activity
+document.addEventListener('click', function() {
+  localStorage.setItem('session_start_' + SITE_ID, String(Date.now()));
+}, {passive:true});
 
 // Check for admin URL param
 if (location.hash === '#admin' || location.search.includes('admin')) {
