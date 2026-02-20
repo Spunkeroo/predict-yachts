@@ -1557,7 +1557,7 @@ function renderMyBets() {
   }
   container.innerHTML = userBets.map(b => {
     const mkt = markets.find(m => (m.fbKey || m.id) == b.marketId) || {};
-    const q = mkt.question || 'Market #' + b.marketId;
+    const q = esc(mkt.question || 'Market #' + b.marketId);
     return `<div class="bet-item">
       <span class="bet-q">${q.length > 50 ? q.slice(0,50)+'...' : q}</span>
       <span class="bet-side ${b.side}">${b.side.toUpperCase()}</span>
@@ -3284,7 +3284,7 @@ function renderDailyChallenge() {
       <span style="font-weight:600;color:var(--accent);">Daily Challenge</span>
       <span style="font-size:0.75rem;color:var(--muted);margin-left:auto;">2x credits</span>
     </div>
-    <div style="font-size:0.95rem;margin-bottom:0.75rem;">${market.question}</div>
+    <div style="font-size:0.95rem;margin-bottom:0.75rem;">${esc(market.question)}</div>
     <div style="display:flex;gap:0.5rem;">
       <button onclick="placeBetFromChallenge('${market.fbKey || market.id}','yes')" style="flex:1;padding:0.5rem;border-radius:8px;background:rgba(16,185,129,0.15);color:var(--green);border:1px solid rgba(16,185,129,0.3);cursor:pointer;font-weight:600;">YES ${yesPct}%</button>
       <button onclick="placeBetFromChallenge('${market.fbKey || market.id}','no')" style="flex:1;padding:0.5rem;border-radius:8px;background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3);cursor:pointer;font-weight:600;">NO ${100-yesPct}%</button>
