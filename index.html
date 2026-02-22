@@ -18,12 +18,12 @@
 <meta property="og:description" content="Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.">
 <meta property="og:url" content="https://predict.yachts/">
 <meta property="og:site_name" content="Predict Network">
-<meta property="og:image" content="https://predict.yachts/og-image.svg">
+<meta property="og:image" content="https://predict.yachts/og-image.png">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="predict.yachts — Crypto Prediction Markets">
 <meta name="twitter:description" content="Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.">
-<meta name="twitter:image" content="https://predict.yachts/og-image.svg">
+<meta name="twitter:image" content="https://predict.yachts/og-image.png">
 <meta name="twitter:site" content="@SpunkArt13">
 <!-- Preconnect -->
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
@@ -1223,88 +1223,72 @@
   </div>
 </div>
 
-<div class="newsletter-section" style="max-width:600px;margin:2rem auto;padding:2rem 1rem;text-align:center;background:var(--card);border:1px solid var(--accent);border-radius:16px;box-shadow:0 0 20px rgba(245,158,11,0.1);">
-  <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:0.3rem;color:var(--accent);">Get Free Predictions & Crypto Alerts</h3>
-  <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Market insights, free credits, and crypto news. Weekly. Free.</p>
-  <iframe src="https://subscribe-forms.beehiiv.com/6831d05b-f121-4e0d-951b-16f88ddd9ec3" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width:100%;max-width:400px;height:375px;margin:0 auto;border-radius:12px;background:transparent;box-shadow:none;display:block;"></iframe>
-</div>
-
-<!-- Amazon Affiliate Section -->
-<div style="max-width:800px;margin:2rem auto;padding:2rem 1.5rem;background:var(--card);border:1px solid rgba(255,153,0,0.3);border-radius:16px;text-align:center;">
-  <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:0.4rem;color:#ff9900;">Level Up Your Trading Setup</h3>
-  <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;">Top picks for crypto traders and prediction market pros. Shop via our links to support free predictions.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;">
-    <a href="https://www.amazon.com/s?k=crypto+books&tag=spunk01-20" target="_blank" rel="noopener sponsored" style="display:block;background:rgba(255,153,0,0.08);border:1px solid rgba(255,153,0,0.2);border-radius:12px;padding:1.2rem 0.8rem;text-decoration:none;transition:all 0.2s;">
-      <div style="font-size:2rem;margin-bottom:0.4rem;">📚</div>
-      <div style="color:var(--text);font-weight:700;font-size:0.9rem;">Crypto Books</div>
-      <div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;">Master the markets</div>
-    </a>
-    <a href="https://www.amazon.com/s?k=trading+monitors&tag=spunk01-20" target="_blank" rel="noopener sponsored" style="display:block;background:rgba(255,153,0,0.08);border:1px solid rgba(255,153,0,0.2);border-radius:12px;padding:1.2rem 0.8rem;text-decoration:none;transition:all 0.2s;">
-      <div style="font-size:2rem;margin-bottom:0.4rem;">🖥️</div>
-      <div style="color:var(--text);font-weight:700;font-size:0.9rem;">Trading Monitors</div>
-      <div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;">Multi-screen setups</div>
-    </a>
-    <a href="https://www.amazon.com/s?k=hardware+wallet+crypto&tag=spunk01-20" target="_blank" rel="noopener sponsored" style="display:block;background:rgba(255,153,0,0.08);border:1px solid rgba(255,153,0,0.2);border-radius:12px;padding:1.2rem 0.8rem;text-decoration:none;transition:all 0.2s;">
-      <div style="font-size:2rem;margin-bottom:0.4rem;">🔐</div>
-      <div style="color:var(--text);font-weight:700;font-size:0.9rem;">Hardware Wallets</div>
-      <div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;">Secure your crypto</div>
-    </a>
-    <a href="https://www.amazon.com/?tag=spunk01-20" target="_blank" rel="noopener sponsored" style="display:block;background:rgba(255,153,0,0.08);border:1px solid rgba(255,153,0,0.2);border-radius:12px;padding:1.2rem 0.8rem;text-decoration:none;transition:all 0.2s;">
-      <div style="font-size:2rem;margin-bottom:0.4rem;">🛒</div>
-      <div style="color:var(--text);font-weight:700;font-size:0.9rem;">Shop All</div>
-      <div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;">Support free predictions</div>
-    </a>
+<div id="email-capture" style="background:var(--card);border:1px solid var(--accent);border-radius:16px;padding:32px;text-align:center;margin:2rem auto;max-width:500px;box-shadow:0 0 20px rgba(245,158,11,0.1);">
+  <h3 style="color:var(--accent);margin:0 0 8px;font-size:22px;font-weight:800;">Get Free Predictions</h3>
+  <p style="color:var(--muted);margin:0 0 16px;font-size:14px;">Market calls, crypto alerts & free credits. Weekly. No spam.</p>
+  <div id="email-form" style="display:flex;gap:8px;max-width:400px;margin:0 auto;">
+    <input id="email-input" type="email" placeholder="your@email.com" style="flex:1;padding:12px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg);color:#fff;font-size:15px;">
+    <button onclick="submitEmail()" style="padding:12px 24px;border-radius:999px;background:var(--accent);color:#000;border:none;font-weight:700;cursor:pointer;font-size:15px;white-space:nowrap;">Subscribe</button>
   </div>
-  <p style="color:var(--muted);font-size:0.6rem;margin-top:1rem;">As an Amazon Associate, Predict Network earns from qualifying purchases.</p>
-  <div style="margin-top:1.5rem;">
-  <div style="color:var(--text);font-weight:800;font-size:1.1rem;margin-bottom:1rem;">Latest Articles</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
-
-    <a href="/blog-luxury-marine-guide-2026.html" style="display:block;background:#111118;border:1px solid #1a1a25;border-radius:12px;padding:1.2rem;text-decoration:none;transition:all 0.2s;">
-      <div style="color:var(--text);font-weight:700;font-size:0.95rem;margin-bottom:0.4rem;">Luxury Marine Guide 2026: Superyachts, Tech & Lifestyle</div>
-      <div style="color:var(--muted);font-size:0.78rem;line-height:1.4;">Inside the luxury marine world in 2026. Superyacht trends, cutting-edge marine technology, and the future of luxury boat...</div>
-      <div style="color:var(--accent);font-size:0.8rem;font-weight:600;margin-top:0.6rem;">Read more &rarr;</div>
-    </a>
-    <a href="/blog-predictions-2026.html" style="display:block;background:#111118;border:1px solid #1a1a25;border-radius:12px;padding:1.2rem;text-decoration:none;transition:all 0.2s;">
-      <div style="color:var(--text);font-weight:700;font-size:0.95rem;margin-bottom:0.4rem;">2026 Prediction Market Forecast</div>
-      <div style="color:var(--muted);font-size:0.78rem;line-height:1.4;">Expert 2026 yacht and crypto prediction market forecasts. Superyacht predictions, luxury market trends, Bitcoin analysis...</div>
-      <div style="color:var(--accent);font-size:0.8rem;font-weight:600;margin-top:0.6rem;">Read more &rarr;</div>
-    </a>
-    <a href="/blog-sailing-destinations-2026.html" style="display:block;background:#111118;border:1px solid #1a1a25;border-radius:12px;padding:1.2rem;text-decoration:none;transition:all 0.2s;">
-      <div style="color:var(--text);font-weight:700;font-size:0.95rem;margin-bottom:0.4rem;">Best Sailing Destinations 2026: From Caribbean to Mediterranean</div>
-      <div style="color:var(--muted);font-size:0.78rem;line-height:1.4;">Top sailing destinations for 2026. Caribbean islands, Mediterranean coasts, Pacific adventures, and hidden gems ranked b...</div>
-      <div style="color:var(--accent);font-size:0.8rem;font-weight:600;margin-top:0.6rem;">Read more &rarr;</div>
-    </a>
-    <a href="/blog-yacht-charter-guide-2026.html" style="display:block;background:#111118;border:1px solid #1a1a25;border-radius:12px;padding:1.2rem;text-decoration:none;transition:all 0.2s;">
-      <div style="color:var(--text);font-weight:700;font-size:0.95rem;margin-bottom:0.4rem;">Yacht Charter Guide 2026: How to Rent a Yacht for Any Budget</div>
-      <div style="color:var(--muted);font-size:0.78rem;line-height:1.4;">Complete yacht charter guide for 2026. Bareboat vs crewed charters, best destinations, pricing breakdown, and booking ti...</div>
-      <div style="color:var(--accent);font-size:0.8rem;font-weight:600;margin-top:0.6rem;">Read more &rarr;</div>
-    </a>
-  </div>
+  <p style="color:var(--muted);font-size:12px;margin:12px 0 0;">We never spam. Unsubscribe anytime.</p>
 </div>
+<script>
+function submitEmail(){var e=document.getElementById('email-input').value;if(!e||!e.includes('@'))return;
+var d=location.hostname.replace(/\./g,'_');
+fetch('https://predict-network-ec767-default-rtdb.firebaseio.com/emails/'+d+'.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,ts:Date.now(),site:location.hostname})});
+localStorage.setItem('subscribed','1');document.getElementById('email-form').innerHTML='<p style="color:#22c55e;font-size:18px;font-weight:700;">Thanks for subscribing!</p>';}
+if(localStorage.getItem('subscribed')){window.addEventListener('DOMContentLoaded',function(){var el=document.getElementById('email-form');if(el)el.innerHTML='<p style="color:#22c55e;font-size:18px;font-weight:700;">You\u2019re subscribed!</p>';});}
+</script>
+
+<!-- Amazon Product Recommendations -->
+<div style="max-width:800px;margin:0 auto 2rem;padding:0 1rem;">
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;">
+    <h3 style="font-size:1.1rem;text-align:center;margin-bottom:0.3rem;font-weight:800;">Level Up Your Trading</h3>
+    <p style="color:var(--muted);font-size:0.8rem;text-align:center;margin-bottom:1rem;">Essential gear for crypto traders. Affiliate links — we earn a small commission at no extra cost.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.8rem;">
+      <a href="https://www.amazon.com/s?k=cryptocurrency+trading+books&tag=spunk01-20" target="_blank" rel="noopener sponsored" style="display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-decoration:none;transition:all 0.2s;text-align:center;" onmouseover="this.style.borderColor='#ff9900'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.5rem;margin-bottom:0.4rem;">📚</div>
+        <div style="font-weight:700;font-size:0.85rem;color:var(--text);margin-bottom:0.2rem;">Crypto Books</div>
+        <div style="font-size:0.7rem;color:var(--muted);">Master trading & blockchain</div>
+        <div style="margin-top:0.5rem;font-size:0.7rem;color:#ff9900;font-weight:700;">Shop on Amazon →</div>
+      </a>
+      <a href="https://www.amazon.com/s?k=trading+monitor+ultrawide&tag=spunk01-20" target="_blank" rel="noopener sponsored" style="display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-decoration:none;transition:all 0.2s;text-align:center;" onmouseover="this.style.borderColor='#ff9900'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.5rem;margin-bottom:0.4rem;">🖥️</div>
+        <div style="font-weight:700;font-size:0.85rem;color:var(--text);margin-bottom:0.2rem;">Trading Monitors</div>
+        <div style="font-size:0.7rem;color:var(--muted);">Ultrawide & multi-screen setups</div>
+        <div style="margin-top:0.5rem;font-size:0.7rem;color:#ff9900;font-weight:700;">Shop on Amazon →</div>
+      </a>
+      <a href="https://www.amazon.com/s?k=hardware+wallet+crypto+ledger&tag=spunk01-20" target="_blank" rel="noopener sponsored" style="display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-decoration:none;transition:all 0.2s;text-align:center;" onmouseover="this.style.borderColor='#ff9900'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.5rem;margin-bottom:0.4rem;">🔐</div>
+        <div style="font-weight:700;font-size:0.85rem;color:var(--text);margin-bottom:0.2rem;">Hardware Wallets</div>
+        <div style="font-size:0.7rem;color:var(--muted);">Secure your crypto assets</div>
+        <div style="margin-top:0.5rem;font-size:0.7rem;color:#ff9900;font-weight:700;">Shop on Amazon →</div>
+      </a>
+    </div>
+  </div>
 </div>
 
 <footer>
   <div class="network-title">Predict Network</div>
   <div class="network-links">
-    <a href="https://predict.horse">predict.horse 🐴</a>
-    <a href="https://predict.codes">predict.codes 💻</a>
-    <a href="https://predict.beauty">predict.beauty 💄</a>
-    <a href="https://predict.pics">predict.pics 🖼️</a>
-    <a href="https://predict.mom">predict.mom 👩</a>
-    <a href="https://predict.gay">predict.gay 🏳️‍🌈</a>
     <a href="https://predict.autos">predict.autos 🏎️</a>
-    <a href="https://predict.boats">predict.boats 🚤</a>
     <a href="https://predict.christmas">predict.christmas 🎄</a>
-    <a href="https://predict.courses">predict.courses 📚</a>
-    <a href="https://predict.hair">predict.hair 💇</a>
     <a href="https://predict.garden">predict.garden 🌱</a>
+    <a href="https://predict.courses">predict.courses 📚</a>
     <a href="https://predict.makeup">predict.makeup 💋</a>
-    <a href="https://predict.singles">predict.singles 💘</a>
     <a href="https://predict.tattoo">predict.tattoo 🖋️</a>
+    <a href="https://predict.boats">predict.boats 🚤</a>
+    <a href="https://predict.yachts" class="current">predict.yachts 🛥️</a>
+    <a href="https://predict.pics">predict.pics 🖼️</a>
+    <a href="https://predict.codes">predict.codes 💻</a>
+    <a href="https://predict.gay">predict.gay 🏳️‍🌈</a>
+    <a href="https://predict.mom">predict.mom 👩</a>
     <a href="https://predict.skin">predict.skin 🧴</a>
     <a href="https://predict.surf">predict.surf 🏄</a>
-    <a href="https://predict.yachts" class="current">predict.yachts 🛥️</a>
+    <a href="https://predict.hair">predict.hair 💇</a>
+    <a href="https://predict.beauty">predict.beauty 💄</a>
+    <a href="https://predict.horse">predict.horse 🐴</a>
+    <a href="https://predict.singles">predict.singles 💘</a>
     <a href="https://sell.party">sell.party 🛒</a>
   </div>
   <div class="footer-sub">Predict. Bet. Win.</div>
@@ -3312,7 +3296,7 @@ function updateEngageTimers() {
   updateStreakUI();
 }
 
-// Update timers every 30s
+// Update timers every 10s
 setInterval(updateEngageTimers, 10000);
 
 // ============================================================
@@ -4556,14 +4540,6 @@ loadFirebaseSDK().then(async (ok) => {
     history.replaceState({}, '', location.pathname);
   }
 })();
-</script>
-<div id="global-visit-counter" style="position:fixed;bottom:8px;left:8px;background:rgba(0,0,0,0.7);color:#888;padding:4px 10px;border-radius:12px;font-size:12px;font-family:sans-serif;z-index:99;backdrop-filter:blur(4px);">
-<span id="gvc-count">...</span> visitors
-</div>
-<script>
-(function(){var d=location.hostname.replace(/\./g,'_')||'local';var k='visited_'+d;var fb='https://predict-network-ec767-default-rtdb.firebaseio.com/visitors/'+d;
-if(!localStorage.getItem(k)){localStorage.setItem(k,'1');fetch(fb+'/count.json').then(function(r){return r.json()}).then(function(n){var c=(n||0)+1;fetch(fb+'/count.json',{method:'PUT',body:JSON.stringify(c)});document.getElementById('gvc-count').textContent=c.toLocaleString()}).catch(function(){document.getElementById('gvc-count').textContent='1'})}
-else{fetch(fb+'/count.json').then(function(r){return r.json()}).then(function(n){document.getElementById('gvc-count').textContent=(n||0).toLocaleString()}).catch(function(){})}})();
 </script>
 </body>
 </html>
