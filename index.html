@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://subscribe-forms.beehiiv.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://predict-network-ec767-default-rtdb.firebaseio.com https://www.google-analytics.com https://api.coingecko.com https://www.clarity.ms; frame-src https://subscribe-forms.beehiiv.com; object-src 'none'; base-uri 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://subscribe-forms.beehiiv.com https://www.clarity.ms https://spunk.codes; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://predict-network-ec767-default-rtdb.firebaseio.com https://www.google-analytics.com https://api.coingecko.com https://www.clarity.ms; frame-src https://subscribe-forms.beehiiv.com; object-src 'none'; base-uri 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>predict.yachts — Crypto Prediction Markets</title>
 <meta name="description" content="Yacht prediction markets. Superyachts, luxury, racing, and wild bets. Free to play. Win crypto.">
@@ -4566,21 +4566,6 @@ loadFirebaseSDK().then(async (ok) => {
 })();
 </script>
 <script src="https://spunkart.com/promo.js" data-sa-topbar="true" data-sa-footer="true"></script>
-<!-- spunk.codes cross-promo banner — subtle, dismissible -->
-<script>
-(function(){
-  if(localStorage.getItem('pn_sc_banner_dismissed'))return;
-  var b=document.createElement('div');
-  b.id='pn-sc-banner';
-  b.style.cssText='position:fixed;bottom:0;left:0;right:0;z-index:9990;background:rgba(10,10,15,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(88,166,255,0.15);padding:8px 16px;display:flex;align-items:center;justify-content:center;gap:12px;font-family:system-ui,sans-serif;font-size:12px;color:#8b949e;animation:pnBannerIn 0.4s ease 2s both;box-shadow:0 -2px 20px rgba(0,0,0,0.3)';
-  var s=document.createElement('style');
-  s.textContent='@keyframes pnBannerIn{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}';
-  document.head.appendChild(s);
-  b.innerHTML='<span style="display:flex;align-items:center;gap:6px"><span style="font-size:14px">&#9889;</span> <span>Free developer tools at <a href="https://spunk.codes/?ref=predict-yachts" target="_blank" rel="noopener" style="color:#58a6ff;font-weight:700;text-decoration:none">spunk.codes</a> &mdash; 200+ tools, no signup</span></span><button onclick="this.parentNode.style.transform=\'translateY(100%)\';this.parentNode.style.opacity=\'0\';this.parentNode.style.transition=\'all 0.3s\';localStorage.setItem(\'pn_sc_banner_dismissed\',\'1\');setTimeout(function(){document.getElementById(\'pn-sc-banner\').remove()},400);if(typeof gtag===\'function\')gtag(\'event\',\'xpromo_dismiss\',{event_label:\'predict_sc_banner\'})" style="background:none;border:none;color:#484f58;font-size:16px;cursor:pointer;padding:2px 6px;line-height:1">&times;</button>';
-  document.body.appendChild(b);
-  if(typeof gtag==='function')gtag('event','xpromo_view',{event_category:'cross_promo',event_label:'predict_sc_banner'});
-  b.querySelector('a').addEventListener('click',function(){if(typeof gtag==='function')gtag('event','xpromo_click',{event_category:'cross_promo',event_label:'predict_sc_banner'})});
-})();
-</script>
+<script src="https://spunk.codes/cross-promo.js"></script>
 </body>
 </html>
