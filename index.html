@@ -1549,7 +1549,8 @@ if(localStorage.getItem('subscribed')){window.addEventListener('DOMContentLoaded
     <button class="modal-close" onclick="closeAdminLogin()">&times;</button>
     <h3>Admin Access</h3>
     <div class="modal-question">Enter admin password to access the control panel.</div>
-    <input class="admin-input" id="admin-pw" type="password" placeholder="Password..." onkeydown="if(event.key==='Enter')adminLogin()">
+    <input class="admin-input" id="admin-pw" type="password" placeholder="Password..." onkeydown="if(event.key==='Enter')adminLogin()" autocomplete="off">
+    <div id="admin-login-status" style="color:#ef4444;font-size:0.8rem;min-height:1.2em;margin-top:0.3rem;font-weight:600;"></div>
     <button class="admin-btn primary" onclick="adminLogin()" style="margin-top:0.5rem">Enter</button>
   </div>
 </div>
@@ -1622,7 +1623,10 @@ if(localStorage.getItem('subscribed')){window.addEventListener('DOMContentLoaded
 // CONFIG
 // ============================================================
 const SITE_ID = 'yachts';
-const ADMIN_HASH = '8f5c927b075658bde4c97f5647be3c3f578eb2b955e9c753b116ffb34092dfd2';
+// Admin auth: PBKDF2-strengthened hash (100k iterations, not plain SHA-256)
+const ADMIN_PBKDF2_HASH = 'b5d646c597b3b1c6bf2087730617ea568b641c17d29f6cb3a0e2e9097e0e2f0c';
+const ADMIN_PBKDF2_SALT = 'predict-network-admin-salt-2026';
+const ADMIN_PBKDF2_ITERATIONS = 100000;
 const PLATFORM_FEE = 0.03;
 
 // Security: escape HTML to prevent XSS from user-generated content
@@ -2475,10 +2479,65 @@ async function submitProposal() {
 }
 
 // ============================================================
-// ADMIN
+// ADMIN (hardened: PBKDF2, rate limiting, session timeout, secret key combo)
 // ============================================================
+
+// --- Rate limiting state ---
+let adminAttempts = [];
+let adminLockoutUntil = 0;
+const ADMIN_MAX_ATTEMPTS_PER_MIN = 3;
+const ADMIN_LOCKOUT_THRESHOLD = 5;
+const ADMIN_LOCKOUT_DURATION = 5 * 60 * 1000; // 5 minutes
+
+// --- Session timeout ---
+const ADMIN_SESSION_TIMEOUT = 15 * 60 * 1000; // 15 minutes
+let adminSessionTimer = null;
+let adminLastActivity = 0;
+
+function resetAdminSession() {
+  adminLastActivity = Date.now();
+}
+
+function checkAdminSessionTimeout() {
+  if (isAdmin && (Date.now() - adminLastActivity > ADMIN_SESSION_TIMEOUT)) {
+    isAdmin = false;
+    document.getElementById('admin-panel').classList.remove('show');
+    document.getElementById('admin-toggle').style.display = 'none';
+    showToast('Admin session expired (15 min inactivity)');
+    clearInterval(adminSessionTimer);
+    adminSessionTimer = null;
+  }
+}
+
+function startAdminSessionTimer() {
+  adminLastActivity = Date.now();
+  if (adminSessionTimer) clearInterval(adminSessionTimer);
+  adminSessionTimer = setInterval(checkAdminSessionTimeout, 30000);
+  // Reset timer on any click/key
+  document.addEventListener('click', resetAdminSession, {passive:true});
+  document.addEventListener('keydown', resetAdminSession, {passive:true});
+}
+
+// --- Secret key combo: Ctrl+Shift+A to reveal admin toggle ---
+let adminKeyCombo = [];
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+    e.preventDefault();
+    const btn = document.getElementById('admin-toggle');
+    if (btn) btn.style.display = 'inline-block';
+  }
+});
+
 function toggleAdmin() {
   if (!isAdmin) {
+    // Check lockout
+    if (Date.now() < adminLockoutUntil) {
+      const remaining = Math.ceil((adminLockoutUntil - Date.now()) / 1000);
+      showToast('Admin locked out. Try again in ' + remaining + 's');
+      return;
+    }
+    document.getElementById('admin-pw').value = '';
+    document.getElementById('admin-login-status').textContent = '';
     document.getElementById('admin-login-modal').classList.add('show');
     return;
   }
@@ -2487,27 +2546,77 @@ function toggleAdmin() {
 
 function closeAdminLogin() { document.getElementById('admin-login-modal').classList.remove('show'); }
 
+// --- PBKDF2 key derivation (replaces plain SHA-256 comparison) ---
+async function sha256(msg) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function pbkdf2Derive(password, salt, iterations) {
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
+  const derived = await crypto.subtle.deriveBits({name: 'PBKDF2', salt: enc.encode(salt), iterations: iterations, hash: 'SHA-256'}, keyMaterial, 256);
+  return Array.from(new Uint8Array(derived)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
 async function adminLogin() {
+  const now = Date.now();
+
+  // Check lockout
+  if (now < adminLockoutUntil) {
+    const remaining = Math.ceil((adminLockoutUntil - now) / 1000);
+    document.getElementById('admin-login-status').textContent = 'Locked out. Wait ' + remaining + 's';
+    return;
+  }
+
+  // Rate limit: max attempts per minute
+  adminAttempts = adminAttempts.filter(t => now - t < 60000);
+  if (adminAttempts.length >= ADMIN_MAX_ATTEMPTS_PER_MIN) {
+    document.getElementById('admin-login-status').textContent = 'Too many attempts. Wait 1 minute.';
+    return;
+  }
+
   const pw = document.getElementById('admin-pw').value;
-  const hash = await sha256(pw);
-  if (hash === ADMIN_HASH) {
+  if (!pw) return;
+
+  adminAttempts.push(now);
+
+  // Step 1: SHA-256 the password
+  const shaHash = await sha256(pw);
+  // Step 2: PBKDF2 the SHA-256 hash (100k iterations)
+  const pbkdf2Hash = await pbkdf2Derive(shaHash, ADMIN_PBKDF2_SALT, ADMIN_PBKDF2_ITERATIONS);
+
+  if (pbkdf2Hash === ADMIN_PBKDF2_HASH) {
     isAdmin = true;
+    adminAttempts = [];
     document.getElementById('admin-toggle').style.display = 'inline-block';
     closeAdminLogin();
     const ap = document.getElementById('admin-panel');
     ap.classList.add('show');
     ap.scrollIntoView({behavior:'smooth', block:'start'});
     loadAdminData();
+    startAdminSessionTimer();
     showToast('Admin access granted — scroll down to see panel');
   } else {
-    showToast('Wrong password');
+    // Track total failures for lockout
+    const totalFails = (parseInt(localStorage.getItem('admin_fails_' + SITE_ID) || '0')) + 1;
+    localStorage.setItem('admin_fails_' + SITE_ID, String(totalFails));
+    if (totalFails >= ADMIN_LOCKOUT_THRESHOLD) {
+      adminLockoutUntil = now + ADMIN_LOCKOUT_DURATION;
+      localStorage.setItem('admin_lockout_' + SITE_ID, String(adminLockoutUntil));
+      localStorage.setItem('admin_fails_' + SITE_ID, '0');
+      document.getElementById('admin-login-status').textContent = 'Too many failures. Locked out for 5 minutes.';
+    } else {
+      document.getElementById('admin-login-status').textContent = 'Wrong password (' + (ADMIN_LOCKOUT_THRESHOLD - totalFails) + ' attempts remaining)';
+    }
   }
 }
 
-async function sha256(msg) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-}
+// Restore lockout state from localStorage
+(function() {
+  const lockout = parseInt(localStorage.getItem('admin_lockout_' + SITE_ID) || '0');
+  if (lockout > Date.now()) adminLockoutUntil = lockout;
+})();
 
 function loadAdminData() {
   if (!firebaseReady) return;
@@ -4531,10 +4640,7 @@ document.addEventListener('click', function() {
   localStorage.setItem('session_start_' + SITE_ID, String(Date.now()));
 }, {passive:true});
 
-// Check for admin URL param
-if (location.hash === '#admin' || location.search.includes('admin')) {
-  document.getElementById('admin-toggle').style.display = 'inline-block';
-}
+// Admin toggle hidden by default — activate with Ctrl+Shift+A key combo
 
 // Try to upgrade to Firebase in background (non-blocking)
 loadFirebaseSDK().then(async (ok) => {
