@@ -16,6 +16,8 @@
 <meta name="theme-color" content="#0a0a0f">
 <link rel="canonical" href="https://predict.yachts/">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAgNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iMzUlIiBjeT0iMzUlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSJ3aGl0ZSIgc3RvcC1vcGFjaXR5PSIwLjQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNhODU1ZjciIHN0b3Atb3BhY2l0eT0iMC4xIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMjAiIGN5PSIxOCIgcj0iMTQiIGZpbGw9IiNhODU1ZjciIG9wYWNpdHk9IjAuODUiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjE4IiByPSIxNCIgZmlsbD0idXJsKCNnKSIvPjxlbGxpcHNlIGN4PSIyMCIgY3k9IjE4IiByeD0iNSIgcnk9IjMiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjM1IiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgMjAgMTgpIHRyYW5zbGF0ZSgtMywtNSkiLz48cGF0aCBkPSJNMTAgMzIgTDE0IDI4IFEyMCAyNiAyNiAyOCBMMzAgMzIgWiIgZmlsbD0iI2E4NTVmNyIgb3BhY2l0eT0iMC42Ii8+PGVsbGlwc2UgY3g9IjIwIiBjeT0iMzMiIHJ4PSIxMiIgcnk9IjMiIGZpbGw9IiNhODU1ZjciIG9wYWNpdHk9IjAuNCIvPjwvc3ZnPg==">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="predict.yachts — Crypto Prediction Markets">
@@ -789,7 +791,7 @@
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVNL11PEGP"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GVNL11PEGP');</script>
-<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://*.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pn0x1z2y3w");</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pn0x1z2y3w");</script>
 </head>
 <body>
 
@@ -1136,7 +1138,7 @@
   <div class="community-title">Join the Community</div>
   <div class="community-sub">Alerts, alpha, and bonus credit drops.</div>
   <div class="community-grid">
-    <a class="community-card x-card" href="https://x.com/SpunkArt13" target="_blank" rel="noopener noreferrer">
+    <a class="community-card x-card" href="https://predict.pics" target="_blank" rel="noopener noreferrer">
       <div class="cc-icon">𝕏</div>
       <div class="cc-name">X / Twitter</div>
       <div class="cc-desc">Predictions + announcements.</div>
@@ -2847,10 +2849,10 @@ function getSiteUrl() { return window.location.origin; }
 function shareOnX(question, yesPct) {
   const url = getSiteUrl();
   const templates = [
-    `${question}\n\n${yesPct}% say YES. You in? @SpunkArt13 👇`,
-    `${yesPct}% YES on "${question}"\n\nProve them wrong @SpunkArt13 👇`,
-    `Hot take: "${question}"\n\nBet free. Win crypto. @SpunkArt13`,
-    `"${question}" — ${yesPct}% YES\n\nWhat's your call? @SpunkArt13`,
+    `${question}\n\n${yesPct}% say YES. You in? 👇`,
+    `${yesPct}% YES on "${question}"\n\nProve them wrong 👇`,
+    `Hot take: "${question}"\n\nBet free. Win crypto.`,
+    `"${question}" — ${yesPct}% YES\n\nWhat's your call?`,
   ];
   const text = templates[Math.floor(Math.random() * templates.length)];
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
@@ -2859,7 +2861,7 @@ function shareOnX(question, yesPct) {
 
 function shareOnTelegram(question, yesPct) {
   const url = getSiteUrl();
-  const text = `🔮 ${question}\n📊 ${yesPct}% YES — What do you think?\n\nFree prediction market — bet and win!\nJoin: @SpunkArt13`;
+  const text = `🔮 ${question}\n📊 ${yesPct}% YES — What do you think?\n\nFree prediction market — bet and win!\nJoin: @predictnetwork`;
   window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
   awardShareBonus();
 }
@@ -2876,7 +2878,7 @@ function copyMarketLink(key) {
 }
 
 function openShareModal(question, yesPct) {
-  shareText = `🔮 ${question}\n📊 ${yesPct}% YES @SpunkArt13`;
+  shareText = `🔮 ${question}\n📊 ${yesPct}% YES`;
   shareUrl = getSiteUrl();
   document.getElementById('share-preview-text').textContent = shareText + '\n\n' + shareUrl;
   document.getElementById('share-modal').classList.add('show');
@@ -3000,7 +3002,7 @@ function loadAffiliateStats() {
 
 function shareAffiliateOnX() {
   const url = document.getElementById('referral-url').value || getSiteUrl();
-  const text = "I'm earning credits on every bet my friends make on " + document.title.split(' ')[0] + "\n\nFree to play. Real crypto prizes.\n\nJoin through my link @SpunkArt13 👇";
+  const text = "I'm earning credits on every bet my friends make on " + document.title.split(' ')[0] + "\n\nFree to play. Real crypto prizes.\n\nJoin through my link 👇";
   window.open('https://x.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank');
   trackRewardEvent('affiliate_share', 1000);
 }
@@ -3277,8 +3279,8 @@ function doSpin() {
 }
 
 function shareSpinOnX() {
-  const text = 'Just spun ' + spinPrize.toLocaleString() + ' free credits on the daily wheel! 🎰\\n\\nFree prediction markets — bet on anything. @SpunkArt13\\n\\n' + 'predict.' + SITE_ID;
-  const url = 'https://predict.' + SITE_ID;
+  const text = 'Just spun ' + spinPrize.toLocaleString() + ' free credits on the daily wheel! 🎰\\n\\nFree prediction markets — bet on anything.\\n\\n' + SITE_ID;
+  const url = 'https://' + SITE_ID;
   window.open('https://x.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank');
   // Bonus for sharing
   const shareBonus = 500;
@@ -3774,8 +3776,8 @@ function showSharePrompt(question, side, amount) {
   const templates = [
     `I'm betting ${side.toUpperCase()} on "${question}"\n\nProve me wrong 👇`,
     `${side.toUpperCase()} on "${question}" — ${amount.toLocaleString()} credits\n\nYour move 👇`,
-    `"${question}" — I said ${side.toUpperCase()}.\n\nBet free. Win crypto. @SpunkArt13`,
-    `Just went ${side.toUpperCase()} on this.\n\n"${question}"\n\nWhat's your call? @SpunkArt13`,
+    `"${question}" — I said ${side.toUpperCase()}.\n\nBet free. Win crypto.`,
+    `Just went ${side.toUpperCase()} on this.\n\n"${question}"\n\nWhat's your call?`,
   ];
   shareText = templates[Math.floor(Math.random() * templates.length)];
   shareUrl = getSiteUrl();
@@ -3828,7 +3830,7 @@ function dismissEngagePopup() {
 function engageShare() {
   const siteTitle = document.title.split(' —')[0];
   const url = getSiteUrl();
-  const text = `${betCount} predictions deep on ${siteTitle}\n\nBet free. Win crypto. @SpunkArt13`;
+  const text = `${betCount} predictions deep on ${siteTitle}\n\nBet free. Win crypto.`;
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
   dismissEngagePopup();
   awardShareBonus();
@@ -3850,7 +3852,7 @@ function engageCommunity() {
 // ============================================================
 const VIRAL_TEMPLATES = [
   '"{q}"\n\n{pct}% say YES. You in?\n\n{url}',
-  '{q}\n\n{pct}% YES | {noPct}% NO\n\nProve them wrong @SpunkArt13 👇\n\n{url}',
+  '{q}\n\n{pct}% YES | {noPct}% NO\n\nProve them wrong 👇\n\n{url}',
   'Hot take: {q}\n\nBet free. Win crypto.\n\n{url}',
   '{pct}% YES on "{q}"\n\nWhat\'s your call?\n\n{url}',
 ];
@@ -3993,7 +3995,7 @@ function updateWinStreak(won) {
 
 function shareWinStreak() {
   const url = getSiteUrl();
-  const text = winStreak + '-win streak. Come beat me. @SpunkArt13';
+  const text = winStreak + '-win streak. Come beat me.';
   window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank');
   awardShareBonus();
 }
