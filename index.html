@@ -3448,25 +3448,17 @@ async function fetchLiveCryptoPrices() {
   const now = Date.now();
   // Cache for 5 minutes
   if (liveCryptoCache && now - liveCryptoLastFetch < 300000) return liveCryptoCache;
-  let _liveData = null;
-  // API 1: CoinGecko
-  if (!_liveData) try {
+  try {
     const resp = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h');
-    if (resp.ok) { const d = await resp.json(); if (d && d.length) _liveData = d; }
-  } catch (e) {}
-  // API 2: CoinCap (map to CoinGecko format)
-  if (!_liveData) try {
-    const resp = await fetch('https://api.coincap.io/v2/assets?limit=50');
-    if (resp.ok) { const j = await resp.json(); if (j && j.data) _liveData = j.data.map(c => ({ id: c.id, symbol: c.symbol.toLowerCase(), name: c.name, current_price: parseFloat(c.priceUsd) || 0, market_cap: parseFloat(c.marketCapUsd) || 0, price_change_percentage_24h: parseFloat(c.changePercent24Hr) || 0, total_volume: parseFloat(c.volumeUsd24Hr) || 0 })); }
-  } catch (e) {}
-  // API 3: Coinpaprika
-  if (!_liveData) try {
-    const resp = await fetch('https://api.coinpaprika.com/v1/tickers?limit=50&quotes=USD');
-    if (resp.ok) { const j = await resp.json(); if (j && j.length) _liveData = j.map(c => ({ id: c.id, symbol: c.symbol.toLowerCase(), name: c.name, current_price: c.quotes && c.quotes.USD ? c.quotes.USD.price : 0, market_cap: c.quotes && c.quotes.USD ? c.quotes.USD.market_cap : 0, price_change_percentage_24h: c.quotes && c.quotes.USD ? c.quotes.USD.percent_change_24h : 0, total_volume: c.quotes && c.quotes.USD ? c.quotes.USD.volume_24h : 0 })); }
-  } catch (e) {}
-  if (_liveData) { liveCryptoCache = _liveData; liveCryptoLastFetch = now; return _liveData; }
-  console.warn('All crypto price APIs failed, using cache');
-  return liveCryptoCache || [];
+    if (!resp.ok) throw new Error('CoinGecko API error');
+    const data = await resp.json();
+    liveCryptoCache = data;
+    liveCryptoLastFetch = now;
+    return data;
+  } catch (e) {
+    console.warn('CoinGecko fetch failed:', e);
+    return liveCryptoCache || [];
+  }
 }
 
 function getTopMovers(coins) {
@@ -4687,5 +4679,6 @@ loadFirebaseSDK().then(async (ok) => {
 </script>
 <script src="https://spunkart.com/promo.js" data-sa-topbar="true" data-sa-footer="true"></script>
 <script src="https://spunk.codes/cross-promo.js"></script>
+<script src="https://spunk.codes/spunk-ads.js" defer></script>
 </body>
 </html>
